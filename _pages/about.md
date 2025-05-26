@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: ""
+title: "Welcome to Hai Nguyen-Truong homepage"
 excerpt: ""
 author_profile: true
 redirect_from: 
