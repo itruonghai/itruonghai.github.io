@@ -34,12 +34,24 @@
 }
 
 .masthead__menu {
-
   ul {
     margin: 0;
     padding: 0;
     clear: both;
     list-style-type: none;
+  }
+}
+
+.site-logo {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 1em;
+  
+  .site-logo-img {
+    max-height: 40px;
+    width: auto;
+    border-radius: 50%;
+    border: 1px solid $border-color;
   }
 }
 
