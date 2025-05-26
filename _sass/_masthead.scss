@@ -49,9 +49,11 @@
   
   .site-logo-img {
     max-height: 40px;
-    width: auto;
+    width: 40px;
     border-radius: 50%;
-    border: 1px solid $border-color;
+    border: 2px solid #333;
+    display: block !important;
+    object-fit: cover;
   }
 }
 

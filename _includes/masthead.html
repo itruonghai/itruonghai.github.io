@@ -3,7 +3,7 @@
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
         <a class="site-logo" href="{{ '/' | relative_url }}">
-          <img src="{{ site.url }}{{ site.baseurl }}/images/{{ site.author.avatar }}" alt="{{ site.title }}" class="site-logo-img">
+          <img src="{{ '/images/' | append: site.author.avatar | relative_url }}" alt="{{ site.title }}" class="site-logo-img">
         </a>
         <button><div class="navicon"></div></button>
         <ul class="visible-links">
