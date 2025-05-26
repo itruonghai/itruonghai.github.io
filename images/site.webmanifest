@@ -12,6 +12,11 @@
         "sizes": "512x512",
         "type": "image/png"
         }
+        {
+         "src": "/hai.jpg",
+         "sizes": "512x512",
+         "type": "image/png"
+         }
     ],
     "theme_color": "#FFFFFF",
     "background_color": "#FFFFFF",
