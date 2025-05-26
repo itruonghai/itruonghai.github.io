@@ -18,7 +18,7 @@ redirect_from:
 <span class='anchor' id='about-me'></span>
 I obtained my MPhil degree in Computer Science and Engineering from The Hong Kong University of Science and Technology (HKUST), where I was advised by Prof. [Sai-Kit Yeung](https://saikit.org/). Prior to that, I earned my B.S. in Computer Science (Advanced Program) with highest distinction (GPA: 3.93/4.0) from the University of Science, VNU - HCM, under the guidance of Prof. [Minh-Triet Tran](https://scholar.google.com/citations?hl=vi&user=lt2ATkkAAAAJ&view_op=list_works&sortby=pubdate).
 
-My research focuses on multimodal understanding and generation, building upon a foundation in computer vision (detection & segmentation). I explored these areas during my MPhil at HKUST and now apply them to large language models as an AI Research Engineer at Huawei HKRC, contributing to the [MindONE](https://github.com/mindspore-lab/mindone) project.
+My research focuses on multimodal understanding, building upon a foundation in computer vision (detection & segmentation). I explored these areas during my MPhil at HKUST and now apply them to multimodal/multitask generation model at Huawei HKRC as AI Research Engineer, contributing to the [MindONE](https://github.com/mindspore-lab/mindone) project.
 My core interests include:
 - Vision-language foundation model for navigation, interaction and action: Creating agents that can understand natural language instructions to navigate, interact and act with real-world or virtual environments.
 - Multimodal event reasoning: Developing models that precisely locate and describe complex events in long-form videos using visual and auditory cues.
