@@ -34,6 +34,24 @@ My core interests include:
 - *2024.10*: 🎯 **Paper Accepted!** My first paper "VATEX" has been accepted to WACV 2025. Thrilled to share that this marks my debut as a co-first author in a top-tier computer vision conference! 🎉
 - *2024.11*: 🚀 **New Role!** Excited to announce that I've joined Huawei Hong Kong Research Center as an AI Research Engineer, where I'll be contributing to cutting-edge AIGC (AI-Generated Content) projects. Looking forward to this new journey! 💫
 
+# 💻 Experience
+
+<div class='experience-box'>
+<div class='experience-box-text' markdown="1">
+
+- *2024.11 - 2025.04*: **AI Research Engineer** at [Huawei Hong Kong Research Center](https://www.huawei.com/en/corporate-information/research-development)
+  - Contributing to [MindONE](https://github.com/mindspore-lab/mindone) project, focusing on multimodal/multitask generation models and optimizing it on Ascend NPU.
+
+- *2022.03 - 2022.07*: **Research Resident** (Batch 7) at [VinAI Research](https://vinai.io/) (now part of Qualcomm)
+  - Conducted research in spatio-temporal tasks: video instance/panoptic segmentation, 4D point cloud panoptic segmentation.
+
+- *2021.03 - 2021.11*: **Research Intern** at [Vinbrain](https://vinbrain.net/) (now acquired by NVIDIA)
+  - Worked on medical image processing and developed deep learning models for healthcare solutions
+
+</div>
+</div>
+
+
 # 📝 Publications 
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">WACV 2025</div><img src='https://vatex.hkustvgd.com/static/images/teaser.png' alt="sym" width="100%"></div></div>
@@ -60,11 +78,6 @@ My core interests include:
 </div>
 </div>
 
-
-# 💻 Experience
-- *2024.11 - 2025.04*: AI Research Engineer, Huawei Hong Kong Research Center
-- *2022.03 - 2022.07*: Research Resident Batch 7, VinAI Research (now acquired by Qualcomm) 
-- *2021.03 - 2021.11*: Research Intern, Vinbrain (now acquired by NVIDIA) 
 
 # 🎖 Honors and Awards
 
