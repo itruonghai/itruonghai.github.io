@@ -31,7 +31,7 @@ My core interests include:
 
 
 # 🔥 News
-- *2025.06* 🏆 **Best Poster Presentation Award** at [AVTSC](https://avstc.ptj.edu.vn/) - Thrilled to receive this prestigious joint recognition from the Australian Government 🇦🇺, University of Technology Sydney (UTS) 🎓, and PTIT for my research presentation! A fantastic validation of my research! ✨
+- *2025.06* 🏆 **Best Poster Presentation Award** at [AVSTC](https://avstc.ptit.edu.vn/) - Thrilled to receive this prestigious joint recognition from the Australian Government 🇦🇺, University of Technology Sydney (UTS) 🎓, and PTIT for my research presentation! A fantastic validation of my research! ✨
 - *2024.11*: 🚀 **New Role!** Excited to announce that I've joined Huawei Hong Kong Research Center as an AI Research Engineer, where I'll be contributing to cutting-edge AIGC (AI-Generated Content) projects. Looking forward to this new journey! 💫
 - *2024.10*: 🎯 **Paper Accepted!** My first paper "VATEX" has been accepted to WACV 2025. Thrilled to share that this marks my debut as a co-first author in a top-tier computer vision conference! 🎉
 
@@ -87,7 +87,7 @@ My core interests include:
 <div class='award-box-text' markdown="1">
 
 ## Academic Excellence
-- *2025* **Best Poster Presentation Award** at [AVTSC](https://avstc.ptit.edu.vn/) - Joint recognition from Australian Government, University of Technology Sydney (UTS), and PTIT.
+- *2025* **Best Poster Presentation Award** at [AVSTC](https://avstc.ptit.edu.vn/) - Joint recognition from Australian Government, University of Technology Sydney (UTS), and PTIT.
 - *2024* 🎓 **UGC Research Travel Grant** - HKUST Hong Kong
 - *2022 - 2024* 💰 **Postgraduate Scholarship (PGS)** - HKUST Hong Kong
 - *2022* 🏅 **Merit Award for Highest Distinction** - President of Vietnam National University
