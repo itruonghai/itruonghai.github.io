@@ -69,7 +69,6 @@ Currently, my work targets the development of **World Foundation Multimodal Mode
 
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">WACV 2026</div><img src='https://i.postimg.cc/ZqG6Vnmt/Screenshot-2025-11-09-at-2-27-56-PM.png' alt="sym" width="100%"></div></div>
-
 <div class='paper-box-text' markdown="1">
 
 [Power of Boundary and Reflection: Semantic Transparent Object Segmentation using Pyramid Vision Transformer with Transparent Cues](https://transcues.hkustvgd.com/)
