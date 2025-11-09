@@ -22,9 +22,9 @@ My research centers on advancing **multimodal understanding**, grounded in a str
 
 Currently, my work targets the development of **World Foundation Multimodal Models** capable of discovering the underlying physical laws and causal relationships within multimodal data. To achieve this, my research is structured around two interconnected pillars:
 
-- Egocentric Video Understanding (The Past & Present): Enabling AI to interpret human behavior and intent from continuous, first-person sensory data (such as video, sound, touch, and eye gaze). The goal is to build a grounded, queryable memory of events as they happen.
+- **Egocentric Video Understanding (The Past & Present)**: Enabling AI to interpret human behavior and intent from continuous, first-person sensory data (such as video, sound, touch, and eye gaze). The goal is to build a grounded, queryable memory of events as they happen.
 
-- Physics-Plausible Video Generation (The Future): Moving beyond standard generation to build predictive, causally-consistent world models. This is the essential foundation for robust simulation and long-range planning.
+- **Physics-Plausible Video Generation (The Future)**: Moving beyond standard generation to build predictive, causally-consistent world models. This is the essential foundation for robust simulation and long-range planning.
 
 
 <div style="color: #ff0000; font-weight: bold; font-size: 1.1em; text-align: center; margin: 1em 0; padding: 0.5em; border: 2px solid #ff0000; border-radius: 5px;">
