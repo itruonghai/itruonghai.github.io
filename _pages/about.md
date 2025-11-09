@@ -76,7 +76,6 @@ Currently, my work targets the development of **World Foundation Multimodal Mode
 Tuan-Anh Vu, **Nguyen Truong Hai**, Zheng Ziqiang, Binh-Son Hua, Qing Guo, Ivor Tsang, Sai-Kit Yeung
 
 [**Project**](https://transcues.hkustvgd.com/) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
-
 - TransCues introduces an efficient transformer-based segmentation architecture capable of handling transparent, reflective, and general objects. By proposing Boundary Feature Enhancement (BFE) and Reflection Feature Enhancement (RFE), we enable the model to better capture subtle details in both glass and non-glass regions, resulting in more accurate and robust segmentation.
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">WACV 2025</div><img src='https://vatex.hkustvgd.com/static/images/teaser.png' alt="sym" width="100%"></div></div>
