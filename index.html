@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hai Nguyen-Truong | Homepage</title>
+    <meta name="description" content="Homepage of Nguyen Truong Hai - Computer Vision and AI Researcher">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        .hero-layout {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .profile-image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+            aspect-ratio: 1/1;
+            margin: 0 auto;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .profile-image-container {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            padding: 8px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal), var(--accent-cyan));
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Rotating Glow Effect */
+        .profile-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal), var(--accent-cyan), var(--accent-blue));
+            background-size: 200% 200%;
+            z-index: 1;
+            filter: blur(20px);
+            opacity: 0.8;
+            animation: rotateGlow 5s linear infinite;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid var(--bg-primary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease;
+        }
+
+        .profile-image-container:hover .profile-image {
+            transform: scale(1.05);
+        }
+
+        @keyframes rotateGlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem) !important;
+            font-weight: 800;
+            letter-spacing: -0.06em;
+            margin-bottom: 0.5rem;
+            color: #0f172a;
+            line-height: 1.1;
+            white-space: nowrap;
+            text-shadow: 0 10px 30px rgba(14, 165, 233, 0.1);
+            animation: fadeDown 1s cubic-bezier(0.5, 0, 0, 1) forwards;
+        }
+
+        .hero-subtitle {
+            font-size: 2rem !important;
+            font-weight: 600;
+            margin-bottom: 2.5rem;
+            animation: fadeUp 1s cubic-bezier(0.5, 0, 0, 1) forwards;
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        .scroll-down-indicator {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: var(--accent-teal);
+            animation: bounce 2s infinite;
+            opacity: 0;
+            animation: fadeUp 1s forwards 1.5s, bounce 2s infinite 1.5s;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0) translateX(-50%);
+            }
+
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .hero-layout {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .profile-image-wrapper {
+                grid-row: 1;
+                /* Move image to top on mobile */
+                width: 280px;
+            }
+
+            .hero-title {
+                font-size: 3.5rem !important;
+            }
+
+            .hero-subtitle {
+                font-size: 1.5rem !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo text-gradient" style="display: flex; align-items: center; gap: 0.8rem;">
+                <img src="images/hai.jpg" alt="Hai"
+                    style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover;"
+                    onerror="this.style.display='none'">
+                <span style="font-size: 1.1rem; text-transform: none; letter-spacing: 0;">Hai Nguyen-Truong</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">About</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="research.html">Research</a></li>
+            </ul>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero / About Section -->
+        <section class="section reveal active" id="about" style="position: relative; overflow: visible;">
+
+            <!-- Interactive Particle Background -->
+            <canvas id="hero-particles"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: auto;"></canvas>
+
+            <div class="hero-layout" style="position: relative; z-index: 1;">
+                <div class="hero-text">
+                    <h1 class="hero-title">Hai Nguyen-Truong</h1>
+                    <h2 class="text-gradient hero-subtitle"
+                        style="display: flex; align-items: center; min-height: 1.2em;">
+                        <span class="typewriter-text"></span><span class="typewriter-cursor">|</span>
+                    </h2>
+
+                    <p style="font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                        I am an incoming PhD student at Northeastern University, where I am fortunate to be advised by
+                        Prof. <a href="https://ltorresa.github.io/home.html" target="_blank">Lorenzo Torresani</a>.
+                        Previously, I obtained my MPhil in Computer Science and Engineering
+                        from HKUST under the supervision of Prof. <a href="https://saikit.org/" target="_blank">Sai-Kit
+                            Yeung</a>,
+                        following a B.S. in Computer Science (Advanced Program) with highest distinction (GPA: 3.93/4.0)
+                        from the University of Science, VNU - HCM, guided by Assoc. Prof. <a
+                            href="https://www.fit.hcmus.edu.vn/~tmtriet/" target="_blank">Minh-Triet Tran</a>.
+                    </p>
+                    <p style="font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                        Currently, my work targets the development of <strong class="highlight-animate">World Foundation
+                            Multimodal Models</strong> capable of discovering the underlying physical laws and causal
+                        relationships within multimodal data.
+                        <!-- To achieve this, my research is structured around two
+                        interconnected pillars:
+                    </p>
+                    <ul
+                        style="font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1.5rem; padding-left: 1.2rem; line-height: 1.6;">
+                        <li style="margin-bottom: 0.5rem;"><strong class="highlight-animate">Egocentric Video
+                                Understanding (The Past & Present):</strong> Enabling AI to interpret human behavior and
+                            intent from continuous, first-person sensory data (such as video, sound, touch, and eye
+                            gaze). The goal is to build a grounded, queryable memory of events as they happen.</li>
+                        <li><strong class="highlight-animate">Physics-Plausible Video Generation (The Future):</strong>
+                            Moving beyond standard generation to build predictive, causally-consistent world models.
+                            This is the essential foundation for robust simulation and long-range planning.</li>
+                    </ul> -->
+                </div>
+
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 2.5rem;">
+                    <div class="profile-image-wrapper">
+                        <div class="profile-image-container">
+                            <img src="images/hai.jpg" alt="Hai Nguyen-Truong" class="profile-image"
+                                onerror="this.style.display='none'">
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 1.5rem;">
+                        <a href="https://scholar.google.com/citations?user=D1ngwXoAAAAJ" target="_blank"
+                            style="font-size: 1.8rem; color: var(--text-secondary); transition: transform 0.3s; display: inline-block;"
+                            onmouseover="this.style.transform='scale(1.2) translateY(-3px)'"
+                            onmouseout="this.style.transform='scale(1) translateY(0)'"><i
+                                class="fas fa-graduation-cap"></i></a>
+                        <a href="https://github.com/itruonghai" target="_blank"
+                            style="font-size: 1.8rem; color: var(--text-secondary); transition: transform 0.3s; display: inline-block;"
+                            onmouseover="this.style.transform='scale(1.2) translateY(-3px)'"
+                            onmouseout="this.style.transform='scale(1) translateY(0)'"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/itruonghai/" target="_blank"
+                            style="font-size: 1.8rem; color: var(--text-secondary); transition: transform 0.3s; display: inline-block;"
+                            onmouseover="this.style.transform='scale(1.2) translateY(-3px)'"
+                            onmouseout="this.style.transform='scale(1) translateY(0)'"><i
+                                class="fab fa-linkedin"></i></a>
+                        <a href="mailto:nguyentruonghai141@gmail.com"
+                            style="font-size: 1.8rem; color: var(--text-secondary); transition: transform 0.3s; display: inline-block;"
+                            onmouseover="this.style.transform='scale(1.2) translateY(-3px)'"
+                            onmouseout="this.style.transform='scale(1) translateY(0)'"><i
+                                class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll Down Indicator -->
+            <div class="scroll-down-indicator"
+                onclick="document.getElementById('news').scrollIntoView({ behavior: 'smooth' });">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- Featured Publications Section -->
+        <section class="section reveal" id="featured-publications">
+            <h2
+                style="font-size: 2.2rem; border-bottom: 2px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 2rem;">
+                📚 Featured Publications</h2>
+
+            <div class="projects-carousel-container" style="position: relative; padding: 0 10px;">
+                <button class="carousel-btn left" onclick="scrollCarousel(-1)" aria-label="Scroll left">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <div class="projects-grid" id="projectsCarousel">
+
+                    <!-- Project 1 -->
+                    <div class="paper-card">
+                        <div class="paper-card-image">
+                            <div class="badge">WACV 2026</div>
+                            <img src="https://i.postimg.cc/ZqG6Vnmt/Screenshot-2025-11-09-at-2-27-56-PM.png"
+                                alt="TransCues" loading="lazy">
+                        </div>
+                        <div class="paper-card-text">
+                            <div class="paper-card-top">
+                                <a href="https://transcues.hkustvgd.com/" target="_blank" class="paper-card-title">Power
+                                    of
+                                    Boundary and Reflection: Semantic Transparent Object Segmentation using Pyramid
+                                    Vision
+                                    Transformer with Transparent Cues</a>
+                                <p class="paper-card-authors">Tuan-Anh Vu, <strong>Nguyen Truong Hai</strong>, Zheng
+                                    Ziqiang,
+                                    Binh-Son Hua, Qing Guo, Ivor Tsang, Sai-Kit Yeung</p>
+                            </div>
+
+                            <a href="https://transcues.hkustvgd.com/" target="_blank" class="paper-card-btn"><i
+                                    class="fas fa-globe"></i> Project Page</a>
+
+                            <p class="paper-card-desc">TransCues introduces an efficient transformer-based segmentation
+                                architecture capable of handling transparent, reflective, and general objects. By
+                                proposing
+                                Boundary Feature Enhancement (BFE) and Reflection Feature Enhancement (RFE), we enable
+                                the
+                                model to better capture subtle details in both glass and non-glass regions, resulting in
+                                more accurate and robust segmentation.</p>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="paper-card">
+                        <div class="paper-card-image">
+                            <div class="badge">WACV 2025</div>
+                            <img src="https://vatex.hkustvgd.com/static/images/teaser.png" alt="VATEX" loading="lazy">
+                        </div>
+                        <div class="paper-card-text">
+                            <div class="paper-card-top">
+                                <a href="https://openaccess.thecvf.com/content/WACV2025/html/Nguyen-Truong_Vision-Aware_Text_Features_in_Referring_Image_Segmentation_From_Object_Understanding_WACV_2025_paper.html"
+                                    target="_blank" class="paper-card-title">Vision-Aware Text Features in Referring
+                                    Expression
+                                    Segmentation: From Object Understanding to Context Understanding</a>
+                                <p class="paper-card-authors"><strong>Hai Nguyen-Truong</strong>, E-Ro Nguyen, Tuan-Anh
+                                    Vu,
+                                    Minh-Triet Tran, Binh-Son Hua, Sai-Kit Yeung</p>
+                            </div>
+
+                            <a href="https://vatex.hkustvgd.com/" target="_blank" class="paper-card-btn"><i
+                                    class="fas fa-globe"></i> Project Page</a>
+
+                            <p class="paper-card-desc">VATEX is a novel method for referring image segmentation that
+                                leverages vision-aware text features to improve text understanding. By decomposing
+                                language
+                                cues into object and context understanding, the model can better localize objects and
+                                interpret complex sentences, leading to significant performance gains.</p>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="paper-card">
+                        <div class="paper-card-image">
+                            <div class="badge">ISBI 2022</div>
+                            <img src="https://raw.githubusercontent.com/itruonghai/SegTransVAE/refs/heads/main/figure/SegTransVAE.png"
+                                alt="SegTransVAE" loading="lazy">
+                        </div>
+                        <div class="paper-card-text">
+                            <div class="paper-card-top">
+                                <a href="https://ieeexplore.ieee.org/document/9761417" target="_blank"
+                                    class="paper-card-title">SegTransVAE: Hybrid CNN - Transformer with Regularization
+                                    for
+                                    medical image segmentation</a>
+                                <p class="paper-card-authors"><strong>Hai Nguyen-Truong</strong>, Quan-Dung Pham, Nam
+                                    Nguyen
+                                    Phuong, Khoa NA Nguyen, Chanh DT Nguyen, Trung Bui, Steven QH Truong</p>
+                            </div>
+
+                            <a href="https://ieeexplore.ieee.org/document/9761417" target="_blank"
+                                class="paper-card-btn"><i class="fas fa-file-alt"></i> Paper</a>
+
+                            <p class="paper-card-desc">SegTransVAE is the first work exploiting the hybrid architecture
+                                between CNN, Transformers with the Variational Autoencoder (VAE) branch to the network
+                                to
+                                reconstruct the input images jointly with segmentation.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button class="carousel-btn right" onclick="scrollCarousel(1)" aria-label="Scroll right">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section class="section reveal" id="news">
+            <h2
+                style="font-size: 2.2rem; border-bottom: 2px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 2rem;">
+                🔥 News</h2>
+            <div class="glass-card" style="box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 1.2rem; display: flex; gap: 1rem;">
+                        <strong style="color: var(--accent-blue); min-width: 80px;">2025.11</strong>
+                        <span>🎯 <strong>Paper Accepted!</strong> Our paper "TransCues" was accepted to WACV
+                            2026.</span>
+                    </li>
+                    <li style="margin-bottom: 1.2rem; display: flex; gap: 1rem;">
+                        <strong style="color: var(--accent-blue); min-width: 80px;">2025.08</strong>
+                        <span>🚀 <strong>New Role!</strong> Joined Fulbright University Vietnam as a Research
+                            Assistant.</span>
+                    </li>
+                    <li style="margin-bottom: 1.2rem; display: flex; gap: 1rem;">
+                        <strong style="color: var(--accent-blue); min-width: 80px;">2025.06</strong>
+                        <span>🏆 <strong>Best Poster Presentation Award</strong> at <a href="https://avstc.ptit.edu.vn/"
+                                target="_blank">AVSTC</a> - Joint recognition from the Australian Govt, UTS, and
+                            PTIT.</span>
+                    </li>
+                    <li style="margin-bottom: 1.2rem; display: flex; gap: 1rem;">
+                        <strong style="color: var(--accent-blue); min-width: 80px;">2024.11</strong>
+                        <span>🚀 <strong>New Role!</strong> Joined Huawei Hong Kong Research Center.</span>
+                    </li>
+                    <li style="margin-bottom: 0; display: flex; gap: 1rem;">
+                        <strong style="color: var(--accent-blue); min-width: 80px;">2024.10</strong>
+                        <span>🎯 <strong>Paper Accepted!</strong> My first paper "VATEX" was accepted to WACV
+                            2025.</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="section reveal" id="experience">
+            <h2
+                style="font-size: 2.2rem; border-bottom: 2px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 2rem;">
+                💻 Experience</h2>
+            <div class="glass-card"
+                style="display: flex; flex-direction: column; gap: 2.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
+
+                <div style="position: relative; padding-left: 2rem; border-left: 2px solid var(--accent-blue);">
+                    <div
+                        style="position: absolute; left: -7px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent-blue);">
+                    </div>
+                    <h3 style="color: #0f172a; margin-bottom: 0.2rem; font-size: 1.3rem;">Research Assistant in Computer
+                        Vision</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.8rem; font-weight: 500;">
+                        2025.08 - Current | <a href="https://fulbright.edu.vn/" target="_blank">Fulbright University
+                            Vietnam</a></p>
+                    <ul style="padding-left: 1.2rem; color: var(--text-secondary);">
+                        <li>Conducted research on Video Diffusion Models, focusing on Physical Plausibility of Video
+                            Generation.</li>
+                        <li>Host weekly meeting and research seminar in our CV group.</li>
+                        <li>Assist junior student in Capstone and Thesis project on Computer Vision.</li>
+                    </ul>
+                </div>
+
+                <div style="position: relative; padding-left: 2rem; border-left: 2px solid var(--accent-cyan);">
+                    <div
+                        style="position: absolute; left: -7px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent-cyan);">
+                    </div>
+                    <h3 style="color: #0f172a; margin-bottom: 0.2rem; font-size: 1.3rem;">AI Research Engineer</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.8rem; font-weight: 500;">
+                        2024.11 - 2025.04 | <a href="https://www.huawei.com/" target="_blank">Huawei Hong Kong Research
+                            Center</a></p>
+                    <ul style="padding-left: 1.2rem; color: var(--text-secondary);">
+                        <li>Contributing to <a href="https://github.com/mindspore-lab/mindone"
+                                target="_blank">MindONE</a> project, focusing on multimodal/multitask generation models
+                            and optimizing it on Ascend NPU.</li>
+                    </ul>
+                </div>
+
+                <div style="position: relative; padding-left: 2rem; border-left: 2px solid var(--accent-teal);">
+                    <div
+                        style="position: absolute; left: -7px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent-teal);">
+                    </div>
+                    <h3 style="color: #0f172a; margin-bottom: 0.2rem; font-size: 1.3rem;">Research Resident</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.8rem; font-weight: 500;">
+                        2022.03 - 2022.07 | <a href="https://vinai.io/" target="_blank">VinAI Research</a></p>
+                    <ul style="padding-left: 1.2rem; color: var(--text-secondary);">
+                        <li>Conducted research in spatio-temporal tasks: video instance/panoptic segmentation, 4D point
+                            cloud panoptic segmentation.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Honors and Awards -->
+        <section class="section reveal" id="awards">
+            <h2
+                style="font-size: 2.2rem; border-bottom: 2px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 2rem;">
+                🎖 Honors, Awards & Competitions</h2>
+            <div class="glass-card"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
+
+                <div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 1.2rem; color: var(--accent-blue);"><i
+                            class="fas fa-university"></i> Academic</h3>
+                    <ul
+                        style="padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem; color: var(--text-secondary);">
+                        <li><strong>2025</strong> Best Poster Presentation Award at AVSTC</li>
+                        <li><strong>2024</strong> UGC Research Travel Grant - HKUST</li>
+                        <li><strong>2022-2024</strong> Postgraduate Scholarship (PGS) - HKUST</li>
+                        <li><strong>2022</strong> Merit Award for Highest Distinction</li>
+                        <li><strong>2022</strong> Third Prize, EURÉKA</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 1.2rem; color: var(--accent-teal);"><i
+                            class="fas fa-trophy"></i> Competitions & Math</h3>
+                    <ul
+                        style="padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem; color: var(--text-secondary);">
+                        <li><strong>2023 & 2024</strong> 🥈 Runner-up - Maritime CV Workshop (WACV)</li>
+                        <li><strong>2020</strong> 🥇 First Prize - MediaEval Sports Video Classification</li>
+                        <li><strong>2021</strong> 🥇 First Prize - Ho Chi Minh AI Challenge</li>
+                        <li><strong>2017 & 2018</strong> 🥉 Third Prize - Vietnamese Math Olympiads</li>
+                        <li><strong>2015 & 2016</strong> 🥇 Gold Medal - April 30th Math Olympiad</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Hai Nguyen-Truong. Built with HTML, CSS & JS.</p>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="js/app.js"></script>
+
+    <!-- Handle Drag-to-Scroll for Projects Grid -->
+    <script>
+        const slider = document.querySelector('.projects-grid');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.classList.add('active');
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.classList.remove('active');
+        });
+
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.classList.remove('active');
+        });
+
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            // The scroll multiplier (e.g. 2) dictates how fast it scrolls relative to mouse movement
+            const walk = (x - startX) * 2;
+            slider.scrollLeft = scrollLeft - walk;
+        });
+
+        // Function for Carousel Buttons
+        function scrollCarousel(direction) {
+            const cardWidth = slider.querySelector('.paper-card').offsetWidth;
+            const gap = parseFloat(getComputedStyle(slider).gap) || 0;
+            const scrollAmount = (cardWidth + gap) * direction;
+            slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+    </script>
+</body>
+
+</html>

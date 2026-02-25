@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hai Nguyen-Truong | Portfolio</title>
+    <meta name="description" content="Research and Publications by Nguyen Truong Hai">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        .research-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .filter-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            background: rgba(15, 23, 42, 0.5);
+            color: var(--text-primary);
+            font-size: 1rem;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            color: var(--text-secondary);
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+        }
+
+        .filter-btn.active {
+            background: var(--accent-blue);
+            color: white;
+            border-color: var(--accent-blue);
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+        }
+
+        .research-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .research-item {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(12px);
+        }
+
+        .research-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .res-image-container {
+            width: 100%;
+            height: 200px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            background: #000;
+        }
+
+        .res-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            /* Don't crop medical or complex graphs */
+        }
+
+        .res-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(15, 23, 42, 0.85);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+        }
+
+        .res-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .res-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .res-authors {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .res-authors strong {
+            color: var(--accent-pink);
+        }
+
+        .res-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .res-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        .res-tag {
+            background: rgba(192, 132, 252, 0.1);
+            color: #d8b4fe;
+            border: 1px solid rgba(192, 132, 252, 0.3);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .res-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .res-link {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .res-link-primary {
+            background: var(--accent-blue);
+            color: #0f172a;
+        }
+
+        .res-link-primary:hover {
+            background: #7dd3fc;
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+        }
+
+        .res-link-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--glass-border);
+        }
+
+        .res-link-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            text-decoration: none;
+        }
+
+        @media (max-width: 900px) {
+            .research-item {
+                grid-template-columns: 1fr;
+            }
+
+            .res-image-container {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo text-gradient" style="display: flex; align-items: center; gap: 0.8rem;">
+                <img src="images/hai.jpg" alt="Hai"
+                    style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover;"
+                    onerror="this.style.display='none'">
+                <span style="font-size: 1.1rem; text-transform: none; letter-spacing: 0;">Hai Nguyen-Truong</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">About</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="research.html" class="active">Research</a></li>
+            </ul>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <section class="section reveal active">
+            <div class="research-header">
+                <h1 class="text-gradient">Research & Publications</h1>
+                <p style="color: var(--text-muted); max-width: 600px; margin: 1rem auto 0;">
+                    Exploring the intersection of Computer Vision, Multimodal Understanding, and Generative AI.
+                </p>
+            </div>
+
+            <div class="filter-section">
+                <div class="search-box">
+                    <input type="text" id="searchInput" class="search-input"
+                        placeholder="Search by title, author, or keyword...">
+                </div>
+
+                <div class="filter-group" id="yearFilter">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="2026">2026</button>
+                    <button class="filter-btn" data-filter="2025">2025</button>
+                    <button class="filter-btn" data-filter="2022">2022</button>
+                </div>
+            </div>
+
+            <div class="research-grid" id="researchGrid">
+
+                <!-- Item 1 -->
+                <div class="research-item" data-year="2026"
+                    data-text="power of boundary and reflection semantic transparent object segmentation using pyramid vision transformer with transparent cues transcues segmentation wacv">
+                    <div class="res-image-container">
+                        <div class="res-badge">WACV 2026</div>
+                        <img src="https://i.postimg.cc/ZqG6Vnmt/Screenshot-2025-11-09-at-2-27-56-PM.png" alt="TransCues"
+                            loading="lazy">
+                    </div>
+                    <div class="res-content">
+                        <h3 class="res-title">Power of Boundary and Reflection: Semantic Transparent Object Segmentation
+                            using Pyramid Vision Transformer with Transparent Cues</h3>
+                        <p class="res-authors">Tuan-Anh Vu, <strong>Nguyen Truong Hai</strong>, Zheng Ziqiang, Binh-Son
+                            Hua, Qing Guo, Ivor Tsang, Sai-Kit Yeung</p>
+                        <p class="res-desc">TransCues introduces an efficient transformer-based segmentation
+                            architecture capable of handling transparent, reflective, and general objects. By proposing
+                            Boundary Feature Enhancement (BFE) and Reflection Feature Enhancement (RFE), we enable the
+                            model to better capture subtle details in both glass and non-glass regions, resulting in
+                            more accurate and robust segmentation.</p>
+
+                        <div class="res-tags">
+                            <span class="res-tag">Segmentation</span>
+                            <span class="res-tag">Transformer</span>
+                            <span class="res-tag">Transparent Objects</span>
+                        </div>
+
+                        <div class="res-links">
+                            <a href="https://transcues.hkustvgd.com/" target="_blank"
+                                class="res-link res-link-primary"><i class="fas fa-globe"></i> Project</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="research-item" data-year="2025"
+                    data-text="vision-aware text features in referring expression segmentation from object understanding to context understanding vatex multimodal wacv">
+                    <div class="res-image-container">
+                        <div class="res-badge">WACV 2025</div>
+                        <img src="https://vatex.hkustvgd.com/static/images/teaser.png" alt="VATEX" loading="lazy">
+                    </div>
+                    <div class="res-content">
+                        <h3 class="res-title">Vision-Aware Text Features in Referring Expression Segmentation: From
+                            Object Understanding to Context Understanding</h3>
+                        <p class="res-authors"><strong>Hai Nguyen-Truong</strong>, E-Ro Nguyen, Tuan-Anh Vu, Minh-Triet
+                            Tran, Binh-Son Hua, Sai-Kit Yeung</p>
+                        <p class="res-desc">VATEX is a novel method for referring image segmentation that leverages
+                            vision-aware text features to improve text understanding. By decomposing language cues into
+                            object and context understanding, the model can better localize objects and interpret
+                            complex sentences, leading to significant performance gains.</p>
+
+                        <div class="res-tags">
+                            <span class="res-tag">Segmentation</span>
+                            <span class="res-tag">Referring Expression</span>
+                            <span class="res-tag">Multimodal</span>
+                        </div>
+
+                        <div class="res-links">
+                            <a href="https://vatex.hkustvgd.com/" target="_blank" class="res-link res-link-primary"><i
+                                    class="fas fa-globe"></i> Project</a>
+                            <a href="https://openaccess.thecvf.com/content/WACV2025/html/Nguyen-Truong_Vision-Aware_Text_Features_in_Referring_Image_Segmentation_From_Object_Understanding_WACV_2025_paper.html"
+                                target="_blank" class="res-link res-link-secondary"><i class="fas fa-file-alt"></i>
+                                Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="research-item" data-year="2022"
+                    data-text="segtransvae hybrid cnn transformer with regularization for medical image segmentation isbi vae">
+                    <div class="res-image-container">
+                        <div class="res-badge">ISBI 2022</div>
+                        <img src="https://raw.githubusercontent.com/itruonghai/SegTransVAE/refs/heads/main/figure/SegTransVAE.png"
+                            alt="SegTransVAE" loading="lazy">
+                    </div>
+                    <div class="res-content">
+                        <h3 class="res-title">SegTransVAE: Hybrid CNN - Transformer with Regularization for medical
+                            image segmentation</h3>
+                        <p class="res-authors"><strong>Hai Nguyen-Truong</strong>, Quan-Dung Pham, Nam Nguyen Phuong,
+                            Khoa NA Nguyen, Chanh DT Nguyen, Trung Bui, Steven QH Truong</p>
+                        <p class="res-desc">SegTransVAE is the first work exploiting the hybrid architecture between
+                            CNN, Transformers with the Variational Autoencoder (VAE) branch to the network to
+                            reconstruct the input images jointly with segmentation.</p>
+
+                        <div class="res-tags">
+                            <span class="res-tag">Medical Imaging</span>
+                            <span class="res-tag">Segmentation</span>
+                            <span class="res-tag">Transformer</span>
+                            <span class="res-tag">VAE</span>
+                        </div>
+
+                        <div class="res-links">
+                            <a href="https://ieeexplore.ieee.org/document/9761417" target="_blank"
+                                class="res-link res-link-primary"><i class="fas fa-globe"></i> Project</a>
+                            <a href="https://ieeexplore.ieee.org/document/9761417" target="_blank"
+                                class="res-link res-link-secondary"><i class="fas fa-file-alt"></i> Paper</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Hai Nguyen-Truong. Built with HTML, CSS & JS.</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Research Page Specific Filtering
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchInput');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const items = document.querySelectorAll('.research-item');
+
+            let currentFilter = 'all';
+            let searchQuery = '';
+
+            function filterItems() {
+                items.forEach(item => {
+                    const itemYear = item.getAttribute('data-year');
+                    const itemText = item.getAttribute('data-text').toLowerCase();
+
+                    const matchesFilter = currentFilter === 'all' || itemYear === currentFilter;
+                    const matchesSearch = searchQuery === '' || itemText.includes(searchQuery);
+
+                    if (matchesFilter && matchesSearch) {
+                        item.style.display = 'grid'; // Ensure grid layout is restored
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+
+            // Text Search
+            searchInput.addEventListener('input', (e) => {
+                searchQuery = e.target.value.toLowerCase();
+                filterItems();
+            });
+
+            // Year Filter Buttons
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Update active class
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    currentFilter = btn.getAttribute('data-filter');
+                    filterItems();
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
