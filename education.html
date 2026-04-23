@@ -5,7 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hai Nguyen-Truong | Education</title>
-    <meta name="description" content="Research and Publications by Nguyen Truong Hai">
+    <meta name="description" content="Education and academic background of Hai Nguyen-Truong">
+    <script>
+        (() => {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.dataset.theme = savedTheme || (prefersDark ? 'dark' : 'light');
+        })();
+    </script>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
@@ -14,224 +21,161 @@
     <link rel="stylesheet" href="css/styles.css">
 
     <style>
-        .research-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .filter-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 4rem;
-        }
-
-        .search-box {
-            width: 100%;
-            max-width: 500px;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 12px 20px;
-            border-radius: 30px;
-            border: 1px solid var(--glass-border);
-            background: rgba(15, 23, 42, 0.5);
-            color: var(--text-primary);
-            font-size: 1rem;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .filter-group {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .filter-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--glass-border);
-            color: var(--text-secondary);
-            padding: 8px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .filter-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-        }
-
-        .filter-btn.active {
-            background: var(--accent-blue);
-            color: white;
-            border-color: var(--accent-blue);
-            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
-        }
-
-        .research-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .research-item {
+        .education-hero {
             display: grid;
-            grid-template-columns: 350px 1fr;
+            grid-template-columns: minmax(0, 1fr) 360px;
             gap: 2rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: all 0.4s ease;
-            backdrop-filter: blur(12px);
-        }
-
-        .research-item:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .res-image-container {
-            width: 100%;
-            height: 200px;
-            border-radius: 12px;
+            align-items: end;
+            margin: 2rem 0 3rem;
+            padding: 2.5rem;
+            border: 1px solid var(--border-soft);
+            border-radius: 8px;
+            background:
+                linear-gradient(135deg, rgba(14, 165, 233, 0.11), rgba(13, 148, 136, 0.08) 48%, rgba(245, 158, 11, 0.08)),
+                var(--surface-soft);
+            box-shadow: 0 30px 80px -62px var(--shadow-color);
             overflow: hidden;
             position: relative;
-            background: #000;
+            perspective: 1300px;
+            transform-style: preserve-3d;
+            --tilt-x: 0deg;
+            --tilt-y: 0deg;
         }
 
-        .res-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            /* Don't crop medical or complex graphs */
-        }
-
-        .res-badge {
+        .education-hero::before {
+            content: '';
             position: absolute;
-            top: 10px;
-            left: 10px;
-            background: rgba(15, 23, 42, 0.85);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.8rem;
+            right: -10%;
+            bottom: -38%;
+            width: 58%;
+            height: 62%;
+            background-image:
+                linear-gradient(rgba(14, 165, 233, 0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(13, 148, 136, 0.12) 1px, transparent 1px);
+            background-size: 24px 24px;
+            opacity: 0.7;
+            transform: rotateX(68deg) rotateZ(-16deg) translateZ(-40px);
+            transform-origin: center bottom;
+            pointer-events: none;
+        }
+
+        .education-hero-copy,
+        .education-summary {
+            position: relative;
+            z-index: 1;
+        }
+
+        .education-hero-copy {
+            transform: translateZ(34px);
+        }
+
+        .education-kicker {
+            color: var(--accent-teal);
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
             font-weight: 700;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(4px);
+            letter-spacing: 0;
+            margin-bottom: 0.9rem;
+            text-transform: uppercase;
         }
 
-        .res-content {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .res-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #f8fafc;
-            margin-bottom: 0.8rem;
-            line-height: 1.4;
-        }
-
-        .res-authors {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
+        .education-hero h1 {
+            font-size: 4rem;
+            letter-spacing: 0;
             margin-bottom: 1rem;
         }
 
-        .res-authors strong {
-            color: var(--accent-pink);
+        .education-hero p {
+            color: var(--text-secondary);
+            max-width: 640px;
+            font-size: 1.08rem;
         }
 
-        .res-desc {
+        .education-summary {
+            display: grid;
+            gap: 0.75rem;
+            transform:
+                rotateX(calc(8deg + var(--tilt-x)))
+                rotateY(calc(-13deg + var(--tilt-y)))
+                translateZ(56px);
+            transform-style: preserve-3d;
+            transition: transform 0.18s ease-out;
+        }
+
+        .education-summary-card {
+            padding: 1rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            background: var(--surface-elevated);
+            backdrop-filter: blur(10px);
+            box-shadow:
+                0 20px 38px -32px var(--shadow-color),
+                inset 0 1px 0 var(--glare);
+            transform: translateZ(18px);
+        }
+
+        .education-summary-card:nth-child(2) {
+            transform: translateX(16px) translateZ(34px);
+        }
+
+        .education-summary-card:nth-child(3) {
+            transform: translateX(32px) translateZ(50px);
+        }
+
+        .education-summary-card strong {
+            display: block;
+            color: var(--text-primary);
+            font-size: 1rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .education-summary-card span {
             color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .res-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-top: auto;
-            margin-bottom: 1.5rem;
-        }
-
-        .res-tag {
-            background: rgba(192, 132, 252, 0.1);
-            color: #d8b4fe;
-            border: 1px solid rgba(192, 132, 252, 0.3);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .res-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .res-link {
-            padding: 6px 16px;
-            border-radius: 20px;
             font-size: 0.9rem;
             font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .res-link-primary {
-            background: var(--accent-blue);
-            color: #0f172a;
-        }
-
-        .res-link-primary:hover {
-            background: #7dd3fc;
-            text-decoration: none;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
-        }
-
-        .res-link-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--glass-border);
-        }
-
-        .res-link-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            text-decoration: none;
         }
 
         @media (max-width: 900px) {
-            .research-item {
+            .education-hero {
                 grid-template-columns: 1fr;
+                padding: 2rem;
             }
 
-            .res-image-container {
-                height: 250px;
+            .education-hero h1 {
+                font-size: 3.25rem;
+            }
+
+            .education-summary {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                transform: translateZ(32px);
+            }
+
+            .education-summary-card,
+            .education-summary-card:nth-child(2),
+            .education-summary-card:nth-child(3) {
+                transform: translateZ(18px);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .education-hero {
+                padding: 1.35rem;
+            }
+
+            .education-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .education-hero-copy,
+            .education-summary,
+            .education-summary-card,
+            .education-summary-card:nth-child(2),
+            .education-summary-card:nth-child(3) {
+                transform: none;
+            }
+
+            .education-summary {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -259,11 +203,29 @@
     </nav>
 
     <main>
-        <div class="research-header" style="margin-top: 2rem;">
-            <h1 class="text-gradient">Education</h1>
-            <p style="color: var(--text-muted); max-width: 600px; margin: 1rem auto 0;">
-                My academic journey in Computer Science and Engineering.
-            </p>
+        <div class="education-hero">
+            <div class="education-hero-copy">
+                <p class="education-kicker">Academic Path</p>
+                <h1 class="text-gradient">Education</h1>
+                <p>
+                    A research-focused path through computer vision, multimodal learning, and medical image analysis,
+                    spanning undergraduate, MPhil, and incoming PhD training.
+                </p>
+            </div>
+            <div class="education-summary" aria-label="Education summary">
+                <div class="education-summary-card">
+                    <strong>Northeastern</strong>
+                    <span>Incoming PhD student</span>
+                </div>
+                <div class="education-summary-card">
+                    <strong>HKUST</strong>
+                    <span>MPhil in CSE</span>
+                </div>
+                <div class="education-summary-card">
+                    <strong>HCMUS</strong>
+                    <span>BSc with distinction</span>
+                </div>
+            </div>
         </div>
 
         <section class="section reveal active" id="education" style="padding-top: 0;">
