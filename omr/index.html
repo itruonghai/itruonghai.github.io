@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Off-Manifold Refinement — BMVC 2026</title>
+  <meta name="description" content="Off-Manifold Refinement uses a frozen world model to guide a frozen video generator inside a single sampling trajectory.">
+  <meta property="og:title" content="Off-Manifold Refinement">
+  <meta property="og:description" content="Guiding video generators with a frozen world model — accepted at BMVC 2026.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://itruonghai.github.io/omr/">
+  <meta property="og:image" content="https://itruonghai.github.io/omr/assets/hero-sequence.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Off-Manifold Refinement">
+  <meta name="twitter:description" content="Guiding video generators with a frozen world model.">
+  <meta name="twitter:image" content="https://itruonghai.github.io/omr/assets/hero-sequence.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="Off-Manifold Refinement home">OMR<span>·</span></a>
+    <nav aria-label="Primary navigation">
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+      <a href="#examples">Examples</a>
+      <a href="#citation">BibTeX</a>
+      <a class="nav-paper" href="assets/omr-paper.pdf">Paper <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main id="content">
+    <section class="hero" id="top" aria-labelledby="paper-title">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> Accepted at BMVC 2026</div>
+      <h1 id="paper-title">Off-Manifold Refinement</h1>
+      <p class="subtitle">Guiding Video Generators with a Frozen World Model</p>
+      <p class="thesis">Spend the world-model signal <em>while the video is still being made.</em></p>
+
+      <div class="authors" aria-label="Authors and affiliations">
+        <p>
+          <a href="mailto:nguyentruonghai141@gmail.com">Hai Nguyen-Truong<sup>1</sup></a>
+          <span>·</span>
+          <a href="mailto:tuananh.vu@ucla.edu">Tuan-Anh Vu<sup>2</sup></a>
+          <span>·</span>
+          <a href="mailto:dang.huynh@fulbright.edu.vn">Dang Huynh<sup>1</sup></a>
+        </p>
+        <p class="affiliations"><sup>1</sup>Fulbright University Vietnam &nbsp;&nbsp; <sup>2</sup>University of California, Los Angeles</p>
+      </div>
+
+      <div class="actions" aria-label="Project resources">
+        <a class="button primary" href="assets/omr-paper.pdf">Read the paper <span aria-hidden="true">↗</span></a>
+        <span class="button quiet" aria-disabled="true">Code <span class="soon">Coming soon</span></span>
+        <span class="button quiet" aria-disabled="true">Adapters <span class="soon">Coming soon</span></span>
+        <a class="button text-button" href="#citation">Cite OMR <span aria-hidden="true">↓</span></a>
+      </div>
+
+      <div class="evidence-strip" aria-label="Headline results">
+        <div><strong>+5.0 pp</strong><span>Joint success on 400 prompts</span></div>
+        <div><strong>1.71×</strong><span>Runtime on a 50-prompt subset</span></div>
+        <div><strong>49.69%</strong><span>Human physical-plausibility preference</span></div>
+        <p>Quality, efficiency, and human evaluation use distinct protocols described below.</p>
+      </div>
+    </section>
+
+    <figure class="hero-figure">
+      <div class="figure-frame">
+        <img src="assets/hero-sequence.webp" alt="Frame-strip comparison of Wan2.2 and Wan2.2 with OMR on a backflip landing sequence." width="2400" height="806">
+      </div>
+      <figcaption><strong>Same generator and prompt, guided differently.</strong> OMR steers the unfinished sample using masked-future surprise from a frozen world model.</figcaption>
+    </figure>
+
+    <section class="overview section" id="overview" aria-labelledby="overview-title">
+      <div class="section-heading narrow-heading">
+        <p class="section-kicker">The idea</p>
+        <h2 id="overview-title">Correct the trajectory before the video is finished.</h2>
+      </div>
+      <div class="overview-grid">
+        <div class="lead-copy">
+          <p>Video generators can produce visually convincing clips that violate basic cause and effect. A frozen world model contains a complementary signal: it can measure whether a masked future is predictable from the visible past.</p>
+          <p><strong>OMR turns that signal into a local correction.</strong> A lightweight, generator-specific adapter maps provisional clean latents into V-JEPA 2.1 feature space. Its predictive-surprise gradient then modifies the velocity field during one monotone sampling trajectory.</p>
+        </div>
+        <aside class="principle-card" aria-label="What stays frozen">
+          <p class="mini-label">One trajectory · two frozen models</p>
+          <ul>
+            <li><span>Video generator</span><strong>Frozen</strong></li>
+            <li><span>World model</span><strong>Frozen</strong></li>
+            <li><span>In-loop pixel decode</span><strong>Not required</strong></li>
+            <li><span>Trainable component</span><strong>33.3M adapter</strong></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="method section" id="method" aria-labelledby="method-title">
+      <div class="section-heading">
+        <p class="section-kicker">Method</p>
+        <h2 id="method-title">World-model guidance in generator-latent space.</h2>
+        <p>OMR preserves the frozen generator and frozen world model, connecting them only through a separately trained representation adapter.</p>
+      </div>
+
+      <figure class="paper-figure method-figure">
+        <img loading="lazy" src="assets/method-overview.webp" alt="OMR method overview: a video generator predicts a clean latent, an adapter maps it to world-model features, and the predictive-surprise gradient guides the sampling velocity." width="2000" height="783">
+        <figcaption>The adapter replaces repeated VAE decoding and video encoding inside the guidance loop.</figcaption>
+      </figure>
+
+      <ol class="method-steps">
+        <li><span class="step-index">01</span><div><h3>Predict</h3><p>At a guided ODE step, estimate the provisional clean video latent from the current noisy state.</p></div></li>
+        <li><span class="step-index">02</span><div><h3>Measure surprise</h3><p>Map that latent into V-JEPA feature space, mask future tokens within a 48-frame window, and compare them with the predictor’s forecast.</p></div></li>
+        <li><span class="step-index">03</span><div><h3>Refine</h3><p>Backpropagate predictive surprise through the adapter and apply the normalized correction to the generator’s velocity field.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="results section" id="results" aria-labelledby="results-title">
+      <div class="section-heading">
+        <p class="section-kicker">Primary results</p>
+        <h2 id="results-title">A physical-consistency gain without sacrificing prompt adherence.</h2>
+        <p>We fixed 400 prompt IDs from the released VideoPhy-2 detailed-prompt pool before generation or scoring, and use the identical unfiltered list for every method.</p>
+      </div>
+
+      <div class="result-layout">
+        <div class="table-card">
+          <div class="table-card-heading">
+            <div><span class="mini-label">VideoPhy-2 · fixed 400 prompts</span><h3>Wan2.2-T2V-A14B</h3></div>
+            <span class="metric-pill">Higher is better ↑</span>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Method</th><th>SA ≥ 4</th><th>PC ≥ 4</th><th>Joint</th></tr></thead>
+              <tbody>
+                <tr><td>Wan2.2</td><td>68.0</td><td>57.0</td><td>47.00</td></tr>
+                <tr><td>+ CFG-Zero*</td><td>68.0</td><td>56.0</td><td>48.25</td></tr>
+                <tr><td>+ P&amp;P</td><td>70.0</td><td>55.0</td><td>48.75</td></tr>
+                <tr class="ours-row"><td><strong>+ OMR (ours)</strong></td><td>68.0</td><td><strong>60.0</strong></td><td><strong>52.00</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-note">One generation per prompt. SA: semantic adherence. PC: physical commonsense. Joint requires both scores to be at least 4 on the 1–5 scale.</p>
+        </div>
+
+        <aside class="result-callout">
+          <span class="mini-label">Where the gain comes from</span>
+          <strong class="big-number">+3.0 pp</strong>
+          <p>PC ≥ 4 rises from <strong>57.0%</strong> to <strong>60.0%</strong>, while SA ≥ 4 remains <strong>68.0%</strong>.</p>
+          <div class="delta-bars" aria-label="Physical commonsense and semantic adherence changes">
+            <div><span>Physical commonsense</span><b style="--bar: 84%">57 → 60</b></div>
+            <div><span>Semantic adherence</span><b class="neutral" style="--bar: 95%">68 → 68</b></div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="efficiency-block">
+        <div class="efficiency-copy">
+          <p class="section-kicker">Why it is efficient</p>
+          <h3>A shorter gradient route.</h3>
+          <p>WMReward-∇ differentiates through a V-JEPA encoder and VAE decoder. OMR instead uses the predictor and generator-specific adapter, avoiding those two additional Jacobians and their compute.</p>
+          <p class="caution">The comparison supports a useful direct correction; showing that gradients are larger or better preserved would require gradient-norm measurements.</p>
+        </div>
+        <figure class="route-figure">
+          <img loading="lazy" src="assets/gradient-route.webp" alt="Comparison of gradient paths: OMR uses an adapter and world-model predictor, while WMReward gradient guidance also passes through the VAE decoder and world-model encoder." width="1800" height="640">
+        </figure>
+      </div>
+
+      <div class="efficiency-table table-card">
+        <div class="table-card-heading">
+          <div><span class="mini-label">Separate efficiency protocol</span><h3>Fixed 50-prompt Wan2.2 subset</h3></div>
+          <span class="metric-pill amber">Do not compare with the 400-prompt table</span>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Method</th><th>Relative time</th><th>Peak VRAM</th><th>Joint</th></tr></thead>
+            <tbody>
+              <tr><td>Wan2.2</td><td>1.00×</td><td>65.4 GB</td><td>48.0</td></tr>
+              <tr><td>+ P&amp;P</td><td>1.6×</td><td>72.7 GB</td><td>50.6</td></tr>
+              <tr><td>+ BoN-2</td><td>2.00×</td><td>65.4 GB</td><td>50.4</td></tr>
+              <tr><td>+ WMReward-∇ + BoN-4</td><td>19.88×</td><td>134 GB</td><td>53.6</td></tr>
+              <tr class="ours-row"><td><strong>+ OMR (ours)</strong></td><td><strong>1.71×</strong></td><td><strong>74.1 GB</strong></td><td><strong>54.0</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">Wan2.2 and OMR scores are three-seed means; the other rows are point estimates. Time is relative to the base model.</p>
+      </div>
+
+      <div class="human-card">
+        <div class="human-copy">
+          <span class="mini-label">Blind human study</span>
+          <h3>OMR is preferred for physical plausibility.</h3>
+          <p>Thirteen annotators compared OMR and P&amp;P on 100 matched prompts, yielding 1,300 judgments for this question.</p>
+        </div>
+        <div class="preference-wrap">
+          <div class="preference-legend"><span><i class="omr-dot"></i>OMR</span><span><i class="tie-dot"></i>Tie</span><span><i class="pp-dot"></i>P&amp;P</span></div>
+          <div class="preference-bar" role="img" aria-label="Physical plausibility preference: OMR 49.69 percent, tie 30.08 percent, P and P 20.23 percent">
+            <span class="pref-omr" style="width:49.69%"><strong>49.69%</strong></span>
+            <span class="pref-tie" style="width:30.08%"><strong>30.08%</strong></span>
+            <span class="pref-pp" style="width:20.23%"><strong>20.23%</strong></span>
+          </div>
+          <p>Physical-plausibility preference against P&amp;P; presentation order was randomized.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="examples section" id="examples" aria-labelledby="examples-title">
+      <div class="section-heading">
+        <p class="section-kicker">Qualitative examples</p>
+        <h2 id="examples-title">Inspect the motion, frame by frame.</h2>
+        <p>Use the synchronized sequence below to compare the same moment in the baseline and OMR outputs. These are still frames, not video playback.</p>
+      </div>
+
+      <div class="sequence-viewer" data-sequence-viewer>
+        <div class="viewer-head">
+          <div><span class="mini-label">6-frame sequence</span><h3>A person performs a backflip and lands on a soft mat.</h3></div>
+          <button class="play-button" type="button" data-play aria-pressed="false"><span data-play-icon aria-hidden="true">▶</span><span data-play-label>Play sequence</span></button>
+        </div>
+        <div class="paired-frames">
+          <figure>
+            <span class="frame-label baseline-label">Wan2.2</span>
+            <img data-baseline-frame src="assets/backflip/baseline-1.webp" alt="Wan2.2 baseline, backflip sequence frame 1 of 6" width="960" height="540">
+          </figure>
+          <figure>
+            <span class="frame-label omr-label">Wan2.2 + OMR</span>
+            <img data-omr-frame src="assets/backflip/omr-1.webp" alt="Wan2.2 with OMR, backflip sequence frame 1 of 6" width="960" height="540">
+          </figure>
+        </div>
+        <div class="scrubber-row">
+          <label for="sequence-range">Frame <output data-frame-output for="sequence-range">1 / 6</output></label>
+          <input id="sequence-range" data-sequence-range type="range" min="1" max="6" value="1" step="1">
+        </div>
+      </div>
+
+      <div class="gallery" data-gallery>
+        <div class="gallery-tabs" role="tablist" aria-label="Qualitative examples">
+          <button id="tab-a" role="tab" aria-selected="true" aria-controls="panel-example" data-example="a" data-title="Contact and impact" data-caption="The sequence emphasizes whether body–surface contact produces a temporally consistent response.">Contact &amp; impact</button>
+          <button id="tab-b" role="tab" aria-selected="false" aria-controls="panel-example" data-example="b" data-title="Tool–object coupling" data-caption="The sequence emphasizes whether the tool remains coupled to the object as deformation unfolds.">Tool &amp; clay</button>
+          <button id="tab-c" role="tab" aria-selected="false" aria-controls="panel-example" data-example="c" data-title="Supported motion" data-caption="The sequence emphasizes whether support and momentum remain coherent across frames.">Ring swing</button>
+          <button id="tab-d" role="tab" aria-selected="false" aria-controls="panel-example" data-example="d" data-title="Fluid and deformation" data-caption="The sequence emphasizes whether pouring and material response remain causally synchronized.">Concrete</button>
+        </div>
+        <div class="gallery-panel" id="panel-example" role="tabpanel" aria-labelledby="tab-a">
+          <img data-gallery-image loading="lazy" src="assets/qualitative/a.webp" alt="Qualitative frame strips comparing Wan2.2, P and P, and OMR for contact and impact." width="1620" height="590">
+          <div><h3 data-gallery-title>Contact and impact</h3><p data-gallery-caption>The sequence emphasizes whether body–surface contact produces a temporally consistent response.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="transfer section" id="transfer" aria-labelledby="transfer-title">
+      <div class="section-heading">
+        <p class="section-kicker">Transfer</p>
+        <h2 id="transfer-title">Beyond one generator and one benchmark.</h2>
+        <p>These fixed 50-prompt pilots are transfer evidence and point estimates, not full-benchmark results.</p>
+      </div>
+
+      <div class="transfer-grid">
+        <article class="transfer-card">
+          <span class="mini-label">Text to video · VideoPhy-2</span>
+          <h3>CogVideoX-5B</h3>
+          <div class="score-change"><span>32.0</span><i aria-hidden="true">→</i><strong>42.0</strong></div>
+          <p>Joint score with a separately trained CogVideoX adapter. OMR runs at 1.67× relative time and 30.4 GB peak VRAM.</p>
+        </article>
+        <article class="transfer-card featured-transfer">
+          <span class="mini-label">Image to video · Physics-IQ</span>
+          <h3>Wan2.2-I2V-A14B</h3>
+          <div class="score-change"><span>26.44</span><i aria-hidden="true">→</i><strong>31.34</strong></div>
+          <p>OMR provides a +4.90 single-trajectory gain; combining it with BoN-4 reaches 34.71 (+8.27).</p>
+        </article>
+      </div>
+
+      <figure class="paper-figure physics-figure">
+        <img loading="lazy" src="assets/physics-iq.webp" alt="Physics-IQ score gains for OMR and selection methods, including published MAGI-1 video-to-video and vLDM image-to-video context." width="1400" height="614">
+        <figcaption>Gray rows are published, unmatched mixed-modality WMReward context: MAGI-1 (V2V) and vLDM (I2V). Blue rows are our matched Wan2.2-I2V pilot.</figcaption>
+      </figure>
+    </section>
+
+    <section class="adapter section" id="adapter" aria-labelledby="adapter-title">
+      <div class="section-heading">
+        <p class="section-kicker">Representation alignment</p>
+        <h2 id="adapter-title">Why can an adapter connect independently trained models?</h2>
+        <p>The generator latent and world-model target describe the same video under different objectives: one preserves content and motion for synthesis; the other preserves structure for future prediction. OMR learns a task-specific transformation between them without claiming that the two spaces are identical or globally aligned.</p>
+      </div>
+
+      <div class="adapter-grid">
+        <article class="discussion-card">
+          <span class="card-number">01</span>
+          <h3>Operational correspondence</h3>
+          <p>The adapter is trained to preserve V-JEPA token geometry; our fidelity evaluation separately tests predictive-surprise ordering. This is consistent with the intuition that representations of the same data can be mapped, but our evidence does not establish universal representational equivalence.</p>
+        </article>
+        <article class="discussion-card">
+          <span class="card-number">02</span>
+          <h3>Mid-trajectory fidelity</h3>
+          <p>The adapter is trained on real-video latents but operates on provisional generated clean predictions—not raw noisy states. Its agreement remains close to matched finished controls at the points where OMR is applied.</p>
+        </article>
+      </div>
+
+      <div class="table-card fidelity-table">
+        <div class="table-card-heading">
+          <div><span class="mini-label">Adapter vs. exact decode–encode path</span><h3>Representation and surprise-ranking fidelity</h3></div>
+          <span class="metric-pill">Higher is better ↑</span>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Evaluation point</th><th>N</th><th>Token cosine</th><th>Spearman ρ</th><th>Kendall τ</th></tr></thead>
+            <tbody>
+              <tr><td>Held-out real-video clips</td><td>500</td><td>0.7506</td><td>0.668</td><td>0.477</td></tr>
+              <tr class="ours-row"><td><strong>Mid-trajectory clean predictions</strong></td><td>200</td><td><strong>0.762</strong></td><td><strong>0.617</strong></td><td><strong>0.446</strong></td></tr>
+              <tr><td>Matched finished controls</td><td>50</td><td>0.769</td><td>0.624</td><td>0.451</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">This supports adapter use on OMR’s operating distribution. It does not prove exact adapter–encoder equivalence, raw-noise robustness, or causal attribution of the downstream gain.</p>
+      </div>
+    </section>
+
+    <section class="scope section" id="scope" aria-labelledby="scope-title">
+      <div class="section-heading narrow-heading">
+        <p class="section-kicker">Scope and outlook</p>
+        <h2 id="scope-title">A practical interface, not a guarantee of physical correctness.</h2>
+      </div>
+      <div class="scope-grid">
+        <div><h3>Current scope</h3><p>OMR inherits the blind spots and data biases of its world model. It adds runtime and memory over base sampling, and each new VAE latent space currently requires adapter retraining. The transfer pilots are small and do not include paired prompt-level confidence intervals.</p></div>
+        <div><h3>Next questions</h3><p>Shared multi-resolution adapters, longer videos, complementary physical predictors, adaptive schedules, larger repeated-seed studies, and causal gradient diagnostics are promising directions. OMR can also be paired with a small final selection budget.</p></div>
+      </div>
+    </section>
+
+    <section class="citation section" id="citation" aria-labelledby="citation-title">
+      <div class="section-heading">
+        <p class="section-kicker">Resources</p>
+        <h2 id="citation-title">Paper and citation.</h2>
+      </div>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <span class="mini-label">Manuscript</span>
+          <h3>Read the complete paper</h3>
+          <p>The PDF includes the main paper and linked supplementary material.</p>
+          <a class="button primary" href="assets/omr-paper.pdf">Open PDF <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="resource-card muted-resource">
+          <span class="mini-label">Artifacts</span>
+          <h3>Code and adapter weights</h3>
+          <p>Implementation, configurations, prompt lists, and trained adapters will be linked here.</p>
+          <span class="status-chip">Coming soon</span>
+        </div>
+      </div>
+
+      <div class="bibtex-card">
+        <div class="bibtex-head"><span>BibTeX</span><button type="button" data-copy-bibtex>Copy citation</button></div>
+        <pre id="bibtex"><code>@inproceedings{nguyentruong2026omr,
+  title     = {Off-Manifold Refinement: Guiding Video Generators
+               with a Frozen World Model},
+  author    = {Hai Nguyen-Truong and Tuan-Anh Vu and Dang Huynh},
+  booktitle = {British Machine Vision Conference},
+  year      = {2026}
+}</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div><strong>Off-Manifold Refinement</strong><span>BMVC 2026</span></div>
+    <p>We gratefully acknowledge the NAIRR Pilot for compute resources under allocation NAIRR260204.</p>
+    <div class="footer-links"><a href="../">Author homepage</a><a href="#top">Back to top ↑</a></div>
+  </footer>
+</body>
+</html>
