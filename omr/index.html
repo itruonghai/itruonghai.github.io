@@ -26,8 +26,8 @@
     <a class="wordmark" href="#top" aria-label="Off-Manifold Refinement home">OMR<span>·</span></a>
     <nav aria-label="Primary navigation">
       <a href="#method">Method</a>
+      <a href="#videos">Videos</a>
       <a href="#results">Results</a>
-      <a href="#examples">Examples</a>
       <a href="#citation">BibTeX</a>
       <a class="nav-paper" href="assets/omr-paper.pdf">Paper <span aria-hidden="true">↗</span></a>
     </nav>
@@ -35,63 +35,44 @@
 
   <main id="content">
     <section class="hero" id="top" aria-labelledby="paper-title">
-      <div class="eyebrow"><span class="eyebrow-dot"></span> Accepted at BMVC 2026</div>
-      <h1 id="paper-title">Off-Manifold Refinement</h1>
-      <p class="subtitle">Guiding Video Generators with a Frozen World Model</p>
-      <p class="thesis">Spend the world-model signal <em>while the video is still being made.</em></p>
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> Accepted at BMVC 2026</div>
+        <h1 id="paper-title">Off-Manifold Refinement</h1>
+        <p class="subtitle">Guiding Video Generators with a Frozen World Model</p>
+        <p class="thesis"><em>Use the world-model signal before the video is finished.</em></p>
+        <p class="technical-deck">OMR uses masked-future predictive surprise from frozen V-JEPA 2.1 to correct a frozen video generator during a single sampling trajectory. A 33.3M generator-specific adapter keeps guidance in latent space—without in-loop VAE decoding or a V-JEPA encoder pass.</p>
 
-      <div class="authors" aria-label="Authors and affiliations">
-        <p>
-          <a href="mailto:nguyentruonghai141@gmail.com">Hai Nguyen-Truong<sup>1</sup></a>
-          <span>·</span>
-          <a href="mailto:tuananh.vu@ucla.edu">Tuan-Anh Vu<sup>2</sup></a>
-          <span>·</span>
-          <a href="mailto:dang.huynh@fulbright.edu.vn">Dang Huynh<sup>1</sup></a>
-        </p>
-        <p class="affiliations"><sup>1</sup>Fulbright University Vietnam &nbsp;&nbsp; <sup>2</sup>University of California, Los Angeles</p>
+        <div class="authors" aria-label="Authors and affiliations">
+          <p>
+            <a href="https://itruonghai.github.io/">Hai Nguyen-Truong<sup>1</sup></a>
+            <span>·</span>
+            <a href="https://tuananh1007.github.io/">Tuan-Anh Vu<sup>2</sup></a>
+            <span>·</span>
+            <a href="mailto:dang.huynh@fulbright.edu.vn">Dang Huynh<sup>1</sup></a>
+          </p>
+          <p class="affiliations"><sup>1</sup>Fulbright University Vietnam &nbsp;&nbsp; <sup>2</sup>University of California, Los Angeles</p>
+        </div>
+
+        <div class="actions" aria-label="Project resources">
+          <a class="button primary" href="assets/omr-paper.pdf">Read the paper <span aria-hidden="true">↗</span></a>
+          <a class="button secondary" href="#videos">Explore comparisons <span aria-hidden="true">↓</span></a>
+          <a class="button text-button" href="#citation">Cite OMR</a>
+        </div>
       </div>
 
-      <div class="actions" aria-label="Project resources">
-        <a class="button primary" href="assets/omr-paper.pdf">Read the paper <span aria-hidden="true">↗</span></a>
-        <span class="button quiet" aria-disabled="true">Code <span class="soon">Coming soon</span></span>
-        <span class="button quiet" aria-disabled="true">Adapters <span class="soon">Coming soon</span></span>
-        <a class="button text-button" href="#citation">Cite OMR <span aria-hidden="true">↓</span></a>
-      </div>
+      <figure class="hero-media">
+        <div class="hero-pair">
+          <div><span class="frame-label baseline-label">Wan2.2 baseline</span><img src="assets/backflip/baseline-4.webp" alt="Wan2.2 baseline frame during a backflip landing." width="960" height="559"></div>
+          <div><span class="frame-label omr-label">Wan2.2 + OMR</span><img src="assets/backflip/omr-4.webp" alt="Wan2.2 with OMR frame during a backflip landing." width="960" height="558"></div>
+        </div>
+        <figcaption><strong>Backflip landing · Wan2.2-T2V-A14B.</strong> With the same generator and prompt, OMR produces a more coherent landing across contact, mat response, clothing motion, and inertia. Qualitative example; not a benchmark statistic.</figcaption>
+      </figure>
 
       <div class="evidence-strip" aria-label="Headline results">
-        <div><strong>+5.0 pp</strong><span>Joint success on 400 prompts</span></div>
-        <div><strong>1.71×</strong><span>Runtime on a 50-prompt subset</span></div>
-        <div><strong>49.69%</strong><span>Human physical-plausibility preference</span></div>
-        <p>Quality, efficiency, and human evaluation use distinct protocols described below.</p>
-      </div>
-    </section>
-
-    <figure class="hero-figure">
-      <div class="figure-frame">
-        <img src="assets/hero-sequence.webp" alt="Frame-strip comparison of Wan2.2 and Wan2.2 with OMR on a backflip landing sequence." width="2400" height="806">
-      </div>
-      <figcaption><strong>Same generator and prompt, guided differently.</strong> OMR steers the unfinished sample using masked-future surprise from a frozen world model.</figcaption>
-    </figure>
-
-    <section class="overview section" id="overview" aria-labelledby="overview-title">
-      <div class="section-heading narrow-heading">
-        <p class="section-kicker">The idea</p>
-        <h2 id="overview-title">Correct the trajectory before the video is finished.</h2>
-      </div>
-      <div class="overview-grid">
-        <div class="lead-copy">
-          <p>Video generators can produce visually convincing clips that violate basic cause and effect. A frozen world model contains a complementary signal: it can measure whether a masked future is predictable from the visible past.</p>
-          <p><strong>OMR turns that signal into a local correction.</strong> A lightweight, generator-specific adapter maps provisional clean latents into V-JEPA 2.1 feature space. Its predictive-surprise gradient then modifies the velocity field during one monotone sampling trajectory.</p>
-        </div>
-        <aside class="principle-card" aria-label="What stays frozen">
-          <p class="mini-label">One trajectory · two frozen models</p>
-          <ul>
-            <li><span>Video generator</span><strong>Frozen</strong></li>
-            <li><span>World model</span><strong>Frozen</strong></li>
-            <li><span>In-loop pixel decode</span><strong>Not required</strong></li>
-            <li><span>Trainable component</span><strong>33.3M adapter</strong></li>
-          </ul>
-        </aside>
+        <div><strong>+5.0 pp</strong><span>Wan2.2 joint success · fixed 400-prompt subset</span></div>
+        <div><strong>54.0 @ 1.71×</strong><span>Joint and base-relative runtime · separate 50-prompt subset</span></div>
+        <div><strong>49.69 vs 20.23%</strong><span>Physical-plausibility wins · OMR vs P&amp;P · 30.08% ties</span></div>
+        <p>Each headline reports its protocol explicitly; the 400-prompt quality result and 50-prompt efficiency study are separate.</p>
       </div>
     </section>
 
@@ -99,13 +80,22 @@
       <div class="section-heading">
         <p class="section-kicker">Method</p>
         <h2 id="method-title">World-model guidance in generator-latent space.</h2>
-        <p>OMR preserves the frozen generator and frozen world model, connecting them only through a separately trained representation adapter.</p>
+        <p>Video generators can produce convincing clips that violate basic cause and effect. OMR turns a frozen world model’s predictive temporal prior into a local correction, connecting the two models only through a separately trained representation adapter.</p>
       </div>
 
       <figure class="paper-figure method-figure">
         <img loading="lazy" src="assets/method-overview.webp" alt="OMR method overview: a video generator predicts a clean latent, an adapter maps it to world-model features, and the predictive-surprise gradient guides the sampling velocity." width="2000" height="783">
         <figcaption>The adapter replaces repeated VAE decoding and video encoding inside the guidance loop.</figcaption>
       </figure>
+
+      <div class="method-chips" aria-label="Method properties">
+        <span>Frozen generator</span><span>Frozen world model</span><span>33.3M adapter</span><span>No in-loop decode–encode</span>
+      </div>
+
+      <div class="equation-card" aria-label="OMR update equation">
+        <p><i>z</i><sub>t+Δt</sub> ← <i>z</i><sub>t</sub> + Δt · <i>u</i><sub>θ</sub>(<i>z</i><sub>t</sub>, <i>t</i>) − η(<i>t</i>) · ∇<sub>ẑ₁</sub> <i>E</i><sub>V-JEPA</sub>(<i>A</i><sub>ψ</sub>(ẑ₁))</p>
+        <span>The frozen generator supplies the ODE velocity; the frozen predictor supplies a local surprise correction through the adapter.</span>
+      </div>
 
       <ol class="method-steps">
         <li><span class="step-index">01</span><div><h3>Predict</h3><p>At a guided ODE step, estimate the provisional clean video latent from the current noisy state.</p></div></li>
@@ -114,10 +104,46 @@
       </ol>
     </section>
 
+    <section class="videos section" id="videos" aria-labelledby="videos-title">
+      <div class="section-heading media-heading">
+        <div>
+          <p class="section-kicker">Qualitative comparisons</p>
+          <h2 id="videos-title">Physical interactions are easier to judge in motion.</h2>
+        </div>
+        <p>Frame-strip previews are shown while the synchronized comparison videos are prepared.</p>
+      </div>
+
+      <div class="video-grid">
+        <article class="video-card featured-video">
+          <div class="video-shell" data-video-src="" data-video-label="Backflip landing comparison video">
+            <img loading="lazy" src="assets/hero-sequence.webp" alt="Frame-strip preview for the backflip landing comparison." width="2400" height="806">
+            <span class="video-status"><i aria-hidden="true">▶</i> Frame-strip preview</span>
+          </div>
+          <div class="video-caption"><div><span class="mini-label">Contact and body dynamics</span><h3>Backflip landing</h3></div><p>Inspect support, momentum, impact, and deformation throughout the landing.</p></div>
+        </article>
+
+        <article class="video-card">
+          <div class="video-shell" data-video-src="" data-video-label="Tool and clay deformation comparison video">
+            <img loading="lazy" src="assets/qualitative/b.webp" alt="Frame-strip preview for the tool and clay deformation comparison." width="1620" height="590">
+            <span class="video-status"><i aria-hidden="true">▶</i> Frame-strip preview</span>
+          </div>
+          <div class="video-caption"><div><span class="mini-label">Tool–object coupling</span><h3>Deforming clay</h3></div><p>Track whether the tool stays coupled to the material response across time.</p></div>
+        </article>
+
+        <article class="video-card">
+          <div class="video-shell" data-video-src="" data-video-label="Wheelbarrow and concrete comparison video">
+            <img loading="lazy" src="assets/qualitative/d.webp" alt="Frame-strip preview for the wheelbarrow and concrete comparison." width="1620" height="590">
+            <span class="video-status"><i aria-hidden="true">▶</i> Frame-strip preview</span>
+          </div>
+          <div class="video-caption"><div><span class="mini-label">Material interaction</span><h3>Pouring concrete</h3></div><p>Compare contact timing, flow, and the resulting material response.</p></div>
+        </article>
+      </div>
+    </section>
+
     <section class="results section" id="results" aria-labelledby="results-title">
       <div class="section-heading">
         <p class="section-kicker">Primary results</p>
-        <h2 id="results-title">A physical-consistency gain without sacrificing prompt adherence.</h2>
+        <h2 id="results-title">Higher physical-consistency scores with unchanged benchmark prompt adherence.</h2>
         <p>We fixed 400 prompt IDs from the released VideoPhy-2 detailed-prompt pool before generation or scoring, and use the identical unfiltered list for every method.</p>
       </div>
 
@@ -198,48 +224,7 @@
             <span class="pref-pp" style="width:20.23%"><strong>20.23%</strong></span>
           </div>
           <p>Physical-plausibility preference against P&amp;P; presentation order was randomized.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="examples section" id="examples" aria-labelledby="examples-title">
-      <div class="section-heading">
-        <p class="section-kicker">Qualitative examples</p>
-        <h2 id="examples-title">Inspect the motion, frame by frame.</h2>
-        <p>Use the synchronized sequence below to compare the same moment in the baseline and OMR outputs. These are still frames, not video playback.</p>
-      </div>
-
-      <div class="sequence-viewer" data-sequence-viewer>
-        <div class="viewer-head">
-          <div><span class="mini-label">6-frame sequence</span><h3>A person performs a backflip and lands on a soft mat.</h3></div>
-          <button class="play-button" type="button" data-play aria-pressed="false"><span data-play-icon aria-hidden="true">▶</span><span data-play-label>Play sequence</span></button>
-        </div>
-        <div class="paired-frames">
-          <figure>
-            <span class="frame-label baseline-label">Wan2.2</span>
-            <img data-baseline-frame src="assets/backflip/baseline-1.webp" alt="Wan2.2 baseline, backflip sequence frame 1 of 6" width="960" height="540">
-          </figure>
-          <figure>
-            <span class="frame-label omr-label">Wan2.2 + OMR</span>
-            <img data-omr-frame src="assets/backflip/omr-1.webp" alt="Wan2.2 with OMR, backflip sequence frame 1 of 6" width="960" height="540">
-          </figure>
-        </div>
-        <div class="scrubber-row">
-          <label for="sequence-range">Frame <output data-frame-output for="sequence-range">1 / 6</output></label>
-          <input id="sequence-range" data-sequence-range type="range" min="1" max="6" value="1" step="1">
-        </div>
-      </div>
-
-      <div class="gallery" data-gallery>
-        <div class="gallery-tabs" role="tablist" aria-label="Qualitative examples">
-          <button id="tab-a" role="tab" aria-selected="true" aria-controls="panel-example" data-example="a" data-title="Contact and impact" data-caption="The sequence emphasizes whether body–surface contact produces a temporally consistent response.">Contact &amp; impact</button>
-          <button id="tab-b" role="tab" aria-selected="false" aria-controls="panel-example" data-example="b" data-title="Tool–object coupling" data-caption="The sequence emphasizes whether the tool remains coupled to the object as deformation unfolds.">Tool &amp; clay</button>
-          <button id="tab-c" role="tab" aria-selected="false" aria-controls="panel-example" data-example="c" data-title="Supported motion" data-caption="The sequence emphasizes whether support and momentum remain coherent across frames.">Ring swing</button>
-          <button id="tab-d" role="tab" aria-selected="false" aria-controls="panel-example" data-example="d" data-title="Fluid and deformation" data-caption="The sequence emphasizes whether pouring and material response remain causally synchronized.">Concrete</button>
-        </div>
-        <div class="gallery-panel" id="panel-example" role="tabpanel" aria-labelledby="tab-a">
-          <img data-gallery-image loading="lazy" src="assets/qualitative/a.webp" alt="Qualitative frame strips comparing Wan2.2, P and P, and OMR for contact and impact." width="1620" height="590">
-          <div><h3 data-gallery-title>Contact and impact</h3><p data-gallery-caption>The sequence emphasizes whether body–surface contact produces a temporally consistent response.</p></div>
+          <p class="adherence-note"><strong>Prompt adherence:</strong> ties are the largest outcome (45.00%); P&amp;P wins 29.92% and OMR wins 25.08%.</p>
         </div>
       </div>
     </section>
@@ -279,17 +264,9 @@
         <p>The generator latent and world-model target describe the same video under different objectives: one preserves content and motion for synthesis; the other preserves structure for future prediction. OMR learns a task-specific transformation between them without claiming that the two spaces are identical or globally aligned.</p>
       </div>
 
-      <div class="adapter-grid">
-        <article class="discussion-card">
-          <span class="card-number">01</span>
-          <h3>Operational correspondence</h3>
-          <p>The adapter is trained to preserve V-JEPA token geometry; our fidelity evaluation separately tests predictive-surprise ordering. This is consistent with the intuition that representations of the same data can be mapped, but our evidence does not establish universal representational equivalence.</p>
-        </article>
-        <article class="discussion-card">
-          <span class="card-number">02</span>
-          <h3>Mid-trajectory fidelity</h3>
-          <p>The adapter is trained on real-video latents but operates on provisional generated clean predictions—not raw noisy states. Its agreement remains close to matched finished controls at the points where OMR is applied.</p>
-        </article>
+      <div class="adapter-note">
+        <p><strong>Operational correspondence.</strong> The adapter is trained to preserve V-JEPA token geometry; our fidelity evaluation separately tests predictive-surprise ordering. This is consistent with the intuition that representations of the same video can be mapped, but does not establish universal equivalence.</p>
+        <p><strong>Deployment-time check.</strong> The adapter is trained on real-video latents but operates on provisional generated clean predictions—not raw noisy states. We therefore compare it with the exact decode–encode path where OMR is actually applied.</p>
       </div>
 
       <div class="table-card fidelity-table">
