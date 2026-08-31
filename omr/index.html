@@ -180,15 +180,74 @@
       </div>
 
       <div class="efficiency-block">
-        <div class="efficiency-copy">
+        <div class="efficiency-copy efficiency-intro">
           <p class="section-kicker">Why it is efficient</p>
           <h3>A shorter gradient route.</h3>
           <p>WMReward-∇ differentiates through a V-JEPA encoder and VAE decoder. OMR instead uses the predictor and generator-specific adapter, avoiding those two additional Jacobians and their compute.</p>
-          <p class="caution">The comparison supports a useful direct correction; showing that gradients are larger or better preserved would require gradient-norm measurements.</p>
         </div>
-        <figure class="route-figure">
-          <img loading="lazy" src="assets/gradient-route.webp" alt="Comparison of gradient paths: OMR uses an adapter and world-model predictor, while WMReward gradient guidance also passes through the VAE decoder and world-model encoder." width="1800" height="640">
-        </figure>
+        <p class="caution efficiency-caution">The comparison supports a more direct correction route; showing that gradients are larger or better preserved would require gradient-norm measurements.</p>
+
+        <div class="gradient-explainer" data-gradient-explainer data-mode="backward">
+          <div class="gradient-controls">
+            <div class="route-mode-toggle" aria-label="Choose which computation direction to animate">
+              <button type="button" data-gradient-mode="forward" aria-pressed="false"><span aria-hidden="true">→</span> Forward pass</button>
+              <button type="button" data-gradient-mode="backward" aria-pressed="true"><span aria-hidden="true">←</span> Backward gradient</button>
+            </div>
+            <button class="route-replay" type="button" data-gradient-replay><span aria-hidden="true">↻</span> Replay</button>
+          </div>
+
+          <div class="route-key" aria-hidden="true">
+            <span><i class="forward-key"></i>Forward computation</span>
+            <span><i class="gradient-key"></i>Gradient route</span>
+          </div>
+
+          <div class="route-comparison">
+            <section class="compute-route reward-route" aria-labelledby="reward-route-title">
+              <header class="route-heading">
+                <div>
+                  <strong id="reward-route-title">WMReward-∇</strong>
+                  <span>decode–encode route</span>
+                </div>
+                <span class="route-count">3 differentiable stages</span>
+              </header>
+              <div class="route-track reward-track" role="img" aria-label="WMReward forward pass: latent, VAE decoder, V-JEPA encoder, predictor, and world-model loss. Its backward gradient traverses the predictor, V-JEPA encoder, and VAE decoder before reaching the latent.">
+                <div class="route-node" data-forward-step="0" data-backward-step="8" aria-hidden="true"><strong>Latent z<sub>t</sub></strong><span>generator state</span></div>
+                <div class="route-edge" data-forward-step="1" data-backward-step="7" aria-hidden="true"></div>
+                <div class="route-node route-node-cost" data-forward-step="2" data-backward-step="6" aria-hidden="true"><strong>VAE decode</strong><span>latent → pixels</span></div>
+                <div class="route-edge" data-forward-step="3" data-backward-step="5" aria-hidden="true"></div>
+                <div class="route-node route-node-cost" data-forward-step="4" data-backward-step="4" aria-hidden="true"><strong>V-JEPA encoder</strong><span>pixels → tokens</span></div>
+                <div class="route-edge" data-forward-step="5" data-backward-step="3" aria-hidden="true"></div>
+                <div class="route-node" data-forward-step="6" data-backward-step="2" aria-hidden="true"><strong>Predictor</strong><span>frozen</span></div>
+                <div class="route-edge" data-forward-step="7" data-backward-step="1" aria-hidden="true"></div>
+                <div class="route-node route-loss" data-forward-step="8" data-backward-step="0" aria-hidden="true"><strong>WM loss</strong><span>guidance</span></div>
+              </div>
+              <p class="route-footnote"><span>Backward route</span> predictor + encoder + decoder</p>
+            </section>
+
+            <section class="compute-route omr-route" aria-labelledby="omr-route-title">
+              <header class="route-heading">
+                <div>
+                  <strong id="omr-route-title">OMR-∇ <em>ours</em></strong>
+                  <span>adapter-space route</span>
+                </div>
+                <span class="route-count">2 differentiable stages</span>
+              </header>
+              <div class="route-track omr-track" role="img" aria-label="OMR forward pass: latent, generator-specific adapter, predictor, and world-model loss. Its backward gradient traverses only the predictor and adapter before reaching the latent.">
+                <div class="route-node" data-forward-step="0" data-backward-step="6" aria-hidden="true"><strong>Latent z<sub>t</sub></strong><span>generator state</span></div>
+                <div class="route-edge" data-forward-step="1" data-backward-step="5" aria-hidden="true"></div>
+                <div class="route-node route-node-adapter" data-forward-step="2" data-backward-step="4" aria-hidden="true"><strong>Adapter</strong><span>latent → tokens</span></div>
+                <div class="route-edge" data-forward-step="3" data-backward-step="3" aria-hidden="true"></div>
+                <div class="route-node" data-forward-step="4" data-backward-step="2" aria-hidden="true"><strong>Predictor</strong><span>frozen</span></div>
+                <div class="route-edge" data-forward-step="5" data-backward-step="1" aria-hidden="true"></div>
+                <div class="route-node route-loss" data-forward-step="6" data-backward-step="0" aria-hidden="true"><strong>WM loss</strong><span>guidance</span></div>
+              </div>
+              <p class="route-footnote"><span>Backward route</span> predictor + adapter <b>No in-loop pixel decoding</b></p>
+            </section>
+          </div>
+
+          <p class="route-status" data-gradient-status aria-live="polite">Backward gradient: OMR bypasses the in-loop VAE decoder and V-JEPA encoder.</p>
+          <p class="route-output-note">The final output video is still decoded once after sampling.</p>
+        </div>
       </div>
 
       <div class="efficiency-table table-card">

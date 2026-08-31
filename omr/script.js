@@ -91,6 +91,48 @@
     });
   }
 
+  const gradientExplainer = document.querySelector("[data-gradient-explainer]");
+  if (gradientExplainer) {
+    const modeButtons = Array.from(gradientExplainer.querySelectorAll("[data-gradient-mode]"));
+    const replayButton = gradientExplainer.querySelector("[data-gradient-replay]");
+    const routeUnits = Array.from(gradientExplainer.querySelectorAll("[data-forward-step]"));
+    const status = gradientExplainer.querySelector("[data-gradient-status]");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const descriptions = {
+      forward: "Forward computation: WMReward decodes and re-encodes pixels, whereas OMR maps generator latents directly into predictor tokens.",
+      backward: "Backward gradient: OMR bypasses the in-loop VAE decoder and V-JEPA encoder."
+    };
+
+    const playRoute = (mode, announce = true) => {
+      gradientExplainer.dataset.mode = mode;
+      modeButtons.forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.gradientMode === mode));
+      });
+      routeUnits.forEach((unit) => {
+        const step = mode === "forward" ? unit.dataset.forwardStep : unit.dataset.backwardStep;
+        unit.style.setProperty("--route-order", step);
+      });
+      if (status) status.textContent = descriptions[mode];
+
+      gradientExplainer.classList.remove("is-playing");
+      if (!reduceMotion.matches) {
+        window.requestAnimationFrame(() => {
+          window.requestAnimationFrame(() => gradientExplainer.classList.add("is-playing"));
+        });
+      }
+      if (announce && status) status.setAttribute("aria-live", "polite");
+    };
+
+    gradientExplainer.classList.add("is-enhanced");
+    modeButtons.forEach((button) => {
+      button.addEventListener("click", () => playRoute(button.dataset.gradientMode));
+    });
+    replayButton?.addEventListener("click", () => playRoute(gradientExplainer.dataset.mode));
+    reduceMotion.addEventListener?.("change", () => playRoute(gradientExplainer.dataset.mode, false));
+    playRoute(gradientExplainer.dataset.mode, false);
+  }
+
   const copyButton = document.querySelector("[data-copy-bibtex]");
   const bibtex = document.querySelector("#bibtex code");
   if (copyButton && bibtex) {
