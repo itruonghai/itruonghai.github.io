@@ -84,7 +84,7 @@
       </div>
 
       <figure class="paper-figure method-figure">
-        <img loading="lazy" src="assets/method-overview.webp" alt="OMR method overview: a video generator predicts a clean latent, an adapter maps it to world-model features, and the predictive-surprise gradient guides the sampling velocity." width="2000" height="783">
+        <img loading="lazy" src="assets/method-overview.webp" alt="OMR method overview: a video generator predicts a clean latent, an adapter maps it to world-model features, and the predictive-surprise gradient guides the sampling velocity." width="3233" height="1265">
         <figcaption>The adapter replaces repeated VAE decoding and video encoding inside the guidance loop.</figcaption>
       </figure>
 
@@ -115,27 +115,28 @@
 
       <div class="video-grid">
         <article class="video-card featured-video">
-          <div class="video-shell" data-video-src="" data-video-label="Backflip landing comparison video">
-            <img loading="lazy" src="assets/hero-sequence.webp" alt="Frame-strip preview for the backflip landing comparison." width="2400" height="806">
+          <div class="video-shell sequence-shell" data-video-src="" data-video-label="Backflip landing comparison video">
+            <img loading="lazy" src="assets/hero-sequence.webp" alt="Frame-strip preview for the backflip landing comparison." width="4110" height="1380">
             <span class="video-status"><i aria-hidden="true">▶</i> Frame-strip preview</span>
           </div>
           <div class="video-caption"><div><span class="mini-label">Contact and body dynamics</span><h3>Backflip landing</h3></div><p>Inspect support, momentum, impact, and deformation throughout the landing.</p></div>
         </article>
 
-        <article class="video-card">
-          <div class="video-shell" data-video-src="" data-video-label="Tool and clay deformation comparison video">
-            <img loading="lazy" src="assets/qualitative/b.webp" alt="Frame-strip preview for the tool and clay deformation comparison." width="1620" height="590">
+        <article class="video-card comparison-browser" data-comparison-browser>
+          <div class="comparison-toolbar">
+            <div><span class="mini-label">Three-way comparison</span><strong>Wan2.2 · P&amp;P · OMR</strong></div>
+            <div class="comparison-tabs" role="tablist" aria-label="Qualitative comparison cases">
+              <button id="comparison-tab-a" type="button" role="tab" aria-selected="true" aria-controls="comparison-panel" data-poster="assets/qualitative/a.webp" data-width="2680" data-height="950" data-title="Baseball-wall contact" data-kicker="Contact causality" data-caption="Compare when wall damage appears relative to ball impact." data-video-src="">A</button>
+              <button id="comparison-tab-b" type="button" role="tab" aria-selected="false" aria-controls="comparison-panel" data-poster="assets/qualitative/b.webp" data-width="2680" data-height="990" data-title="Tool-clay deformation" data-kicker="Tool-object coupling" data-caption="Track whether the tool remains coupled to the deforming material." data-video-src="">B</button>
+              <button id="comparison-tab-c" type="button" role="tab" aria-selected="false" aria-controls="comparison-panel" data-poster="assets/qualitative/c.webp" data-width="2680" data-height="990" data-title="Ring-swing body dynamics" data-kicker="Support and momentum" data-caption="Inspect ring support, pose continuity, and momentum across the swing." data-video-src="">C</button>
+              <button id="comparison-tab-d" type="button" role="tab" aria-selected="false" aria-controls="comparison-panel" data-poster="assets/qualitative/d.webp" data-width="2680" data-height="990" data-title="Wheelbarrow-concrete interaction" data-kicker="Material interaction" data-caption="Compare contact timing, flow, and the resulting material response." data-video-src="">D</button>
+            </div>
+          </div>
+          <div id="comparison-panel" class="video-shell comparison-shell" role="tabpanel" aria-labelledby="comparison-tab-a" data-video-src="" data-video-label="Baseball-wall contact comparison video">
+            <img data-comparison-image loading="lazy" src="assets/qualitative/a.webp" alt="Three-way frame-strip comparison for baseball-wall contact." width="2680" height="950">
             <span class="video-status"><i aria-hidden="true">▶</i> Frame-strip preview</span>
           </div>
-          <div class="video-caption"><div><span class="mini-label">Tool–object coupling</span><h3>Deforming clay</h3></div><p>Track whether the tool stays coupled to the material response across time.</p></div>
-        </article>
-
-        <article class="video-card">
-          <div class="video-shell" data-video-src="" data-video-label="Wheelbarrow and concrete comparison video">
-            <img loading="lazy" src="assets/qualitative/d.webp" alt="Frame-strip preview for the wheelbarrow and concrete comparison." width="1620" height="590">
-            <span class="video-status"><i aria-hidden="true">▶</i> Frame-strip preview</span>
-          </div>
-          <div class="video-caption"><div><span class="mini-label">Material interaction</span><h3>Pouring concrete</h3></div><p>Compare contact timing, flow, and the resulting material response.</p></div>
+          <div class="video-caption"><div><span class="mini-label" data-comparison-kicker>Contact causality</span><h3 data-comparison-title>Baseball-wall contact</h3></div><p data-comparison-caption>Compare when wall damage appears relative to ball impact.</p></div>
         </article>
       </div>
     </section>
@@ -252,7 +253,7 @@
       </div>
 
       <figure class="paper-figure physics-figure">
-        <img loading="lazy" src="assets/physics-iq.webp" alt="Physics-IQ score gains for OMR and selection methods, including published MAGI-1 video-to-video and vLDM image-to-video context." width="1400" height="614">
+        <img loading="lazy" src="assets/physics-iq.webp" alt="Physics-IQ score gains for OMR and selection methods, including published MAGI-1 video-to-video and vLDM image-to-video context." width="2158" height="946">
         <figcaption>Gray rows are published, unmatched mixed-modality WMReward context: MAGI-1 (V2V) and vLDM (I2V). Blue rows are our matched Wan2.2-I2V pilot.</figcaption>
       </figure>
     </section>
