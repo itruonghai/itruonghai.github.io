@@ -17,12 +17,18 @@ internal source paths or training configuration. These are selected
 qualitative examples, not 20 independent wins or a new evaluation.
 The first five correspond to the paper's illustrated scenes.
 
-The gallery uses one shared playback control and timeline, corrects drift,
-pauses all streams if one buffers, and loads only the current comparison.
+The gallery uses the archive's precomposed `comparison.mp4` for each scene:
+OMR on the left, Wan2.2 in the center, and P&P on the right. All three
+methods are encoded in one video and therefore stay aligned during playback,
+seeking, and slow motion. Each composite has 81 frames at 2496 × 592 and
+16 fps; all 1,620 composite frames have been decoded for verification.
+CSS masks only the supplied 112-pixel title band, replacing it with readable
+HTML method labels. The three 832 × 480 panels are never cropped or stacked.
+The page loads only the selected comparison, and puts its notes, settings,
+filters, and a scrollable scene strip inside the same panel.
 The original MP4s remain directly available from the details disclosure.
 Native video controls remain as a fallback when JavaScript is unavailable.
 The hero reuses the two backflip clips; it does not download a second copy.
 
-No clips were retimed or re-encoded. The archive's precomposed comparison
-videos and reel are not duplicated here because the page compares the
-original clips directly at responsive sizes.
+No clips were retimed or re-encoded. The original per-method files remain
+available from the details disclosure; the archive's full reel is omitted.

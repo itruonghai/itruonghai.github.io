@@ -68,7 +68,7 @@
       pending = true;
       loadController = new AbortController();
       notify();
-      report("Loading all clips…");
+      report("Loading comparison…");
       try {
         await Promise.all(videos.map((video) => ready(video, loadController.signal)));
         if (attempt !== run) return;
@@ -121,7 +121,7 @@
       video.addEventListener("waiting", () => {
         if (!playing || video.seeking) return;
         pause();
-        report("Buffering paused the comparison. Press Play to resume all clips together.");
+        report("Buffering paused the comparison. Press Play to resume.");
       });
       video.addEventListener("error", () => {
         pause();
@@ -167,8 +167,8 @@
     let scrubbing = false;
     let resumeAfterScrub = false;
     const player = synchronizedPlayer(stage, videos, ({ playing, pending, time, duration }) => {
-      playButton.textContent = pending ? "■ Cancel" : playing ? "Ⅱ Pause all" : "▶ Play all";
-      playButton.setAttribute("aria-label", pending ? "Cancel loading comparison" : playing ? "Pause all three videos" : "Play all three videos");
+      playButton.textContent = pending ? "■ Cancel" : playing ? "Ⅱ Pause" : "▶ Play";
+      playButton.setAttribute("aria-label", pending ? "Cancel loading comparison" : playing ? "Pause comparison" : "Play comparison");
       if (!scrubbing) timeline.value = String(time);
       timeline.max = String(duration);
       timeline.setAttribute("aria-valuetext", `${time.toFixed(2)} of ${duration.toFixed(2)} seconds`);
@@ -190,20 +190,29 @@
       gallery.querySelector("[data-scene-prompt]").textContent = scene.prompt;
       gallery.querySelector("[data-scene-id]").textContent = `Prompt ${scene.id}`;
       gallery.querySelector("[data-scene-counter]").textContent = `${String(visibleScenes.indexOf(scene) + 1).padStart(2, "0")} / ${String(visibleScenes.length).padStart(2, "0")}`;
-      cards.forEach((card) => card.setAttribute("aria-pressed", String(card.dataset.scene === scene.id)));
+      cards.forEach((card) => {
+        const selected = card.dataset.scene === scene.id;
+        card.setAttribute("aria-pressed", String(selected));
+        if (selected) {
+          const strip = card.parentElement;
+          const left = card.offsetLeft;
+          if (left < strip.scrollLeft) strip.scrollLeft = left;
+          else if (left + card.offsetWidth > strip.scrollLeft + strip.clientWidth) strip.scrollLeft = left + card.offsetWidth - strip.clientWidth;
+        }
+      });
       videos.forEach((video) => {
-        const base = `assets/videos/${scene.id}/${video.dataset.method}`;
+        const base = `assets/videos/${scene.id}/comparison`;
         video.poster = `${base}.webp`;
         video.src = `${base}.mp4`;
         video.preload = "none";
-        video.setAttribute("aria-label", `${video.dataset.method === "wan" ? "Wan2.2" : video.dataset.method === "pnp" ? "P and P" : "OMR"}: ${scene.title}`);
+        video.setAttribute("aria-label", `${scene.title}: OMR on the left, Wan2.2 in the center, and P and P on the right`);
         video.load();
       });
       gallery.querySelectorAll("[data-original]").forEach((link) => { link.href = `assets/videos/${scene.id}/${link.dataset.original}.mp4`; });
       timeline.value = "0";
       timeOutput.textContent = "0.00 / 5.06 s";
       status.classList.remove("has-error");
-      status.textContent = "Full-length clips · 81 frames · 16 fps · 832 × 480 per method";
+      status.textContent = "Same prompt · same seed · one synchronized comparison";
       if (resume) player.play();
     };
 
