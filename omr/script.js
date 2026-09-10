@@ -151,6 +151,7 @@
     button.addEventListener("click", () => player.toggle());
   }
 
+  let openComparison = () => {};
   const gallery = document.querySelector("[data-video-gallery]");
   const scenes = window.OMR_COMPARISONS;
   if (gallery && Array.isArray(scenes) && scenes.length) {
@@ -162,7 +163,7 @@
     const status = gallery.querySelector("[data-playback-status]");
     const cards = Array.from(gallery.querySelectorAll("[data-scene]"));
     const filters = Array.from(gallery.querySelectorAll("[data-scene-filter]"));
-    let visibleScenes = scenes.filter((scene) => scene.paper);
+    let visibleScenes = scenes;
     let current = scenes[0];
     let scrubbing = false;
     let resumeAfterScrub = false;
@@ -193,19 +194,13 @@
       cards.forEach((card) => {
         const selected = card.dataset.scene === scene.id;
         card.setAttribute("aria-pressed", String(selected));
-        if (selected) {
-          const strip = card.parentElement;
-          const left = card.offsetLeft;
-          if (left < strip.scrollLeft) strip.scrollLeft = left;
-          else if (left + card.offsetWidth > strip.scrollLeft + strip.clientWidth) strip.scrollLeft = left + card.offsetWidth - strip.clientWidth;
-        }
       });
       videos.forEach((video) => {
-        const base = `assets/videos/${scene.id}/comparison`;
+        const base = `assets/videos/${scene.id}/${video.dataset.method}`;
         video.poster = `${base}.webp`;
         video.src = `${base}.mp4`;
         video.preload = "none";
-        video.setAttribute("aria-label", `${scene.title}: OMR on the left, Wan2.2 in the center, and P and P on the right`);
+        video.setAttribute("aria-label", `${video.dataset.method === "wan" ? "Wan2.2" : video.dataset.method === "pnp" ? "P and P" : "OMR"}: ${scene.title}`);
         video.load();
       });
       gallery.querySelectorAll("[data-original]").forEach((link) => { link.href = `assets/videos/${scene.id}/${link.dataset.original}.mp4`; });
@@ -229,6 +224,23 @@
       showScene(scenes.find((scene) => scene.id === card.dataset.scene));
       if (stage.getBoundingClientRect().bottom < 100) stage.scrollIntoView({ behavior: "auto", block: "start" });
     }));
+    const views = Array.from(gallery.querySelectorAll("[data-compare-view]"));
+    views.forEach((button) => button.addEventListener("click", () => {
+      const view = button.dataset.compareView;
+      gallery.querySelector("[data-compare-layout]").dataset.compareLayout = view;
+      views.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+      gallery.querySelectorAll("[data-method-panel]").forEach((panel) => {
+        panel.hidden = view !== "all" && panel.dataset.methodPanel !== view && panel.dataset.methodPanel !== "omr";
+      });
+    }));
+    openComparison = (id) => {
+      filters.find((button) => button.dataset.sceneFilter === "all").click();
+      const scene = scenes.find((item) => item.id === id);
+      if (!scene) return;
+      showScene(scene, false);
+      views.find((button) => button.dataset.compareView === "all").click();
+      stage.scrollIntoView({ behavior: "auto", block: "start" });
+    };
     const nextScene = (direction) => showScene(visibleScenes[(visibleScenes.indexOf(current) + direction + visibleScenes.length) % visibleScenes.length]);
     gallery.querySelector("[data-scene-prev]").addEventListener("click", () => nextScene(-1));
     gallery.querySelector("[data-scene-next]").addEventListener("click", () => nextScene(1));
@@ -254,6 +266,75 @@
       fullscreenButton.textContent = document.fullscreenElement === stage ? "⛶ Exit full screen" : "⛶ Expand";
       fullscreenButton.setAttribute("aria-label", document.fullscreenElement === stage ? "Exit full screen" : "Expand comparison to full screen");
     });
+  }
+
+  const showcase = document.querySelector("[data-highlight-showcase]");
+  if (showcase) {
+    const cases = {
+      "ring-support": {
+        id: "det_066", title: "Does the body stay supported?",
+        caption: "After about 3 seconds, Wan2.2’s hands separate from the rings while the body remains airborne. OMR keeps visible hand–ring support through the motion.",
+        context: "The difference here is support continuity. All three clips receive the same existing physics score (3/5), and the prompt asks for a trapeze while the clips depict rings."
+      },
+      "balloon-rupture": {
+        id: "det_096", title: "Does the material change after impact?",
+        caption: "In the first 3 seconds, Wan2.2 retains a balloon-like object during an extended splash. OMR transitions from an intact balloon to falling latex fragments and dispersed water.",
+        context: "This pair isolates the material-state change. P&P also shows rupture; all three existing physics scores are 3/5. The full clips remain available below."
+      },
+      "clay-contact": {
+        id: "orig_084", title: "Does deformation follow contact?",
+        caption: "Wan2.2 begins with a hole already visible in the clay. OMR begins with an intact surface, then shows the finger pressing in and withdrawing to leave an indentation.",
+        context: "P&P also follows a plausible contact sequence, and all three existing physics scores are 5/5. OMR’s final indentation is still large relative to the fingertip."
+      }
+    };
+    const video = showcase.querySelector("[data-highlight-video]");
+    const toggle = showcase.querySelector("[data-highlight-toggle]");
+    const choices = Array.from(showcase.querySelectorAll("[data-highlight]"));
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let selected = "ring-support";
+    let userPaused = false;
+    let visible = false;
+    let autoStarted = false;
+    const player = synchronizedPlayer(showcase, [video], ({ playing, pending }) => {
+      toggle.textContent = pending ? "■ Cancel loading" : playing ? "Ⅱ Pause loop" : "▶ Play loop";
+      toggle.setAttribute("aria-label", pending ? "Cancel loading annotated loop" : playing ? "Pause annotated loop" : "Play annotated loop");
+    }, (message, error) => { if (error) toggle.textContent = "▶ Retry loop"; });
+    const start = () => {
+      if (!video.getAttribute("src")) video.src = `assets/videos/highlights/${selected}.mp4`;
+      player.play();
+    };
+    toggle.addEventListener("click", () => {
+      userPaused = player.active();
+      if (userPaused) player.pause(); else start();
+    });
+    choices.forEach((button) => button.addEventListener("click", () => {
+      player.reset();
+      selected = button.dataset.highlight;
+      const item = cases[selected];
+      video.poster = `assets/videos/highlights/${selected}.webp`;
+      video.src = `assets/videos/highlights/${selected}.mp4`;
+      video.preload = "none";
+      video.load();
+      video.setAttribute("aria-label", `${item.title} Annotated Wan2.2 and OMR comparison at half speed, with the same center crop and source timestamps.`);
+      showcase.querySelector("[data-highlight-title]").textContent = item.title;
+      showcase.querySelector("[data-highlight-caption]").textContent = item.caption;
+      showcase.querySelector("[data-highlight-context]").textContent = item.context;
+      showcase.querySelector("[data-highlight-gif]").href = `assets/videos/highlights/${selected}.gif`;
+      choices.forEach((choice) => choice.setAttribute("aria-pressed", String(choice === button)));
+      if (!userPaused && !reduceMotion.matches) start();
+    }));
+    showcase.querySelector("[data-highlight-open]").addEventListener("click", () => {
+      player.pause();
+      openComparison(cases[selected].id);
+    });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([entry]) => {
+        visible = entry.isIntersecting;
+        if (!visible) player.pause();
+        else if (!autoStarted && !userPaused && !reduceMotion.matches) { autoStarted = true; start(); }
+      }, { threshold: 0.3 }).observe(showcase);
+    }
+    reduceMotion.addEventListener?.("change", () => { if (reduceMotion.matches) player.pause(); });
   }
 
   document.addEventListener("visibilitychange", () => { if (document.hidden) players.forEach((player) => player.pause()); });

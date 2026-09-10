@@ -110,21 +110,38 @@
       <div class="section-heading media-heading">
         <div>
           <p class="section-kicker">Qualitative comparisons</p>
-          <h2 id="videos-title">Physical interactions are easier to judge in motion.</h2>
+          <h2 id="videos-title">Look closely at contact, support, and material response.</h2>
         </div>
-        <p>Twenty selected examples of contact, deformation, body dynamics, and fluid motion. Compare the same prompt and seed across Wan2.2, P&amp;P, and OMR.</p>
+        <p>Start with three enlarged, annotated loops, then explore all 20 prompts with the full Wan2.2, P&amp;P, and OMR videos.</p>
       </div>
 
+      <div class="highlight-showcase" data-highlight-showcase>
+        <div class="highlight-topline"><div><span class="mini-label">Selected differences, up close</span><h3 data-highlight-title>Does the body stay supported?</h3></div><div class="highlight-playback"><span class="highlight-speed">0.5× speed</span><button type="button" class="highlight-toggle" data-highlight-toggle aria-label="Play annotated loop">▶ Play loop</button></div></div>
+        <div class="highlight-choices" role="group" aria-label="Choose an annotated comparison">
+          <button type="button" data-highlight="ring-support" aria-pressed="true">01 · Ring support</button>
+          <button type="button" data-highlight="balloon-rupture" aria-pressed="false">02 · Balloon rupture</button>
+          <button type="button" data-highlight="clay-contact" aria-pressed="false">03 · Contact before deformation</button>
+        </div>
+        <div class="highlight-motion">
+          <video data-highlight-video muted playsinline loop preload="none" poster="assets/videos/highlights/ring-support.webp" width="1072" height="614" aria-label="Enlarged annotated comparison of ring support: Wan2.2 on the left, OMR on the right, at half speed"><source data-src="assets/videos/highlights/ring-support.mp4" type="video/mp4"></video>
+        </div>
+        <div class="highlight-caption"><p data-highlight-caption>After about 3 seconds, Wan2.2’s hands separate from the rings while the body remains airborne. OMR keeps visible hand–ring support through the motion.</p><div class="highlight-links"><a data-highlight-gif href="assets/videos/highlights/ring-support.gif" download>Download GIF ↓</a><button type="button" data-highlight-open>See all three methods ↗</button></div></div>
+        <p class="highlight-context" data-highlight-context>The difference here is support continuity. All three clips receive the same existing physics score (3/5), and the prompt asks for a trapeze while the clips depict rings.</p>
+      </div>
+
+      <div class="full-gallery-heading"><h3>All 20 prompt comparisons</h3><p>Original full-frame videos · same prompt and seed for each method</p></div>
       <div class="comparison-gallery" data-video-gallery>
         <div class="comparison-stage" data-comparison-stage>
           <div class="scene-heading">
             <div><p class="scene-category" data-scene-category>Body dynamics · From the paper</p><h3 data-scene-title>Backflip landing</h3></div>
-            <div class="scene-navigation"><button type="button" data-scene-prev aria-label="Previous comparison">←</button><span data-scene-counter>01 / 05</span><button type="button" data-scene-next aria-label="Next comparison">→</button></div>
+            <div class="scene-navigation"><button type="button" data-scene-prev aria-label="Previous comparison">←</button><span data-scene-counter>01 / 20</span><button type="button" data-scene-next aria-label="Next comparison">→</button></div>
           </div>
-          <figure class="comparison-film">
-            <figcaption class="comparison-methods"><span class="comparison-method-ours">OMR <b>Ours</b></span><span>Wan2.2 <small>baseline</small></span><span>P&amp;P</span></figcaption>
-            <div class="comparison-film-window"><video controls muted playsinline preload="none" poster="assets/videos/det_013/comparison.webp" data-composite-video aria-label="Backflip landing: OMR on the left, Wan2.2 in the center, and P and P on the right" width="2496" height="592"><source src="assets/videos/det_013/comparison.mp4" type="video/mp4"></video></div>
-          </figure>
+          <div class="comparison-view-options" role="group" aria-label="Choose methods to compare"><button type="button" data-compare-view="all" aria-pressed="true">All three</button><button type="button" data-compare-view="wan" aria-pressed="false">Wan2.2 vs. OMR</button><button type="button" data-compare-view="pnp" aria-pressed="false">P&amp;P vs. OMR</button></div>
+          <div class="comparison-screens" data-compare-layout="all">
+            <figure class="method-screen" data-method-panel="wan"><figcaption><strong>Wan2.2</strong><small>Base generator</small></figcaption><video controls muted playsinline preload="none" poster="assets/videos/det_013/wan.webp" data-method="wan" aria-label="Wan2.2 baseline comparison" width="832" height="480"><source src="assets/videos/det_013/wan.mp4" type="video/mp4"></video></figure>
+            <figure class="method-screen" data-method-panel="pnp"><figcaption><strong>P&amp;P</strong><small>Self-refining sampling</small></figcaption><video controls muted playsinline preload="none" poster="assets/videos/det_013/pnp.webp" data-method="pnp" aria-label="P and P comparison" width="832" height="480"><source src="assets/videos/det_013/pnp.mp4" type="video/mp4"></video></figure>
+            <figure class="method-screen method-screen-ours" data-method-panel="omr"><figcaption><strong>OMR <b>Ours</b></strong><small>World-model guidance</small></figcaption><video controls muted playsinline preload="none" poster="assets/videos/det_013/omr.webp" data-method="omr" aria-label="OMR comparison" width="832" height="480"><source src="assets/videos/det_013/omr.mp4" type="video/mp4"></video></figure>
+          </div>
           <div class="shared-transport" data-shared-controls hidden>
             <button class="transport-play" type="button" data-play-all aria-label="Play comparison">▶ <span>Play</span></button>
             <button class="transport-restart" type="button" data-restart aria-label="Replay comparison from the beginning">↻</button>
@@ -150,10 +167,10 @@
         </div>
 
         <div class="gallery-browse">
-          <div class="gallery-browse-heading"><h3>Choose a scene</h3><span data-gallery-count>5 paper examples</span></div>
+          <div class="gallery-browse-heading"><h3>Choose a prompt</h3><span data-gallery-count>20 examples</span></div>
           <div class="gallery-filters" role="group" aria-label="Filter comparison scenes">
-            <button type="button" data-scene-filter="paper" aria-pressed="true">From the paper <span>5</span></button>
-            <button type="button" data-scene-filter="all" aria-pressed="false">All examples <span>20</span></button>
+            <button type="button" data-scene-filter="all" aria-pressed="true">All prompts <span>20</span></button>
+            <button type="button" data-scene-filter="paper" aria-pressed="false">From the paper <span>5</span></button>
             <button type="button" data-scene-filter="Impact and contact" aria-pressed="false">Contact &amp; impact</button>
             <button type="button" data-scene-filter="Material deformation" aria-pressed="false">Materials</button>
             <button type="button" data-scene-filter="Body dynamics" aria-pressed="false">Body dynamics</button>
@@ -180,70 +197,70 @@
               <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_090/preview.webp" alt="" width="416" height="240"><span class="scene-number">05</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
               <span class="scene-card-copy"><strong>Wheelbarrow &amp; concrete</strong><small>Paper example</small></span>
             </button>
-            <button type="button" class="scene-card" data-scene="det_048" aria-pressed="false" hidden>
+            <button type="button" class="scene-card" data-scene="det_048" aria-pressed="false">
               <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_048/preview.webp" alt="" width="416" height="240"><span class="scene-number">06</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
               <span class="scene-card-copy"><strong>Bearing collision</strong><small>Impact and contact</small></span>
             </button>
-            <button type="button" class="scene-card" data-scene="det_065" aria-pressed="false" hidden>
+            <button type="button" class="scene-card" data-scene="det_065" aria-pressed="false">
               <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_065/preview.webp" alt="" width="416" height="240"><span class="scene-number">07</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
               <span class="scene-card-copy"><strong>Basketball dribbling</strong><small>Impact and contact</small></span>
             </button>
-            <button type="button" class="scene-card" data-scene="det_014" aria-pressed="false" hidden>
+            <button type="button" class="scene-card" data-scene="det_014" aria-pressed="false">
               <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_014/preview.webp" alt="" width="416" height="240"><span class="scene-number">08</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
               <span class="scene-card-copy"><strong>Pinball motion</strong><small>Impact and contact</small></span>
             </button>
-            <button type="button" class="scene-card" data-scene="det_049" aria-pressed="false" hidden>
+            <button type="button" class="scene-card" data-scene="det_049" aria-pressed="false">
               <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_049/preview.webp" alt="" width="416" height="240"><span class="scene-number">09</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
               <span class="scene-card-copy"><strong>Paper folding</strong><small>Material deformation</small></span>
             </button>
-            <button type="button" class="scene-card" data-scene="det_096" aria-pressed="false" hidden>
+            <button type="button" class="scene-card" data-scene="det_096" aria-pressed="false">
               <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_096/preview.webp" alt="" width="416" height="240"><span class="scene-number">10</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
               <span class="scene-card-copy"><strong>Water-balloon rupture</strong><small>Impact and contact</small></span>
             </button>
-            <button type="button" class="scene-card" data-scene="det_081" aria-pressed="false" hidden>
+            <button type="button" class="scene-card" data-scene="det_081" aria-pressed="false">
               <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_081/preview.webp" alt="" width="416" height="240"><span class="scene-number">11</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
               <span class="scene-card-copy"><strong>Wood carving</strong><small>Material deformation</small></span>
             </button>
-            <button type="button" class="scene-card" data-scene="orig_084" aria-pressed="false" hidden>
+            <button type="button" class="scene-card" data-scene="orig_084" aria-pressed="false">
               <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/orig_084/preview.webp" alt="" width="416" height="240"><span class="scene-number">12</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
               <span class="scene-card-copy"><strong>Finger–clay contact</strong><small>Material deformation</small></span>
             </button>
-            <button type="button" class="scene-card" data-scene="orig_064" aria-pressed="false" hidden>
+            <button type="button" class="scene-card" data-scene="orig_064" aria-pressed="false">
               <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/orig_064/preview.webp" alt="" width="416" height="240"><span class="scene-number">13</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
               <span class="scene-card-copy"><strong>Scraping a clay vase</strong><small>Material deformation</small></span>
             </button>
-            <button type="button" class="scene-card" data-scene="det_057" aria-pressed="false" hidden>
+            <button type="button" class="scene-card" data-scene="det_057" aria-pressed="false">
               <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_057/preview.webp" alt="" width="416" height="240"><span class="scene-number">14</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
               <span class="scene-card-copy"><strong>Leaf-blower response</strong><small>Material deformation</small></span>
             </button>
-            <button type="button" class="scene-card" data-scene="det_033" aria-pressed="false" hidden>
+            <button type="button" class="scene-card" data-scene="det_033" aria-pressed="false">
               <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_033/preview.webp" alt="" width="416" height="240"><span class="scene-number">15</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
               <span class="scene-card-copy"><strong>Unrolling pastry</strong><small>Material deformation</small></span>
             </button>
-            <button type="button" class="scene-card" data-scene="det_047" aria-pressed="false" hidden>
+            <button type="button" class="scene-card" data-scene="det_047" aria-pressed="false">
               <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_047/preview.webp" alt="" width="416" height="240"><span class="scene-number">16</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
               <span class="scene-card-copy"><strong>Bending wood</strong><small>Material deformation</small></span>
             </button>
-            <button type="button" class="scene-card" data-scene="det_038" aria-pressed="false" hidden>
+            <button type="button" class="scene-card" data-scene="det_038" aria-pressed="false">
               <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_038/preview.webp" alt="" width="416" height="240"><span class="scene-number">17</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
               <span class="scene-card-copy"><strong>Bulldozer &amp; sand</strong><small>Material deformation</small></span>
             </button>
-            <button type="button" class="scene-card" data-scene="det_053" aria-pressed="false" hidden>
+            <button type="button" class="scene-card" data-scene="det_053" aria-pressed="false">
               <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_053/preview.webp" alt="" width="416" height="240"><span class="scene-number">18</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
               <span class="scene-card-copy"><strong>Rowing &amp; water response</strong><small>Fluid and supported motion</small></span>
             </button>
-            <button type="button" class="scene-card" data-scene="det_040" aria-pressed="false" hidden>
+            <button type="button" class="scene-card" data-scene="det_040" aria-pressed="false">
               <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_040/preview.webp" alt="" width="416" height="240"><span class="scene-number">19</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
               <span class="scene-card-copy"><strong>Jet-ski wakes</strong><small>Fluid and supported motion</small></span>
             </button>
-            <button type="button" class="scene-card" data-scene="det_088" aria-pressed="false" hidden>
+            <button type="button" class="scene-card" data-scene="det_088" aria-pressed="false">
               <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_088/preview.webp" alt="" width="416" height="240"><span class="scene-number">20</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
               <span class="scene-card-copy"><strong>Parasail support</strong><small>Body dynamics</small></span>
             </button>
           </div>
         </div>
         <p class="gallery-protocol">These examples are deliberately selected for qualitative inspection, including close comparisons and remaining artifacts. They are not an estimate of win rate. Videos retain their original frames and timing; aggregate evidence is reported in the <a href="#results">benchmark results</a>.</p>
-        <noscript><p class="gallery-protocol">Use the video’s native controls to play the side-by-side comparison. JavaScript enables scene selection and slow motion.</p></noscript>
+        <noscript><p class="gallery-protocol">Use the native video controls, or download the annotated GIF. JavaScript enables scene selection and synchronized playback.</p></noscript>
       </div>
     </section>
 

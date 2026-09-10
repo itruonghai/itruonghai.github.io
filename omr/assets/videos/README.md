@@ -17,18 +17,43 @@ internal source paths or training configuration. These are selected
 qualitative examples, not 20 independent wins or a new evaluation.
 The first five correspond to the paper's illustrated scenes.
 
-The gallery uses the archive's precomposed `comparison.mp4` for each scene:
-OMR on the left, Wan2.2 in the center, and P&P on the right. All three
-methods are encoded in one video and therefore stay aligned during playback,
-seeking, and slow motion. Each composite has 81 frames at 2496 × 592 and
-16 fps; all 1,620 composite frames have been decoded for verification.
-CSS masks only the supplied 112-pixel title band, replacing it with readable
-HTML method labels. The three 832 × 480 panels are never cropped or stacked.
-The page loads only the selected comparison, and puts its notes, settings,
-filters, and a scrollable scene strip inside the same panel.
+The main gallery shows all 20 prompts by default in a visible grid. It uses
+the full-frame per-method originals with synchronized playback, scrubbing,
+slow motion, and fullscreen. All-three and two-method views are available;
+two-method views give each video more display space. Labels share the same
+height and text alignment. Full prompts, viewing cues, and limitations
+update with the selected scene. The precomposed comparison files from the
+previous layout remain available but are not used by the current gallery.
 The original MP4s remain directly available from the details disclosure.
 Native video controls remain as a fallback when JavaScript is unavailable.
 The hero reuses the two backflip clips; it does not download a second copy.
 
-No clips were retimed or re-encoded. The original per-method files remain
+The original per-method files are not retimed or re-encoded and remain
 available from the details disclosure; the archive's full reel is omitted.
+
+## Annotated GIF highlights
+
+`highlights/` contains three standalone GIFs and equivalent, lighter H.264
+loop previews used on the page:
+
+- `ring-support`: det_066, Wan2.2 vs. OMR, source 0–5 seconds.
+- `balloon-rupture`: det_096, Wan2.2 vs. OMR, source 0–3 seconds.
+- `clay-contact`: orig_084, Wan2.2 vs. OMR, source 0–5 seconds.
+
+Both methods use the identical fixed crop `(160, 0, 672, 480)` from the
+832 × 480 originals. Every source frame in each stated interval is kept,
+at 0.5× speed (8 displayed frames per second). No interpolation, event-time
+alignment, or synthetic video content is used. Labels and source timestamps
+are burned into the GIFs; annotations change as the event develops. GIF
+durations alternate between 120 and 130 ms to approximate 125 ms/frame.
+
+The page loads only the selected loop preview. Autoplay respects reduced
+motion, pauses offscreen, and can be stopped with the loop button. GIF
+downloads preserve the same annotations and comparison. The 211 frames in
+each output format were decoded and verified, and representative output
+frames were visually inspected. `highlights/manifest.json` records the
+source IDs, crop, intervals, frame counts, and file sizes.
+
+These highlight pairs illustrate specific differences against Wan2.2,
+not superiority over both baselines. P&P is competitive in the balloon
+and clay cases, and the page states the tied existing physics scores.

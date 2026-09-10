@@ -1,0 +1,59 @@
+[
+  {
+    "id": "det_066",
+    "slug": "ring-support",
+    "source_frames": 81,
+    "source_fps": 16,
+    "display_fps": 8,
+    "crop": [
+      160,
+      0,
+      672,
+      480
+    ],
+    "source_interval": [
+      0,
+      5.0
+    ],
+    "gif_MB": 11.83,
+    "mp4_MB": 1.15
+  },
+  {
+    "id": "det_096",
+    "slug": "balloon-rupture",
+    "source_frames": 49,
+    "source_fps": 16,
+    "display_fps": 8,
+    "crop": [
+      160,
+      0,
+      672,
+      480
+    ],
+    "source_interval": [
+      0,
+      3.0
+    ],
+    "gif_MB": 16.53,
+    "mp4_MB": 2.32
+  },
+  {
+    "id": "orig_084",
+    "slug": "clay-contact",
+    "source_frames": 81,
+    "source_fps": 16,
+    "display_fps": 8,
+    "crop": [
+      160,
+      0,
+      672,
+      480
+    ],
+    "source_interval": [
+      0,
+      5.0
+    ],
+    "gif_MB": 16.84,
+    "mp4_MB": 0.82
+  }
+]
