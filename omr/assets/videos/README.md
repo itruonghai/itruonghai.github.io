@@ -22,9 +22,13 @@ of synchronization; their links are hidden and their captions are omitted.
 Omitting P&P from a pair is a presentation choice, not evidence of a loss.
 
 The five three-method examples follow the exact order above in a Next-only
-carousel without thumbnail previews. The remaining 16 pairs appear as
+carousel without thumbnail previews. Twelve additional pairs appear as
 thumbnail-and-title cards in More comparisons, the last main-page section.
-Clicking a card opens a native dialog and starts synchronized playback.
+The four pairs already featured in the teaser/highlights (`det_013`,
+`orig_039`, `orig_086`, `orig_084`) are not repeated as cards. Their full
+original comparisons remain accessible through the teaser/highlight links.
+Clicking a card opens a separate native dialog and starts synchronized playback;
+it never changes the five-example player above.
 Pair videos have no sources attached until a card is opened. Closing the
 dialog or pressing Escape cancels pending playback and pauses both clips.
 Only one comparison plays at a time. Original full-frame videos share

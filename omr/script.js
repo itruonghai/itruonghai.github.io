@@ -218,7 +218,8 @@
       gallery.querySelector("[data-scene-limitation]").textContent = scene.limitation;
       gallery.querySelector("[data-scene-prompt]").textContent = scene.prompt;
       gallery.querySelector("[data-scene-id]").textContent = `Prompt ${scene.id}`;
-      gallery.querySelector("[data-scene-counter]").textContent = `${String(scenes.indexOf(scene) + 1).padStart(2, "0")} / ${String(scenes.length).padStart(2, "0")}`;
+      const counter = gallery.querySelector("[data-scene-counter]");
+      if (counter) counter.textContent = `${String(scenes.indexOf(scene) + 1).padStart(2, "0")} / ${String(scenes.length).padStart(2, "0")}`;
       cards.forEach((card) => {
         const selected = card.dataset.scene === scene.id;
         card.setAttribute("aria-pressed", String(selected));
@@ -247,7 +248,7 @@
       timeline.value = "0";
       timeOutput.textContent = "0.00 / 5.06 s";
       status.classList.remove("has-error");
-      status.textContent = "Same prompt · same seed · one synchronized comparison";
+      status.textContent = "";
       if (resume) player.play();
     };
 
@@ -301,6 +302,14 @@
       fullscreenButton.setAttribute("aria-label", document.fullscreenElement === stage ? "Exit full screen" : "Expand comparison to full screen");
     });
     if (!dialog) showScene(current, false);
+  });
+
+  document.querySelectorAll("[data-open-comparison]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      if (!comparisonOpeners.has(link.dataset.openComparison)) return;
+      event.preventDefault();
+      openComparison(link.dataset.openComparison);
+    });
   });
 
   const showcase = document.querySelector("[data-highlight-showcase]");
@@ -386,7 +395,7 @@
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     const descriptions = {
-      forward: "Forward computation: WMReward decodes and re-encodes pixels, whereas OMR maps generator latents directly into predictor tokens.",
+      forward: "Forward computation: WMReward decodes and re-encodes pixels, whereas OMR maps clean estimates directly into predictor tokens.",
       backward: "Backward gradient: OMR bypasses the in-loop VAE decoder and V-JEPA encoder."
     };
 

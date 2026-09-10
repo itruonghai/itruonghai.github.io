@@ -66,9 +66,9 @@
         <div class="teaser-motion">
           <video muted playsinline loop preload="none" poster="assets/videos/teaser/backflip-annotated.webp" width="1280" height="534" data-duration="13.25" aria-label="Annotated backflip comparison. Red circles identify baseline leg and torso transitions; green circles show OMR's landing response. Both panels slow to quarter speed and pause together at three inspection points."><source src="assets/videos/teaser/backflip-annotated.mp4" type="video/mp4"></video>
         </div>
-        <div class="hero-video-actions"><div class="teaser-playback"><button type="button" data-hero-play>▶ Play teaser</button><button type="button" data-hero-replay aria-label="Replay annotated teaser from the beginning">↻ Replay</button></div><div class="teaser-links"><a href="assets/videos/teaser/backflip-annotated.gif" download>Download GIF ↓</a><a href="#videos">Full comparisons ↗</a></div></div>
+        <div class="hero-video-actions"><div class="teaser-playback"><button type="button" data-hero-play>▶ Play teaser</button><button type="button" data-hero-replay aria-label="Replay annotated teaser from the beginning">↻ Replay</button></div><div class="teaser-links"><a href="assets/videos/teaser/backflip-annotated.gif" download>Download GIF ↓</a><a href="assets/videos/det_013/omr.mp4" data-open-comparison="det_013" aria-haspopup="dialog">Full comparison ↗</a></div></div>
         <div class="teaser-stops" role="group" aria-label="Pause at an inspection frame"><span>Inspect a stop</span><button type="button" data-hero-stop="5.25">1 · Leg position</button><button type="button" data-hero-stop="8.25">2 · 0.25 s later</button><button type="button" data-hero-stop="12.25">3 · Landing</button></div>
-        <figcaption class="teaser-explanation"><p>During landing, the body should move continuously and the cushion should deform under contact. <strong>Red circles</strong> mark abrupt leg–torso changes in Wan2.2; <strong>green circles</strong> follow OMR’s landing and cushion response.</p><p class="teaser-caveat">Both clips slow and pause together over 0–3.5 s. OMR still shows body–cushion overlap in the <a href="#more-comparisons">full clip</a>.</p></figcaption>
+        <figcaption class="teaser-explanation"><p>During landing, the body should move continuously and the cushion should deform under contact. <strong>Red circles</strong> mark abrupt leg–torso changes in Wan2.2; <strong>green circles</strong> follow OMR’s landing and cushion response.</p><p class="teaser-caveat">Both clips slow and pause together over 0–3.5 s. OMR still shows body–cushion overlap in the <a href="assets/videos/det_013/omr.mp4" data-open-comparison="det_013" aria-haspopup="dialog">full comparison</a>.</p></figcaption>
       </figure>
     </section>
 
@@ -81,7 +81,7 @@
 
       <figure class="paper-figure method-figure">
         <img loading="lazy" src="assets/method-overview.webp" alt="OMR method overview: a video generator predicts a clean latent, an adapter maps it to world-model features, and the predictive-surprise gradient guides the sampling velocity." width="3233" height="1265">
-        <figcaption>The adapter replaces repeated VAE decoding and video encoding inside the guidance loop.</figcaption>
+        <figcaption>OMR corrects provisional clean estimates during successive sampling steps. The adapter replaces in-loop VAE decoding and video encoding.</figcaption>
       </figure>
 
       <div class="method-chips" aria-label="Method properties">
@@ -96,7 +96,7 @@
       <ol class="method-steps">
         <li><span class="step-index">01</span><div><h3>Predict</h3><p>At a guided ODE step, estimate the provisional clean video latent from the current noisy state.</p></div></li>
         <li><span class="step-index">02</span><div><h3>Measure surprise</h3><p>Map that latent into V-JEPA feature space, mask future tokens within a 48-frame window, and compare them with the predictor’s forecast.</p></div></li>
-        <li><span class="step-index">03</span><div><h3>Refine</h3><p>Backpropagate predictive surprise through the adapter and apply the normalized correction to the generator’s velocity field.</p></div></li>
+        <li><span class="step-index">03</span><div><h3>Refine</h3><p>Backpropagate predictive surprise through the adapter and add a local correction to the sampling update.</p></div></li>
       </ol>
     </section>
 
@@ -123,7 +123,7 @@
         <p class="highlight-context" data-highlight-context>Both clips misrepresent the requested nunchucks. Inspect contact and recovery, not correct execution of the prompt.</p>
       </div>
 
-      <div class="full-gallery-heading"><h3>Baseline, P&amp;P, and OMR</h3><p>Five examples · original full-frame videos · same prompt and seed</p></div>
+      <div class="full-gallery-heading"><h3>Baseline, P&amp;P, and OMR</h3><p>Five examples · full-length comparisons</p></div>
       <div class="comparison-gallery" data-video-gallery="three">
         <div class="comparison-stage" data-comparison-stage>
           <div class="scene-heading">
@@ -168,7 +168,7 @@
     <section class="results section" id="results" aria-labelledby="results-title">
       <div class="section-heading">
         <p class="section-kicker">Primary results</p>
-        <h2 id="results-title">Higher physical-consistency scores with unchanged benchmark prompt adherence.</h2>
+        <h2 id="results-title">Better physical commonsense, with unchanged prompt-adherence rate.</h2>
         <p>We fixed 400 prompt IDs from the released VideoPhy-2 detailed-prompt pool before generation or scoring, and use the identical unfiltered list for every method.</p>
       </div>
 
@@ -180,7 +180,7 @@
           </div>
           <div class="table-scroll">
             <table>
-              <thead><tr><th>Method</th><th>SA ≥ 4</th><th>PC ≥ 4</th><th>Joint</th></tr></thead>
+              <thead><tr><th>Method</th><th>SA ≥ 4 (%)</th><th>PC ≥ 4 (%)</th><th>Joint (%)</th></tr></thead>
               <tbody>
                 <tr><td>Wan2.2</td><td>68.0</td><td>57.0</td><td>47.00</td></tr>
                 <tr><td>+ CFG-Zero*</td><td>68.0</td><td>56.0</td><td>48.25</td></tr>
@@ -196,10 +196,6 @@
           <span class="mini-label">Where the gain comes from</span>
           <strong class="big-number">+3.0 pp</strong>
           <p>PC ≥ 4 rises from <strong>57.0%</strong> to <strong>60.0%</strong>, while SA ≥ 4 remains <strong>68.0%</strong>.</p>
-          <div class="delta-bars" aria-label="Physical commonsense and semantic adherence changes">
-            <div><span>Physical commonsense</span><b style="--bar: 84%">57 → 60</b></div>
-            <div><span>Semantic adherence</span><b class="neutral" style="--bar: 95%">68 → 68</b></div>
-          </div>
         </aside>
       </div>
 
@@ -232,10 +228,9 @@
                   <strong id="reward-route-title">WMReward-∇</strong>
                   <span>decode–encode route</span>
                 </div>
-                <span class="route-count">3 differentiable stages</span>
               </header>
-              <div class="route-track reward-track" role="img" aria-label="WMReward forward pass: latent, VAE decoder, V-JEPA encoder, predictor, and world-model loss. Its backward gradient traverses the predictor, V-JEPA encoder, and VAE decoder before reaching the latent.">
-                <div class="route-node" data-forward-step="0" data-backward-step="8" aria-hidden="true"><strong>Latent z<sub>t</sub></strong><span>generator state</span></div>
+              <div class="route-track reward-track" role="img" aria-label="WMReward forward pass: clean estimate, VAE decoder, V-JEPA encoder, predictor, and world-model loss. Its backward gradient traverses the predictor, V-JEPA encoder, and VAE decoder before reaching the clean estimate.">
+                <div class="route-node" data-forward-step="0" data-backward-step="8" aria-hidden="true"><strong>Clean estimate ẑ₁</strong><span>guidance variable</span></div>
                 <div class="route-edge" data-forward-step="1" data-backward-step="7" aria-hidden="true"></div>
                 <div class="route-node route-node-cost" data-forward-step="2" data-backward-step="6" aria-hidden="true"><strong>VAE decode</strong><span>latent → pixels</span></div>
                 <div class="route-edge" data-forward-step="3" data-backward-step="5" aria-hidden="true"></div>
@@ -254,10 +249,9 @@
                   <strong id="omr-route-title">OMR-∇ <em>ours</em></strong>
                   <span>adapter-space route</span>
                 </div>
-                <span class="route-count">2 differentiable stages</span>
               </header>
-              <div class="route-track omr-track" role="img" aria-label="OMR forward pass: latent, generator-specific adapter, predictor, and world-model loss. Its backward gradient traverses only the predictor and adapter before reaching the latent.">
-                <div class="route-node" data-forward-step="0" data-backward-step="6" aria-hidden="true"><strong>Latent z<sub>t</sub></strong><span>generator state</span></div>
+              <div class="route-track omr-track" role="img" aria-label="OMR forward pass: clean estimate, generator-specific adapter, predictor, and world-model loss. Its backward gradient traverses only the predictor and adapter before reaching the clean estimate.">
+                <div class="route-node" data-forward-step="0" data-backward-step="6" aria-hidden="true"><strong>Clean estimate ẑ₁</strong><span>guidance variable</span></div>
                 <div class="route-edge" data-forward-step="1" data-backward-step="5" aria-hidden="true"></div>
                 <div class="route-node route-node-adapter" data-forward-step="2" data-backward-step="4" aria-hidden="true"><strong>Adapter</strong><span>latent → tokens</span></div>
                 <div class="route-edge" data-forward-step="3" data-backward-step="3" aria-hidden="true"></div>
@@ -277,11 +271,10 @@
       <div class="efficiency-table table-card">
         <div class="table-card-heading">
           <div><span class="mini-label">Separate efficiency protocol</span><h3>Fixed 50-prompt Wan2.2 subset</h3></div>
-          <span class="metric-pill amber">Do not compare with the 400-prompt table</span>
         </div>
         <div class="table-scroll">
           <table>
-            <thead><tr><th>Method</th><th>Relative time</th><th>Peak VRAM</th><th>Joint</th></tr></thead>
+            <thead><tr><th>Method</th><th>Relative time</th><th>Peak VRAM</th><th>Joint (%)</th></tr></thead>
             <tbody>
               <tr><td>Wan2.2</td><td>1.00×</td><td>65.4 GB</td><td>48.0</td></tr>
               <tr><td>+ P&amp;P</td><td>1.6×</td><td>72.7 GB</td><td>50.6</td></tr>
@@ -301,11 +294,11 @@
           <p>Thirteen annotators compared OMR and P&amp;P on 100 matched prompts, yielding 1,300 judgments for this question.</p>
         </div>
         <div class="preference-wrap">
-          <div class="preference-legend"><span><i class="omr-dot"></i>OMR</span><span><i class="tie-dot"></i>Tie</span><span><i class="pp-dot"></i>P&amp;P</span></div>
+          <div class="preference-legend"><span><i class="omr-dot"></i>OMR <strong>49.69%</strong></span><span><i class="tie-dot"></i>Tie <strong>30.08%</strong></span><span><i class="pp-dot"></i>P&amp;P <strong>20.23%</strong></span></div>
           <div class="preference-bar" role="img" aria-label="Physical plausibility preference: OMR 49.69 percent, tie 30.08 percent, P and P 20.23 percent">
-            <span class="pref-omr" style="width:49.69%"><strong>49.69%</strong></span>
-            <span class="pref-tie" style="width:30.08%"><strong>30.08%</strong></span>
-            <span class="pref-pp" style="width:20.23%"><strong>20.23%</strong></span>
+            <span class="pref-omr" style="width:49.69%"></span>
+            <span class="pref-tie" style="width:30.08%"></span>
+            <span class="pref-pp" style="width:20.23%"></span>
           </div>
           <p>Physical-plausibility preference against P&amp;P; presentation order was randomized.</p>
           <p class="adherence-note"><strong>Prompt adherence:</strong> ties are the largest outcome (45.00%); P&amp;P wins 29.92% and OMR wins 25.08%.</p>
@@ -324,8 +317,8 @@
         <article class="transfer-card">
           <span class="mini-label">Text to video · VideoPhy-2</span>
           <h3>CogVideoX-5B</h3>
-          <div class="score-change"><span>32.0</span><i aria-hidden="true">→</i><strong>42.0</strong></div>
-          <p>Joint score with a separately trained CogVideoX adapter. OMR runs at 1.67× relative time and 30.4 GB peak VRAM.</p>
+          <div class="score-change"><span>32.0%</span><i aria-hidden="true">→</i><strong>42.0%</strong></div>
+          <p>Joint success with a separately trained CogVideoX adapter. OMR runs at 1.67× relative time and 30.4 GB peak VRAM.</p>
         </article>
         <article class="transfer-card featured-transfer">
           <span class="mini-label">Image to video · Physics-IQ</span>
@@ -349,8 +342,8 @@
       </div>
 
       <div class="adapter-note">
-        <p><strong>Operational correspondence.</strong> The adapter is trained to preserve V-JEPA token geometry; our fidelity evaluation separately tests predictive-surprise ordering. This is consistent with the intuition that representations of the same video can be mapped, but does not establish universal equivalence.</p>
-        <p><strong>Deployment-time check.</strong> The adapter is trained on real-video latents but operates on provisional generated clean predictions—not raw noisy states. We therefore compare it with the exact decode–encode path where OMR is actually applied.</p>
+        <p><strong>Training.</strong> The adapter learns V-JEPA token geometry from real-video latents.</p>
+        <p><strong>During sampling.</strong> We test whether it preserves feature geometry and surprise rankings on provisional clean predictions—not raw noisy states—against the exact decode–encode path.</p>
       </div>
 
       <div class="table-card fidelity-table">
@@ -379,7 +372,7 @@
       </div>
       <div class="scope-grid">
         <div><h3>Current scope</h3><p>OMR inherits the blind spots and data biases of its world model. It adds runtime and memory over base sampling, and each new VAE latent space currently requires adapter retraining. The transfer pilots are small and do not include paired prompt-level confidence intervals.</p></div>
-        <div><h3>Next questions</h3><p>Shared multi-resolution adapters, longer videos, complementary physical predictors, adaptive schedules, larger repeated-seed studies, and causal gradient diagnostics are promising directions. OMR can also be paired with a small final selection budget.</p></div>
+        <div><h3>Next questions</h3><p>Can one adapter serve multiple generators? Can the guidance extend to longer videos? Larger repeated-seed studies and gradient diagnostics would help establish when and why the correction is effective.</p></div>
       </div>
     </section>
 
@@ -416,27 +409,15 @@
     </section>
 
     <section class="more-comparisons section" id="more-comparisons" aria-labelledby="more-comparisons-title" data-video-gallery="more">
-      <div class="section-heading"><p class="section-kicker">Explore further</p><h2 id="more-comparisons-title">More comparisons.</h2><p>Click a thumbnail to play the full Wan2.2 and OMR videos side by side.</p></div>
+      <div class="section-heading"><h2 id="more-comparisons-title">More comparisons.</h2><p>Twelve additional examples. Choose a thumbnail to open a separate side-by-side player.</p></div>
       <div class="scene-grid" data-scene-grid>
-          <button type="button" class="scene-card" data-scene="orig_039" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Punching bag: contact and recovery: Wan2.2 and OMR">
-            <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/orig_039/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
-            <span class="scene-card-copy"><strong>Punching bag: contact and recovery</strong></span>
-          </button>
           <button type="button" class="scene-card" data-scene="orig_036" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Folded napkin: shape after release: Wan2.2 and OMR">
             <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/orig_036/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
             <span class="scene-card-copy"><strong>Folded napkin: shape after release</strong></span>
           </button>
-          <button type="button" class="scene-card" data-scene="orig_086" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Wet towel: water breakup: Wan2.2 and OMR">
-            <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/orig_086/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
-            <span class="scene-card-copy"><strong>Wet towel: water breakup</strong></span>
-          </button>
           <button type="button" class="scene-card" data-scene="det_053" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Rowing &amp; water response: Wan2.2 and OMR">
             <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_053/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
             <span class="scene-card-copy"><strong>Rowing &amp; water response</strong></span>
-          </button>
-          <button type="button" class="scene-card" data-scene="det_013" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Backflip landing: Wan2.2 and OMR">
-            <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_013/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
-            <span class="scene-card-copy"><strong>Backflip landing</strong></span>
           </button>
           <button type="button" class="scene-card" data-scene="det_065" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Basketball dribbling: Wan2.2 and OMR">
             <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_065/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
@@ -449,10 +430,6 @@
           <button type="button" class="scene-card" data-scene="det_049" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Paper folding: Wan2.2 and OMR">
             <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_049/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
             <span class="scene-card-copy"><strong>Paper folding</strong></span>
-          </button>
-          <button type="button" class="scene-card" data-scene="orig_084" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Finger–clay contact: Wan2.2 and OMR">
-            <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/orig_084/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
-            <span class="scene-card-copy"><strong>Finger–clay contact</strong></span>
           </button>
           <button type="button" class="scene-card" data-scene="orig_064" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Scraping a clay vase: Wan2.2 and OMR">
             <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/orig_064/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
@@ -483,14 +460,13 @@
             <span class="scene-card-copy"><strong>Parasail support</strong></span>
           </button>
       </div>
-      <p class="gallery-protocol">These 16 pairs include close comparisons and remaining artifacts. P&amp;P is shown only in the five-example carousel above; its absence here does not imply a worse result.</p>
+      <p class="gallery-protocol">Selected examples, including close comparisons and remaining artifacts—not a win-rate estimate.</p>
       <dialog class="comparison-dialog" data-comparison-dialog aria-labelledby="more-scene-title">
         <div class="dialog-toolbar"><button type="button" data-close-comparison autofocus aria-label="Close comparison">Close <span aria-hidden="true">×</span></button></div>
         <div class="comparison-gallery">
         <div class="comparison-stage" data-comparison-stage>
           <div class="scene-heading">
             <div><p class="scene-category" data-scene-category>Impact and contact</p><h3 id="more-scene-title" data-scene-title>Punching bag: contact and recovery</h3></div>
-            <div class="scene-navigation"><span data-scene-counter>01 / 16</span></div>
           </div>
           <div class="comparison-method-summary" data-method-summary>Baseline · OMR</div>
           <div class="comparison-screens" data-compare-layout="wan">
