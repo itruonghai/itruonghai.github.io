@@ -40,24 +40,34 @@
         <div class="eyebrow"><span class="eyebrow-dot"></span> Accepted at BMVC 2026</div>
         <h1 id="paper-title">Off-Manifold Refinement</h1>
         <p class="subtitle">Guiding Video Generators with a Frozen World Model</p>
-        <p class="thesis"><em>Use the world-model signal before the video is finished.</em></p>
-        <p class="technical-deck">OMR uses masked-future predictive surprise from frozen V-JEPA 2.1 to correct a frozen video generator during a single sampling trajectory. A 33.3M generator-specific adapter keeps guidance in latent space—without in-loop VAE decoding or a V-JEPA encoder pass.</p>
-
         <div class="authors" aria-label="Authors and affiliations">
-          <p>
+          <p class="author-list">
             <a href="https://itruonghai.github.io/">Hai Nguyen-Truong<sup>1</sup></a>
-            <span>·</span>
             <a href="https://tuananh1007.github.io/">Tuan-Anh Vu<sup>2</sup></a>
-            <span>·</span>
             <a href="mailto:dang.huynh@fulbright.edu.vn">Dang Huynh<sup>1</sup></a>
           </p>
-          <p class="affiliations"><sup>1</sup>Fulbright University Vietnam &nbsp;&nbsp; <sup>2</sup>University of California, Los Angeles</p>
+          <p class="affiliations"><span><sup>1</sup> Fulbright University Vietnam</span><span><sup>2</sup> University of California, Los Angeles</span></p>
         </div>
 
         <div class="actions" aria-label="Project resources">
           <a class="button primary" href="assets/omr-paper.pdf">Read the paper <span aria-hidden="true">↗</span></a>
           <a class="button secondary" href="#videos">Explore comparisons <span aria-hidden="true">↓</span></a>
           <a class="button text-button" href="#citation">Cite OMR</a>
+        </div>
+
+        <div class="hero-explanation">
+          <p class="thesis"><em>Use the world-model signal before the video is finished.</em></p>
+          <p class="technical-deck">OMR uses a frozen world model to correct a frozen video generator during a single sampling trajectory. A small adapter keeps guidance in latent space—without in-loop VAE decoding or V-JEPA encoding.</p>
+          <div class="hero-concept" role="img" aria-label="A clean latent estimate from the frozen video generator passes through a 33.3-million-parameter, generator-specific adapter to the frozen V-JEPA 2.1 predictor. The predictive-surprise gradient returns through the adapter to correct the latent estimate, without backpropagating through the generator.">
+            <div class="hero-concept-flow" aria-hidden="true">
+              <div class="hero-concept-node hero-concept-latent"><strong>Clean estimate ẑ₁</strong><span>From the frozen generator</span></div>
+              <span class="hero-concept-arrow">→</span>
+              <div class="hero-concept-node hero-concept-adapter"><strong>Adapter</strong><span>33.3M · generator-specific</span></div>
+              <span class="hero-concept-arrow">→</span>
+              <div class="hero-concept-node hero-concept-world"><strong>World model</strong><span>Frozen V-JEPA 2.1 predictor</span></div>
+            </div>
+            <div class="hero-concept-feedback" aria-hidden="true"><span>Predictive-surprise gradient through the adapter</span></div>
+          </div>
         </div>
       </div>
 
