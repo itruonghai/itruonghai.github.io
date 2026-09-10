@@ -62,21 +62,14 @@
       </div>
 
       <figure class="hero-media hero-video-card" data-hero-preview>
-        <div class="teaser-heading"><div><span class="mini-label">Animated paper teaser</span><h2>Slow down the landing.</h2></div><span class="teaser-timing">Slow motion + 3 inspection stops</span></div>
+        <div class="teaser-heading"><div><span class="mini-label">Teaser</span><h2>A backflip onto an inflatable cushion.</h2></div></div>
         <div class="teaser-motion">
           <video muted playsinline loop preload="none" poster="assets/videos/teaser/backflip-annotated.webp" width="1280" height="534" data-duration="13.25" aria-label="Annotated backflip comparison. Red circles identify baseline leg and torso transitions; green circles show OMR's landing response. Both panels slow to quarter speed and pause together at three inspection points."><source src="assets/videos/teaser/backflip-annotated.mp4" type="video/mp4"></video>
         </div>
         <div class="hero-video-actions"><div class="teaser-playback"><button type="button" data-hero-play>▶ Play teaser</button><button type="button" data-hero-replay aria-label="Replay annotated teaser from the beginning">↻ Replay</button></div><div class="teaser-links"><a href="assets/videos/teaser/backflip-annotated.gif" download>Download GIF ↓</a><a href="#videos">Full comparisons ↗</a></div></div>
         <div class="teaser-stops" role="group" aria-label="Pause at an inspection frame"><span>Inspect a stop</span><button type="button" data-hero-stop="5.25">1 · Leg position</button><button type="button" data-hero-stop="8.25">2 · 0.25 s later</button><button type="button" data-hero-stop="12.25">3 · Landing</button></div>
-        <figcaption><strong>Backflip landing · same prompt and seed.</strong> Red circles highlight the baseline’s leg/torso transition; green circles track OMR’s landing response. Both panels slow and freeze together. This is a 0–3.5 s excerpt; the full clips below also show remaining body–cushion artifacts.</figcaption>
+        <figcaption class="teaser-explanation"><p>During landing, the body should move continuously and the cushion should deform under contact. <strong>Red circles</strong> mark abrupt leg–torso changes in Wan2.2; <strong>green circles</strong> follow OMR’s landing and cushion response.</p><p class="teaser-caveat">Both clips slow and pause together over 0–3.5 s. OMR still shows body–cushion overlap in the <a href="#more-comparisons">full clip</a>.</p></figcaption>
       </figure>
-
-      <div class="evidence-strip" aria-label="Headline results">
-        <div><strong>+5.0 pp</strong><span>Wan2.2 joint success · fixed 400-prompt subset</span></div>
-        <div><strong>54.0 @ 1.71×</strong><span>Joint and base-relative runtime · separate 50-prompt subset</span></div>
-        <div><strong>49.69 vs 20.23%</strong><span>Physical-plausibility wins · OMR vs P&amp;P · 30.08% ties</span></div>
-        <p>Each headline reports its protocol explicitly; the 400-prompt quality result and 50-prompt efficiency study are separate.</p>
-      </div>
     </section>
 
     <section class="method section" id="method" aria-labelledby="method-title">
