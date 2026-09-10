@@ -93,11 +93,12 @@ main {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
-  gap: 54px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 30px;
   align-items: center;
   padding: 76px 0 86px;
 }
+.hero-copy { max-width: 1000px; }
 
 .eyebrow {
   display: inline-flex;
@@ -608,6 +609,26 @@ th { color: var(--muted); background: #f7f9fa; font-size: 0.68rem; font-weight: 
 .hero-video-actions button { padding: 7px 12px; border: 1px solid #b8d6cc; border-radius: 7px; background: var(--green-soft); color: var(--green-dark); font-size: .875rem; font-weight: 700; cursor: pointer; }
 .hero-video-actions a { color: var(--blue-dark); font-size: .8rem; text-underline-offset: 3px; }
 .hero-video-card figcaption { font-size: .875rem; }
+.hero-video-card { padding: 0 0 17px; }
+.hero-video-card > figcaption { max-width: none; margin: 14px 24px 0; }
+.teaser-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 20px 24px; }
+.teaser-heading .mini-label { display: block; margin: 0 0 5px; font-size: .75rem; }
+.teaser-heading h2 { margin: 0; font-size: 1.4rem; line-height: 1.3; letter-spacing: -.025em; }
+.teaser-timing { color: var(--muted); font-size: .8125rem; }
+.teaser-motion video { display: block; width: 100%; height: auto; aspect-ratio: 1280 / 534; background: #f8fafb; }
+.teaser-playback, .teaser-links { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.hero-video-card .hero-video-actions { padding: 15px 24px; }
+.teaser-stops { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; padding: 14px 24px; border-bottom: 1px solid var(--line); background: #f8fafb; }
+.teaser-stops > span { margin-right: 5px; color: var(--muted); font-size: .8125rem; }
+.teaser-stops button { padding: 6px 10px; border: 1px solid #ccd7df; border-radius: 6px; color: #344860; background: white; font-size: .875rem; cursor: pointer; }
+.teaser-stops button:hover { border-color: #b83b4b; color: #a32032; }
+.teaser-stops button:focus-visible { outline: 3px solid #e4a5ad; outline-offset: 3px; }
+@media (max-width: 600px) {
+  .teaser-heading { align-items: flex-start; flex-direction: column; gap: 8px; padding: 17px; }
+  .hero-video-card .hero-video-actions, .teaser-stops { padding: 13px 17px; }
+  .hero-video-card > figcaption { margin-inline: 17px; }
+  .teaser-stops > span { width: 100%; }
+}
 .media-heading { display: block; max-width: 920px; }
 .media-heading > p:last-child { margin: 18px 0 0; font-size: 1rem; }
 .highlight-showcase { margin-bottom: 44px; overflow: hidden; border: 1px solid #bfd5cd; border-radius: 16px; background: #fff; box-shadow: var(--small-shadow); }

@@ -62,12 +62,13 @@
       </div>
 
       <figure class="hero-media hero-video-card" data-hero-preview>
-        <div class="hero-pair">
-          <div><span class="frame-label baseline-label">Wan2.2 baseline</span><video muted playsinline loop preload="none" poster="assets/backflip/baseline-4.webp" width="832" height="480" aria-label="Wan2.2 baseline backflip"><source src="assets/videos/det_013/wan.mp4" type="video/mp4"></video></div>
-          <div><span class="frame-label omr-label">Wan2.2 + OMR</span><video muted playsinline loop preload="none" poster="assets/backflip/omr-4.webp" width="832" height="480" aria-label="OMR backflip"><source src="assets/videos/det_013/omr.mp4" type="video/mp4"></video></div>
+        <div class="teaser-heading"><div><span class="mini-label">Animated paper teaser</span><h2>Slow down the landing.</h2></div><span class="teaser-timing">Slow motion + 3 inspection stops</span></div>
+        <div class="teaser-motion">
+          <video muted playsinline loop preload="none" poster="assets/videos/teaser/backflip-annotated.webp" width="1280" height="534" data-duration="13.25" aria-label="Annotated backflip comparison. Red circles identify baseline leg and torso transitions; green circles show OMR's landing response. Both panels slow to quarter speed and pause together at three inspection points."><source src="assets/videos/teaser/backflip-annotated.mp4" type="video/mp4"></video>
         </div>
-        <div class="hero-video-actions"><button type="button" data-hero-play>▶ Play comparison</button><a href="#videos">Compare all three methods ↗</a></div>
-        <figcaption><strong>Backflip landing · same prompt and seed.</strong> Watch the cushion’s response to impact and the continuity of body motion. OMR preserves the cushion’s shape more consistently here, although body–cushion overlap remains.</figcaption>
+        <div class="hero-video-actions"><div class="teaser-playback"><button type="button" data-hero-play>▶ Play teaser</button><button type="button" data-hero-replay aria-label="Replay annotated teaser from the beginning">↻ Replay</button></div><div class="teaser-links"><a href="assets/videos/teaser/backflip-annotated.gif" download>Download GIF ↓</a><a href="#videos">Full comparisons ↗</a></div></div>
+        <div class="teaser-stops" role="group" aria-label="Pause at an inspection frame"><span>Inspect a stop</span><button type="button" data-hero-stop="5.25">1 · Leg position</button><button type="button" data-hero-stop="8.25">2 · 0.25 s later</button><button type="button" data-hero-stop="12.25">3 · Landing</button></div>
+        <figcaption><strong>Backflip landing · same prompt and seed.</strong> Red circles highlight the baseline’s leg/torso transition; green circles track OMR’s landing response. Both panels slow and freeze together. This is a 0–3.5 s excerpt; the full clips below also show remaining body–cushion artifacts.</figcaption>
       </figure>
 
       <div class="evidence-strip" aria-label="Headline results">

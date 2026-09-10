@@ -10,7 +10,7 @@
     let loadController;
     let seekVersion = 0;
     const master = videos[0];
-    const duration = () => Number.isFinite(master.duration) ? master.duration : 81 / 16;
+    const duration = () => Number.isFinite(master.duration) ? master.duration : Number(master.dataset?.duration) || 81 / 16;
     const notify = () => update({ playing, pending, time: master.currentTime, duration: duration() });
 
     const pause = () => {
@@ -144,11 +144,30 @@
   const hero = document.querySelector("[data-hero-preview]");
   if (hero) {
     const button = hero.querySelector("[data-hero-play]");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let userPaused = false;
+    let autoStarted = false;
     const player = synchronizedPlayer(hero, Array.from(hero.querySelectorAll("video")), ({ playing, pending }) => {
-      button.textContent = pending ? "■ Cancel loading" : playing ? "Ⅱ Pause comparison" : "▶ Play comparison";
-      button.setAttribute("aria-label", pending ? "Cancel loading comparison" : playing ? "Pause comparison" : "Play comparison");
-    }, (message, error) => { if (error) button.textContent = "▶ Retry comparison"; });
-    button.addEventListener("click", () => player.toggle());
+      button.textContent = pending ? "■ Cancel loading" : playing ? "Ⅱ Pause teaser" : "▶ Play teaser";
+      button.setAttribute("aria-label", pending ? "Cancel loading teaser" : playing ? "Pause annotated teaser" : "Play annotated teaser");
+    }, (message, error) => { if (error) button.textContent = "▶ Retry teaser"; });
+    button.addEventListener("click", () => { userPaused = player.active(); player.toggle(); });
+    hero.querySelector("[data-hero-replay]").addEventListener("click", () => {
+      userPaused = false;
+      player.seek(0);
+      player.play();
+    });
+    hero.querySelectorAll("[data-hero-stop]").forEach((stop) => stop.addEventListener("click", () => {
+      userPaused = true;
+      player.seek(Number(stop.dataset.heroStop));
+    }));
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting) player.pause();
+        else if (!autoStarted && !userPaused && !reducedMotion.matches) { autoStarted = true; player.play(); }
+      }, { threshold: 0.25 }).observe(hero);
+    }
+    reducedMotion.addEventListener?.("change", () => { if (reducedMotion.matches) player.pause(); });
   }
 
   let openComparison = () => {};
