@@ -215,9 +215,7 @@
       gallery.querySelector("[data-scene-category]").textContent = scene.category;
       gallery.querySelector("[data-scene-focus]").textContent = scene.focus;
       gallery.querySelector("[data-scene-observation]").textContent = scene.observation;
-      gallery.querySelector("[data-scene-limitation]").textContent = scene.limitation;
       gallery.querySelector("[data-scene-prompt]").textContent = scene.prompt;
-      gallery.querySelector("[data-scene-id]").textContent = `Prompt ${scene.id}`;
       const counter = gallery.querySelector("[data-scene-counter]");
       if (counter) counter.textContent = `${String(scenes.indexOf(scene) + 1).padStart(2, "0")} / ${String(scenes.length).padStart(2, "0")}`;
       cards.forEach((card) => {

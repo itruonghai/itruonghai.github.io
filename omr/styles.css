@@ -685,8 +685,6 @@ body:has(.comparison-dialog[open]) { overflow: hidden; }
 .scene-disclosure summary { padding: 14px 0 0; color: var(--ink); font-size: 1rem; font-weight: 650; cursor: pointer; }
 .scene-disclosure summary::marker { color: var(--green); }
 .scene-detail-content { padding: 16px 0 0; }
-.scene-caveat { margin: 0 0 16px; padding-left: 12px; border-left: 2px solid #ce941c; color: #586273; font-size: 1rem; }
-.scene-facts { display: flex; flex-wrap: wrap; gap: 5px 12px; padding-bottom: 12px; color: #4e637b; font-size: 0.9375rem; }
 .scene-detail-content blockquote { margin: 0; padding: 14px 0; border-block: 1px solid var(--line); color: #566374; font-size: 1rem; }
 .scene-downloads { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 13px 0 0; color: var(--muted); font-size: 1rem; }
 .scene-downloads a { color: var(--blue-dark); text-underline-offset: 3px; }

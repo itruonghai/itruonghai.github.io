@@ -54,8 +54,10 @@ mapped to named keys in the website data.
 These are selected qualitative comparisons, not independent wins or a new
 evaluation. The bag example does not correctly depict nunchucks. The napkin
 comparison with Wan2.2 mainly concerns task completion. Towel water remains
-imperfect in all three clips. Viewing cues and limitations remain available
-with each scene, including close comparisons and remaining artifacts.
+imperfect in all three clips. Viewing cues remain on the page; per-scene
+limitation notes and provenance remain in `comparisons.js`. The comparison
+disclosure shows only the prompt and original-clip links, without score notes,
+prompt IDs, seed, step count, or CFG settings.
 
 ## Annotated GIF highlights
 
