@@ -172,10 +172,13 @@
     reducedMotion.addEventListener?.("change", () => { if (reducedMotion.matches) player.pause(); });
   }
 
-  let openComparison = () => {};
-  const gallery = document.querySelector("[data-video-gallery]");
-  const scenes = window.OMR_COMPARISONS;
-  if (gallery && Array.isArray(scenes) && scenes.length) {
+  const comparisonOpeners = new Map();
+  const openComparison = (id) => comparisonOpeners.get(id)?.();
+  document.querySelectorAll("[data-video-gallery]").forEach((gallery) => {
+    const scenes = (window.OMR_COMPARISONS || []).filter((scene) =>
+      scene.methods.length === (gallery.dataset.videoGallery === "three" ? 3 : 2));
+    if (!scenes.length) return;
+    const dialog = gallery.querySelector("[data-comparison-dialog]");
     const stage = gallery.querySelector("[data-comparison-stage]");
     const videos = Array.from(stage.querySelectorAll("video"));
     const playButton = gallery.querySelector("[data-play-all]");
@@ -183,8 +186,6 @@
     const timeOutput = gallery.querySelector("[data-playback-time]");
     const status = gallery.querySelector("[data-playback-status]");
     const cards = Array.from(gallery.querySelectorAll("[data-scene]"));
-    const filters = Array.from(gallery.querySelectorAll("[data-scene-filter]"));
-    let visibleScenes = scenes;
     let current = scenes[0];
     let scrubbing = false;
     let resumeAfterScrub = false;
@@ -211,13 +212,13 @@
         panel.hidden = !scene.methods.includes(panel.dataset.methodPanel);
       });
       gallery.querySelector("[data-scene-title]").textContent = scene.title;
-      gallery.querySelector("[data-scene-category]").textContent = `${scene.category}${scene.paper ? " · From the paper" : ""}`;
+      gallery.querySelector("[data-scene-category]").textContent = scene.category;
       gallery.querySelector("[data-scene-focus]").textContent = scene.focus;
       gallery.querySelector("[data-scene-observation]").textContent = scene.observation;
       gallery.querySelector("[data-scene-limitation]").textContent = scene.limitation;
       gallery.querySelector("[data-scene-prompt]").textContent = scene.prompt;
       gallery.querySelector("[data-scene-id]").textContent = `Prompt ${scene.id}`;
-      gallery.querySelector("[data-scene-counter]").textContent = `${String(visibleScenes.indexOf(scene) + 1).padStart(2, "0")} / ${String(visibleScenes.length).padStart(2, "0")}`;
+      gallery.querySelector("[data-scene-counter]").textContent = `${String(scenes.indexOf(scene) + 1).padStart(2, "0")} / ${String(scenes.length).padStart(2, "0")}`;
       cards.forEach((card) => {
         const selected = card.dataset.scene === scene.id;
         card.setAttribute("aria-pressed", String(selected));
@@ -250,29 +251,33 @@
       if (resume) player.play();
     };
 
-    filters.forEach((button) => button.addEventListener("click", () => {
-      const filter = button.dataset.sceneFilter;
-      visibleScenes = scenes.filter((scene) => filter === "all" || (filter === "paper" ? scene.paper : filter === "three" ? scene.methods.length === 3 : scene.category === filter));
-      filters.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
-      cards.forEach((card) => { card.hidden = !visibleScenes.some((scene) => scene.id === card.dataset.scene); });
-      gallery.querySelector("[data-gallery-count]").textContent = `${visibleScenes.length} ${filter === "paper" ? "paper examples" : "examples"}`;
-      if (!visibleScenes.includes(current)) showScene(visibleScenes[0]);
-      else gallery.querySelector("[data-scene-counter]").textContent = `${String(visibleScenes.indexOf(current) + 1).padStart(2, "0")} / ${String(visibleScenes.length).padStart(2, "0")}`;
-    }));
-    cards.forEach((card) => card.addEventListener("click", () => {
-      showScene(scenes.find((scene) => scene.id === card.dataset.scene));
-      if (stage.getBoundingClientRect().bottom < 100) stage.scrollIntoView({ behavior: "auto", block: "start" });
-    }));
-    openComparison = (id) => {
-      filters.find((button) => button.dataset.sceneFilter === "all").click();
-      const scene = scenes.find((item) => item.id === id);
-      if (!scene) return;
-      showScene(scene, false);
-      stage.scrollIntoView({ behavior: "auto", block: "start" });
+    const openScene = (scene) => {
+      if (dialog && !dialog.open) dialog.showModal();
+      showScene(scene, true);
+      if (!dialog) stage.scrollIntoView({ behavior: "auto", block: "start" });
     };
-    const nextScene = (direction) => showScene(visibleScenes[(visibleScenes.indexOf(current) + direction + visibleScenes.length) % visibleScenes.length]);
-    gallery.querySelector("[data-scene-prev]").addEventListener("click", () => nextScene(-1));
-    gallery.querySelector("[data-scene-next]").addEventListener("click", () => nextScene(1));
+    scenes.forEach((scene) => comparisonOpeners.set(scene.id, () => openScene(scene)));
+    cards.forEach((card) => card.addEventListener("click", () => {
+      const scene = scenes.find((item) => item.id === card.dataset.scene);
+      if (scene) openScene(scene);
+    }));
+    gallery.querySelector("[data-scene-next]")?.addEventListener("click", () =>
+      showScene(scenes[(scenes.indexOf(current) + 1) % scenes.length], true));
+    if (dialog) {
+      const close = () => { player.reset(); dialog.close(); };
+      gallery.querySelector("[data-close-comparison]").addEventListener("click", close);
+      dialog.addEventListener("cancel", () => player.reset());
+      dialog.addEventListener("close", () => {
+        player.reset();
+        cards.forEach((card) => card.setAttribute("aria-pressed", "false"));
+      });
+      dialog.addEventListener("click", (event) => {
+        if (event.target !== dialog) return;
+        const bounds = dialog.getBoundingClientRect();
+        if (event.clientX < bounds.left || event.clientX > bounds.right ||
+            event.clientY < bounds.top || event.clientY > bounds.bottom) close();
+      });
+    }
     playButton.addEventListener("click", () => player.toggle());
     gallery.querySelector("[data-restart]").addEventListener("click", () => { player.seek(0); player.play(); });
     timeline.addEventListener("pointerdown", () => { scrubbing = true; resumeAfterScrub = player.active(); player.pause(); });
@@ -295,8 +300,8 @@
       fullscreenButton.textContent = document.fullscreenElement === stage ? "⛶ Exit full screen" : "⛶ Expand";
       fullscreenButton.setAttribute("aria-label", document.fullscreenElement === stage ? "Exit full screen" : "Expand comparison to full screen");
     });
-    showScene(current, false);
-  }
+    if (!dialog) showScene(current, false);
+  });
 
   const showcase = document.querySelector("[data-highlight-showcase]");
   if (showcase) {
@@ -304,13 +309,14 @@
       "bag-contact": {
         id: "orig_039", title: "Does contact lead to recovery?",
         caption: "OMR shows the rod approaching, pressing into the bag, and withdrawing as the bag recovers. Wan2.2 shows a rotating prop with no visible hand support.",
-        context: "All methods misrepresent the requested nunchucks. Inspect contact and recovery, not correct execution of the prompt. The full three-method comparison includes P&P.",
+        context: "Both clips misrepresent the requested nunchucks. Inspect contact and recovery, not correct execution of the prompt.",
         geometry: "full frames"
       },
-      "balloon-rupture": {
-        id: "det_096", title: "Does the material change after impact?",
-        caption: "In the first 3 seconds, Wan2.2 retains a balloon-like object during an extended splash. OMR transitions from an intact balloon to falling latex fragments and dispersed water.",
-        context: "This pair isolates the material-state change. Both existing physics scores are 3/5; approach/contact timing is incomplete. The full clips remain available below."
+      "towel-water": {
+        id: "orig_086", title: "How does water leave the towel?",
+        caption: "Wan2.2 repeatedly produces strong directional jets. OMR shows more dispersed droplets around the towel; compare the water’s shape and motion as the hands squeeze.",
+        context: "Both physics scores are 3/5. OMR still shows excessive suspended spray and incomplete twisting; this is a relative fluid-appearance comparison, not a physically correct simulation.",
+        geometry: "full frames"
       },
       "clay-contact": {
         id: "orig_084", title: "Does deformation follow contact?",
@@ -343,7 +349,7 @@
       selected = button.dataset.highlight;
       const item = cases[selected];
       video.poster = `assets/videos/highlights/${selected}.webp`;
-      video.height = selected === "bag-contact" ? 438 : 614;
+      video.height = selected === "clay-contact" ? 614 : 438;
       video.src = `assets/videos/highlights/${selected}.mp4`;
       video.preload = "none";
       video.load();

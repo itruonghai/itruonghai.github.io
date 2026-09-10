@@ -1,63 +1,63 @@
 window.OMR_COMPARISONS = [
   {
-    "id": "orig_039",
-    "title": "Punching bag: contact and recovery",
+    "id": "det_025",
+    "title": "Baseball–wall impact",
     "category": "Impact and contact",
-    "paper": false,
-    "focus": "Compare 1.0–3.2 s, then 3.5–5.0 s. Watch the rod endpoint and the bag indentation.",
-    "observation": "OMR shows separate approaches, contact and withdrawal, with the bag recovering between strikes. In P&P a long rod remains embedded at the pinched bag surface while another rod appears alongside it. Wan shows an unsupported rotating prop.",
-    "limitation": "All methods misrepresent the requested nunchucks. This supports a narrow contact/recovery comparison, not correct execution of the prompt.",
-    "prompt": "Nunchucks are swung, striking a punching bag, creating a visible ripple effect.",
+    "paper": true,
+    "focus": "The wall just before the ball arrives: does the damage follow contact? Inspect 0.5–3 seconds.",
+    "observation": "In OMR, the visible wall response more closely coincides with ball contact. Compare with premature or weakly coupled damage in the baselines.",
+    "limitation": "All three physics scores are 3. Ball hovering, repeated contact and implausible material behavior remain; the comparison concerns relative timing.",
+    "prompt": "“In a dynamic sports action sequence, a baseball soars through the air, propelled by a powerful throw from an unseen player. The camera captures the ball's trajectory in a stunning close-up, revealing its textured surface and the blurred background, which hints at a bustling stadium. As the ball approaches a weathered brick wall, its speed intensifies, creating a dramatic tension. The moment of impact is captured with striking clarity, as the ball smashes into the wall, leaving a visible dent and a cloud of dust. The camera remains static, allowing the viewer to fully absorb the force of the collision and the resulting mark, a testament to the power of the throw. This cinematic moment encapsulates the raw energy and excitement of baseball, showcasing the sport's visceral impact.”",
     "duration": 5.0625,
     "fps": 16,
     "scores": {
-      "omr": 3,
-      "wan": 2,
-      "pnp": 3
-    },
-    "methods": [
-      "wan",
-      "pnp",
-      "omr"
-    ]
-  },
-  {
-    "id": "orig_036",
-    "title": "Folded napkin: shape after release",
-    "category": "Material deformation",
-    "paper": false,
-    "focus": "Watch 3.7–5.0 s, especially after the hands withdraw.",
-    "observation": "P&P’s wide folded fan contracts into a tiny upright bundle. OMR retains a broad folded shape with much less change after release. Wan does not produce a comparable expanding fan.",
-    "limitation": "OMR also creates folds too readily and its fan changes somewhat. P&P’s contraction could partly depict refolding; this is a visible stability advantage, not proof of material conservation. The comparison with Wan is mainly task completion.",
-    "prompt": "A person uses a specialized napkin folding tool to create a complex, origami-like design.",
-    "duration": 5.0625,
-    "fps": 16,
-    "scores": {
-      "omr": 4,
-      "wan": 4,
-      "pnp": 3
-    },
-    "methods": [
-      "wan",
-      "pnp",
-      "omr"
-    ]
-  },
-  {
-    "id": "orig_086",
-    "title": "Wet towel: water breakup",
-    "category": "Fluid and supported motion",
-    "paper": false,
-    "focus": "Watch the water below the towel at 1.0–3.2 s and beside the hands near 4.0 s.",
-    "observation": "P&P shows connected, rope-like water strands that persist in a lattice below the towel. OMR shows more separated droplets and fewer long connected strands. Wan repeatedly produces strong directional jets.",
-    "limitation": "OMR still has excessive suspended spray and incomplete twisting. This is a relative fluid-appearance candidate; all three VideoPhy2 physics scores are 3/5.",
-    "prompt": "A person vigorously twists a wet towel, water spraying outwards in a visible arc.",
-    "duration": 5.0625,
-    "fps": 16,
-    "scores": {
-      "omr": 3,
       "wan": 3,
-      "pnp": 3
+      "pnp": 3,
+      "omr": 3
+    },
+    "methods": [
+      "wan",
+      "pnp",
+      "omr"
+    ]
+  },
+  {
+    "id": "det_032",
+    "title": "Tool–clay contact",
+    "category": "Material deformation",
+    "paper": true,
+    "focus": "The tool tip and the nearby clay surface. Does deformation stay coupled to contact? Inspect 1.5–5 seconds.",
+    "observation": "OMR shows deformation developing near the tool tip as it engages the rotating surface. Wan2.2 has weaker visible tool–material coupling; P&P begins with a recessed shape and a less stable local response.",
+    "limitation": "All physics scores are 4. Clay geometry is still stylized; this is a relative contact/deformation example.",
+    "prompt": "The video opens with a close-up of a potter's wheel, its surface glistening with wet clay, as it spins in a smooth, rhythmic motion. The camera remains static, capturing the intricate details of the clay's texture and the subtle sheen of moisture that enhances its earthy tones. A skilled hand, adorned with a dark glove, enters the frame, wielding a slender tool that delicately probes the clay's surface. The tool's tip, a gleaming silver, contrasts beautifully with the warm clay, creating a striking visual contrast. As the tool makes contact, the clay responds with a gentle wobble, revealing the dynamic nature of the material. The background is softly blurred, drawing the viewer's focus to the mesmerizing dance of the clay and the tool, embodying the artistry and precision of pottery craftsmanship.",
+    "duration": 5.0625,
+    "fps": 16,
+    "scores": {
+      "wan": 4,
+      "pnp": 4,
+      "omr": 4
+    },
+    "methods": [
+      "wan",
+      "pnp",
+      "omr"
+    ]
+  },
+  {
+    "id": "det_090",
+    "title": "Wheelbarrow & concrete",
+    "category": "Material deformation",
+    "paper": true,
+    "focus": "Where concrete is deposited, then where the tool makes contact. Inspect 0.5–4.5 seconds.",
+    "observation": "OMR moves from tipping concrete into the form to working the nearby deposited region. Compare the deposit location with the later tool motion in P&P and the weaker visible contact in Wan2.2.",
+    "limitation": "OMR ties P&P at 4 and exceeds Wan at 3. Concrete volume and surface changes are not fully physically resolved.",
+    "prompt": "In a sun-drenched construction site, a skilled worker clad in a dark blue shirt and a protective hard hat meticulously pours concrete from a wheelbarrow into a rectangular form, the golden-hour light casting a warm glow over the scene. The camera, held steady, captures the rhythmic dance of the worker as they expertly maneuver the wheelbarrow, ensuring a smooth flow of concrete into the form. As the concrete begins to fill, the worker transitions to a trowel, skillfully leveling the surface with precise, deliberate strokes, creating a flawless, even finish. The surrounding environment, bathed in a soft, diffused light, reveals a backdrop of lush greenery and distant structures, enhancing the tranquil yet industrious atmosphere. This cinematic portrayal of craftsmanship and precision invites viewers to appreciate the artistry behind construction, showcasing the dedication and expertise required for such meticulous work.",
+    "duration": 5.0625,
+    "fps": 16,
+    "scores": {
+      "wan": 3,
+      "pnp": 4,
+      "omr": 4
     },
     "methods": [
       "wan",
@@ -88,24 +88,104 @@ window.OMR_COMPARISONS = [
     ]
   },
   {
-    "id": "det_053",
-    "title": "Rowing & water response",
-    "category": "Fluid and supported motion",
+    "id": "det_048",
+    "title": "Bearing collision",
+    "category": "Impact and contact",
     "paper": false,
-    "focus": "1–5 s: oar endpoints, water entry and wake",
-    "observation": "OMR shows a continuous boat path with paired oars and an evolving wake. P&P’s oar shapes and their relation to the water are less stable in the sampled sequence. Wan is also broadly coherent.",
-    "limitation": "OMR and Wan score 5, P&P 4. This is strongest as a comparison against P&P, not a clear win over both.",
-    "prompt": "In a serene, sunlit river scene, a solitary rower glides through the tranquil waters, their sleek single scull boat cutting through the glassy surface. The camera captures a static, wide-angle view, showcasing the rower's focused demeanor as they skillfully maneuver the oar, creating a rhythmic, rippling wake that dances behind the boat. The riverbank, adorned with lush greenery, frames the scene, while the clear blue sky above reflects on the water, enhancing the peaceful ambiance. The rower's fluid movements, accentuated by the subtle play of light, evoke a sense of harmony with nature, as they navigate the calm waters with precision and grace, embodying the essence of solitude and tranquility in this idyllic setting.",
+    "focus": "Object shape and contact as the bearings meet and one tips, around 3–5 seconds.",
+    "observation": "At roughly 3–5 s, OMR shows two bearings meeting and the left bearing tipping onto its side. P&P keeps both upright and shows a more conspicuous change in the left bearing's apparent size and shape. Wan depicts a sphere and an open bearing with an unexplained line extending into the background.",
+    "limitation": "OMR and P&P both score 5 for physics. Toppling by itself does not prove a physically correct collision; the prompt asks for ball bearings, while OMR and P&P depict ring-shaped bearings.",
+    "prompt": "A mesmerizing close-up captures the dynamic interaction of two metallic ball bearings on a sleek, dark surface, illuminated by soft, diffused lighting that accentuates their polished surfaces. The first ball, a gleaming silver sphere, rolls steadily from right to left, its smooth trajectory hinting at a gentle push. As it approaches the second, stationary ball, the scene transforms into a captivating display of physics in motion. The silver ball collides with the second, a darker, matte-finished sphere, causing both to momentarily halt, their surfaces glinting under the light. The camera remains static, focusing intently on this precise moment of impact, where the silver ball's momentum is transferred, and the darker ball begins to roll in the opposite direction. The interplay of light and shadow enhances the visual appeal, while the absence of sound amplifies the subtle textures and movements, creating a serene yet engaging exploration of kinetic energy.",
     "duration": 5.0625,
     "fps": 16,
     "scores": {
-      "wan": 5,
-      "pnp": 4,
+      "wan": 4,
+      "pnp": 5,
       "omr": 5
     },
     "methods": [
       "wan",
       "pnp",
+      "omr"
+    ]
+  },
+  {
+    "id": "orig_039",
+    "title": "Punching bag: contact and recovery",
+    "category": "Impact and contact",
+    "paper": false,
+    "focus": "Compare 1.0–3.2 s, then 3.5–5.0 s. Watch the rod endpoint and the bag indentation.",
+    "observation": "OMR shows separate approaches, contact, and withdrawal, with the bag recovering between strikes. Wan2.2 shows an unsupported rotating prop.",
+    "limitation": "Both clips misrepresent the requested nunchucks. This supports a narrow contact/recovery comparison, not correct execution of the prompt.",
+    "prompt": "Nunchucks are swung, striking a punching bag, creating a visible ripple effect.",
+    "duration": 5.0625,
+    "fps": 16,
+    "scores": {
+      "omr": 3,
+      "wan": 2
+    },
+    "methods": [
+      "wan",
+      "omr"
+    ]
+  },
+  {
+    "id": "orig_036",
+    "title": "Folded napkin: shape after release",
+    "category": "Material deformation",
+    "paper": false,
+    "focus": "Watch 3.7–5.0 s, especially after the hands withdraw.",
+    "observation": "OMR produces a broad folded fan and retains much of its shape after the hands withdraw. Wan2.2 does not produce a comparable expanding fan.",
+    "limitation": "The comparison with Wan2.2 mainly concerns task completion. OMR creates folds too readily and its fan still changes; this is not proof of material conservation.",
+    "prompt": "A person uses a specialized napkin folding tool to create a complex, origami-like design.",
+    "duration": 5.0625,
+    "fps": 16,
+    "scores": {
+      "omr": 4,
+      "wan": 4
+    },
+    "methods": [
+      "wan",
+      "omr"
+    ]
+  },
+  {
+    "id": "orig_086",
+    "title": "Wet towel: water breakup",
+    "category": "Fluid and supported motion",
+    "paper": false,
+    "focus": "Watch the water below the towel at 1.0–3.2 s and beside the hands near 4.0 s.",
+    "observation": "Wan2.2 repeatedly produces strong directional jets. OMR shows more dispersed droplets around the towel. Inspect the water below the towel and beside the hands.",
+    "limitation": "Both physics scores are 3/5. OMR still has excessive suspended spray and incomplete twisting; this is a relative fluid-appearance comparison.",
+    "prompt": "A person vigorously twists a wet towel, water spraying outwards in a visible arc.",
+    "duration": 5.0625,
+    "fps": 16,
+    "scores": {
+      "omr": 3,
+      "wan": 3
+    },
+    "methods": [
+      "wan",
+      "omr"
+    ]
+  },
+  {
+    "id": "det_053",
+    "title": "Rowing & water response",
+    "category": "Fluid and supported motion",
+    "paper": false,
+    "focus": "1–5 s: oar endpoints, water entry and wake",
+    "observation": "OMR shows a continuous boat path with paired oars and an evolving wake. Wan2.2 is also broadly coherent; inspect how the oars meet the water and how the wake follows the boat.",
+    "limitation": "Both physics scores are 5/5. This is a close comparison, not a clear win over Wan2.2.",
+    "prompt": "In a serene, sunlit river scene, a solitary rower glides through the tranquil waters, their sleek single scull boat cutting through the glassy surface. The camera captures a static, wide-angle view, showcasing the rower's focused demeanor as they skillfully maneuver the oar, creating a rhythmic, rippling wake that dances behind the boat. The riverbank, adorned with lush greenery, frames the scene, while the clear blue sky above reflects on the water, enhancing the peaceful ambiance. The rower's fluid movements, accentuated by the subtle play of light, evoke a sense of harmony with nature, as they navigate the calm waters with precision and grace, embodying the essence of solitude and tranquility in this idyllic setting.",
+    "duration": 5.0625,
+    "fps": 16,
+    "scores": {
+      "wan": 5,
+      "omr": 5
+    },
+    "methods": [
+      "wan",
       "omr"
     ]
   },
@@ -123,86 +203,6 @@ window.OMR_COMPARISONS = [
     "scores": {
       "wan": 3,
       "omr": 3
-    },
-    "methods": [
-      "wan",
-      "omr"
-    ]
-  },
-  {
-    "id": "det_025",
-    "title": "Baseball–wall impact",
-    "category": "Impact and contact",
-    "paper": true,
-    "focus": "The wall just before the ball arrives: does the damage follow contact? Inspect 0.5–3 seconds.",
-    "observation": "In OMR, the visible wall response more closely coincides with ball contact. Compare with premature or weakly coupled damage in Wan2.2.",
-    "limitation": "Both physics scores are 3/5. Ball hovering, repeated contact, and implausible material behavior remain; the comparison concerns relative timing.",
-    "prompt": "“In a dynamic sports action sequence, a baseball soars through the air, propelled by a powerful throw from an unseen player. The camera captures the ball's trajectory in a stunning close-up, revealing its textured surface and the blurred background, which hints at a bustling stadium. As the ball approaches a weathered brick wall, its speed intensifies, creating a dramatic tension. The moment of impact is captured with striking clarity, as the ball smashes into the wall, leaving a visible dent and a cloud of dust. The camera remains static, allowing the viewer to fully absorb the force of the collision and the resulting mark, a testament to the power of the throw. This cinematic moment encapsulates the raw energy and excitement of baseball, showcasing the sport's visceral impact.”",
-    "duration": 5.0625,
-    "fps": 16,
-    "scores": {
-      "wan": 3,
-      "omr": 3
-    },
-    "methods": [
-      "wan",
-      "omr"
-    ]
-  },
-  {
-    "id": "det_032",
-    "title": "Tool–clay contact",
-    "category": "Material deformation",
-    "paper": true,
-    "focus": "The tool tip and the nearby clay surface. Does deformation stay coupled to contact? Inspect 1.5–5 seconds.",
-    "observation": "OMR shows deformation developing near the tool tip as it engages the rotating surface. Wan2.2 has weaker visible tool–material coupling.",
-    "limitation": "Both physics scores are 4/5. Clay geometry is still stylized; this is a relative contact/deformation example.",
-    "prompt": "The video opens with a close-up of a potter's wheel, its surface glistening with wet clay, as it spins in a smooth, rhythmic motion. The camera remains static, capturing the intricate details of the clay's texture and the subtle sheen of moisture that enhances its earthy tones. A skilled hand, adorned with a dark glove, enters the frame, wielding a slender tool that delicately probes the clay's surface. The tool's tip, a gleaming silver, contrasts beautifully with the warm clay, creating a striking visual contrast. As the tool makes contact, the clay responds with a gentle wobble, revealing the dynamic nature of the material. The background is softly blurred, drawing the viewer's focus to the mesmerizing dance of the clay and the tool, embodying the artistry and precision of pottery craftsmanship.",
-    "duration": 5.0625,
-    "fps": 16,
-    "scores": {
-      "wan": 4,
-      "omr": 4
-    },
-    "methods": [
-      "wan",
-      "omr"
-    ]
-  },
-  {
-    "id": "det_090",
-    "title": "Wheelbarrow & concrete",
-    "category": "Material deformation",
-    "paper": true,
-    "focus": "Where concrete is deposited, then where the tool makes contact. Inspect 0.5–4.5 seconds.",
-    "observation": "OMR moves from tipping concrete into the form to working the nearby deposited region. Compare the deposit location and later tool contact with Wan2.2.",
-    "limitation": "OMR scores 4/5 and Wan2.2 scores 3/5. Concrete volume and surface changes are not fully physically resolved.",
-    "prompt": "In a sun-drenched construction site, a skilled worker clad in a dark blue shirt and a protective hard hat meticulously pours concrete from a wheelbarrow into a rectangular form, the golden-hour light casting a warm glow over the scene. The camera, held steady, captures the rhythmic dance of the worker as they expertly maneuver the wheelbarrow, ensuring a smooth flow of concrete into the form. As the concrete begins to fill, the worker transitions to a trowel, skillfully leveling the surface with precise, deliberate strokes, creating a flawless, even finish. The surrounding environment, bathed in a soft, diffused light, reveals a backdrop of lush greenery and distant structures, enhancing the tranquil yet industrious atmosphere. This cinematic portrayal of craftsmanship and precision invites viewers to appreciate the artistry behind construction, showcasing the dedication and expertise required for such meticulous work.",
-    "duration": 5.0625,
-    "fps": 16,
-    "scores": {
-      "wan": 3,
-      "omr": 4
-    },
-    "methods": [
-      "wan",
-      "omr"
-    ]
-  },
-  {
-    "id": "det_048",
-    "title": "Bearing collision",
-    "category": "Impact and contact",
-    "paper": false,
-    "focus": "Object shape and contact as the bearings meet and one tips, around 3–5 seconds.",
-    "observation": "At roughly 3–5 s, OMR shows two bearings meeting and the left bearing tipping onto its side. Wan2.2 depicts a sphere and an open bearing with an unexplained line extending into the background.",
-    "limitation": "OMR scores 5/5 and Wan2.2 scores 4/5. Toppling alone does not prove a physically correct collision; the prompt asks for ball bearings, while OMR depicts ring-shaped bearings.",
-    "prompt": "A mesmerizing close-up captures the dynamic interaction of two metallic ball bearings on a sleek, dark surface, illuminated by soft, diffused lighting that accentuates their polished surfaces. The first ball, a gleaming silver sphere, rolls steadily from right to left, its smooth trajectory hinting at a gentle push. As it approaches the second, stationary ball, the scene transforms into a captivating display of physics in motion. The silver ball collides with the second, a darker, matte-finished sphere, causing both to momentarily halt, their surfaces glinting under the light. The camera remains static, focusing intently on this precise moment of impact, where the silver ball's momentum is transferred, and the darker ball begins to roll in the opposite direction. The interplay of light and shadow enhances the visual appeal, while the absence of sound amplifies the subtle textures and movements, creating a serene yet engaging exploration of kinetic energy.",
-    "duration": 5.0625,
-    "fps": 16,
-    "scores": {
-      "wan": 4,
-      "omr": 5
     },
     "methods": [
       "wan",
@@ -263,26 +263,6 @@ window.OMR_COMPARISONS = [
     "scores": {
       "wan": 3,
       "omr": 4
-    },
-    "methods": [
-      "wan",
-      "omr"
-    ]
-  },
-  {
-    "id": "det_096",
-    "title": "Water-balloon rupture",
-    "category": "Impact and contact",
-    "paper": false,
-    "focus": "1–3 s: rupture, water dispersal and falling latex",
-    "observation": "OMR changes from an intact balloon to falling latex fragments and dispersed water. Wan2.2 retains a blue balloon-like object through an extended splash. Compare the material-state transition.",
-    "limitation": "Both physics scores are 3/5. The balloon is already adjacent to the wall at the start, so approach/contact timing is incomplete.",
-    "prompt": "“In a vivid tableau, a water balloon explodes against a textured brick wall, its vibrant blue hue contrasting sharply with the warm, earthy tones of the masonry. The scene opens with a close-up of the balloon, its surface glistening under soft, diffused lighting that accentuates the water's clarity. As the balloon makes contact, it bursts into a mesmerizing cascade of droplets, each one catching the light and shimmering like tiny jewels. The water flows down the wall, leaving a striking wet mark that glistens against the rough texture, while the camera remains static, capturing the dynamic interplay of light and water. This moment of serene destruction is a visual symphony, showcasing the beauty of nature's elements in a captivating, slow-motion dance.”",
-    "duration": 5.0625,
-    "fps": 16,
-    "scores": {
-      "wan": 3,
-      "omr": 3
     },
     "methods": [
       "wan",

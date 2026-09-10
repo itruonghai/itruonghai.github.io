@@ -113,35 +113,35 @@
           <p class="section-kicker">Qualitative comparisons</p>
           <h2 id="videos-title">Look closely at contact, support, and material response.</h2>
         </div>
-        <p>Explore 22 prompts: five compare Wan2.2, P&amp;P, and OMR; the other 17 compare Wan2.2 and OMR. Start with the annotated loops, then inspect the full videos.</p>
+        <p>Start with the annotated loops, then step through five comparisons with P&amp;P. More baseline–OMR examples are available <a href="#more-comparisons">at the end of the page</a>.</p>
       </div>
 
       <div class="highlight-showcase" data-highlight-showcase>
         <div class="highlight-topline"><div><span class="mini-label">Selected differences, up close</span><h3 data-highlight-title>Does contact lead to recovery?</h3></div><div class="highlight-playback"><span class="highlight-speed">0.5× speed</span><button type="button" class="highlight-toggle" data-highlight-toggle aria-label="Play annotated loop">▶ Play loop</button></div></div>
         <div class="highlight-choices" role="group" aria-label="Choose an annotated comparison">
           <button type="button" data-highlight="bag-contact" aria-pressed="true">01 · Contact and recovery</button>
-          <button type="button" data-highlight="balloon-rupture" aria-pressed="false">02 · Balloon rupture</button>
+          <button type="button" data-highlight="towel-water" aria-pressed="false">02 · Wet towel</button>
           <button type="button" data-highlight="clay-contact" aria-pressed="false">03 · Contact before deformation</button>
         </div>
         <div class="highlight-motion">
           <video data-highlight-video muted playsinline loop preload="none" poster="assets/videos/highlights/bag-contact.webp" width="1072" height="438" aria-label="Annotated full-frame punching-bag comparison: Wan2.2 on the left, OMR on the right, at half speed"><source data-src="assets/videos/highlights/bag-contact.mp4" type="video/mp4"></video>
         </div>
         <div class="highlight-caption"><p data-highlight-caption>OMR shows the rod approaching, pressing into the bag, and withdrawing as the bag recovers. Wan2.2 shows a rotating prop with no visible hand support.</p><div class="highlight-links"><a data-highlight-gif href="assets/videos/highlights/bag-contact.gif" download>Download GIF ↓</a><button type="button" data-highlight-open>Inspect full comparison ↗</button></div></div>
-        <p class="highlight-context" data-highlight-context>All methods misrepresent the requested nunchucks. Inspect contact and recovery, not correct execution of the prompt. The full three-method comparison includes P&amp;P.</p>
+        <p class="highlight-context" data-highlight-context>Both clips misrepresent the requested nunchucks. Inspect contact and recovery, not correct execution of the prompt.</p>
       </div>
 
-      <div class="full-gallery-heading"><h3>All 22 prompt comparisons</h3><p>Original full-frame videos · same prompt and seed for each method</p></div>
-      <div class="comparison-gallery" data-video-gallery>
+      <div class="full-gallery-heading"><h3>Baseline, P&amp;P, and OMR</h3><p>Five examples · original full-frame videos · same prompt and seed</p></div>
+      <div class="comparison-gallery" data-video-gallery="three">
         <div class="comparison-stage" data-comparison-stage>
           <div class="scene-heading">
-            <div><p class="scene-category" data-scene-category>Impact and contact</p><h3 data-scene-title>Punching bag: contact and recovery</h3></div>
-            <div class="scene-navigation"><button type="button" data-scene-prev aria-label="Previous comparison">←</button><span data-scene-counter>01 / 22</span><button type="button" data-scene-next aria-label="Next comparison">→</button></div>
+            <div><p class="scene-category" data-scene-category>Impact and contact</p><h3 data-scene-title aria-live="polite">Baseball–wall impact</h3></div>
+            <div class="scene-navigation"><span data-scene-counter>01 / 05</span><button type="button" class="scene-next" data-scene-next aria-label="Next three-method example">Next <span aria-hidden="true">→</span></button></div>
           </div>
           <div class="comparison-method-summary" data-method-summary>Baseline · P&amp;P · OMR</div>
           <div class="comparison-screens" data-compare-layout="all">
-            <figure class="method-screen" data-method-panel="wan"><figcaption><strong>Wan2.2</strong><small>Base generator</small></figcaption><video controls muted playsinline preload="none" poster="assets/videos/orig_039/wan.webp" data-method="wan" aria-label="Wan2.2 baseline comparison" width="832" height="480"><source src="assets/videos/orig_039/wan.mp4" type="video/mp4"></video></figure>
-            <figure class="method-screen" data-method-panel="pnp"><figcaption><strong>P&amp;P</strong><small>Self-refining sampling</small></figcaption><video controls muted playsinline preload="none" poster="assets/videos/orig_039/pnp.webp" data-method="pnp" aria-label="P and P comparison" width="832" height="480"><source src="assets/videos/orig_039/pnp.mp4" type="video/mp4"></video></figure>
-            <figure class="method-screen method-screen-ours" data-method-panel="omr"><figcaption><strong>OMR <b>Ours</b></strong><small>World-model guidance</small></figcaption><video controls muted playsinline preload="none" poster="assets/videos/orig_039/omr.webp" data-method="omr" aria-label="OMR comparison" width="832" height="480"><source src="assets/videos/orig_039/omr.mp4" type="video/mp4"></video></figure>
+            <figure class="method-screen" data-method-panel="wan"><figcaption><strong>Wan2.2</strong><small>Base generator</small></figcaption><video controls muted playsinline preload="none" poster="assets/videos/det_025/wan.webp" data-method="wan" aria-label="Wan2.2 baseline comparison" width="832" height="480"><source src="assets/videos/det_025/wan.mp4" type="video/mp4"></video></figure>
+            <figure class="method-screen" data-method-panel="pnp"><figcaption><strong>P&amp;P</strong><small>Self-refining sampling</small></figcaption><video controls muted playsinline preload="none" poster="assets/videos/det_025/pnp.webp" data-method="pnp" aria-label="P and P comparison" width="832" height="480"><source src="assets/videos/det_025/pnp.mp4" type="video/mp4"></video></figure>
+            <figure class="method-screen method-screen-ours" data-method-panel="omr"><figcaption><strong>OMR <b>Ours</b></strong><small>World-model guidance</small></figcaption><video controls muted playsinline preload="none" poster="assets/videos/det_025/omr.webp" data-method="omr" aria-label="OMR comparison" width="832" height="480"><source src="assets/videos/det_025/omr.mp4" type="video/mp4"></video></figure>
           </div>
           <div class="shared-transport" data-shared-controls hidden>
             <button class="transport-play" type="button" data-play-all aria-label="Play comparison">▶ <span>Play</span></button>
@@ -152,125 +152,23 @@
             <button class="transport-fullscreen" type="button" data-fullscreen aria-label="Expand comparison to full screen">⛶ <span>Expand</span></button>
           </div>
           <p class="playback-status" data-playback-status role="status">Same prompt · same seed · one synchronized comparison</p>
-          <div class="scene-focus"><span>Watch for</span><p data-scene-focus>Compare 1.0–3.2 s, then 3.5–5.0 s. Watch the rod endpoint and the bag indentation.</p></div>
+          <div class="scene-focus"><span>Watch for</span><p data-scene-focus>The wall just before the ball arrives: does the damage follow contact? Inspect 0.5–3 seconds.</p></div>
         </div>
 
         <div class="scene-details">
-          <div class="scene-reading"><span class="mini-label">What changes</span><p data-scene-observation>OMR shows separate approaches, contact and withdrawal, with the bag recovering between strikes. In P&amp;P a long rod remains embedded at the pinched bag surface while another rod appears alongside it. Wan shows an unsupported rotating prop.</p></div>
+          <div class="scene-reading"><span class="mini-label">What changes</span><p data-scene-observation>In OMR, the visible wall response more closely coincides with ball contact. Compare with premature or weakly coupled damage in the baselines.</p></div>
           <details class="scene-disclosure"><summary>Prompt, settings &amp; remaining artifacts</summary>
             <div class="scene-detail-content">
-              <p class="scene-caveat" data-scene-limitation>All methods misrepresent the requested nunchucks. This supports a narrow contact/recovery comparison, not correct execution of the prompt.</p>
-              <div class="scene-facts"><span data-scene-id>Prompt orig_039</span><span>Seed 0</span><span>40 base steps</span><span>CFG 4.0 / 3.0</span></div>
-              <blockquote data-scene-prompt>Nunchucks are swung, striking a punching bag, creating a visible ripple effect.</blockquote>
-              <p class="scene-downloads">Original clips: <a data-original="wan" href="assets/videos/orig_039/wan.mp4">Wan2.2 ↗</a><a data-original="pnp" href="assets/videos/orig_039/pnp.mp4">P&amp;P ↗</a><a data-original="omr" href="assets/videos/orig_039/omr.mp4">OMR ↗</a></p>
+              <p class="scene-caveat" data-scene-limitation>All three physics scores are 3. Ball hovering, repeated contact and implausible material behavior remain; the comparison concerns relative timing.</p>
+              <div class="scene-facts"><span data-scene-id>Prompt det_025</span><span>Seed 0</span><span>40 base steps</span><span>CFG 4.0 / 3.0</span></div>
+              <blockquote data-scene-prompt>“In a dynamic sports action sequence, a baseball soars through the air, propelled by a powerful throw from an unseen player. The camera captures the ball's trajectory in a stunning close-up, revealing its textured surface and the blurred background, which hints at a bustling stadium. As the ball approaches a weathered brick wall, its speed intensifies, creating a dramatic tension. The moment of impact is captured with striking clarity, as the ball smashes into the wall, leaving a visible dent and a cloud of dust. The camera remains static, allowing the viewer to fully absorb the force of the collision and the resulting mark, a testament to the power of the throw. This cinematic moment encapsulates the raw energy and excitement of baseball, showcasing the sport's visceral impact.”</blockquote>
+              <p class="scene-downloads">Original clips: <a data-original="wan" href="assets/videos/det_025/wan.mp4">Wan2.2 ↗</a><a data-original="pnp" href="assets/videos/det_025/pnp.mp4">P&amp;P ↗</a><a data-original="omr" href="assets/videos/det_025/omr.mp4">OMR ↗</a></p>
             </div>
           </details>
         </div>
 
-        <div class="gallery-browse">
-          <div class="gallery-browse-heading"><h3>Choose a prompt</h3><span data-gallery-count>22 examples</span></div>
-          <div class="gallery-filters" role="group" aria-label="Filter comparison scenes">
-            <button type="button" data-scene-filter="all" aria-pressed="true">All prompts <span>22</span></button>
-            <button type="button" data-scene-filter="three" aria-pressed="false">Three methods <span>5</span></button>
-            <button type="button" data-scene-filter="paper" aria-pressed="false">From the paper <span>4</span></button>
-            <button type="button" data-scene-filter="Impact and contact" aria-pressed="false">Contact &amp; impact</button>
-            <button type="button" data-scene-filter="Material deformation" aria-pressed="false">Materials</button>
-            <button type="button" data-scene-filter="Body dynamics" aria-pressed="false">Body dynamics</button>
-            <button type="button" data-scene-filter="Fluid and supported motion" aria-pressed="false">Fluid motion</button>
-          </div>
-          <div class="scene-grid" data-scene-grid>
-            <button type="button" class="scene-card" data-scene="orig_039" aria-pressed="true">
-              <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/orig_039/preview.webp" alt="" width="416" height="240"><span class="scene-number">01</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
-              <span class="scene-card-copy"><strong>Punching bag: contact and recovery</strong><small>3 methods</small></span>
-            </button>
-            <button type="button" class="scene-card" data-scene="orig_036" aria-pressed="false">
-              <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/orig_036/preview.webp" alt="" width="416" height="240"><span class="scene-number">02</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
-              <span class="scene-card-copy"><strong>Folded napkin: shape after release</strong><small>3 methods</small></span>
-            </button>
-            <button type="button" class="scene-card" data-scene="orig_086" aria-pressed="false">
-              <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/orig_086/preview.webp" alt="" width="416" height="240"><span class="scene-number">03</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
-              <span class="scene-card-copy"><strong>Wet towel: water breakup</strong><small>3 methods</small></span>
-            </button>
-            <button type="button" class="scene-card" data-scene="det_081" aria-pressed="false">
-              <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_081/preview.webp" alt="" width="416" height="240"><span class="scene-number">04</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
-              <span class="scene-card-copy"><strong>Wood carving</strong><small>3 methods</small></span>
-            </button>
-            <button type="button" class="scene-card" data-scene="det_053" aria-pressed="false">
-              <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_053/preview.webp" alt="" width="416" height="240"><span class="scene-number">05</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
-              <span class="scene-card-copy"><strong>Rowing &amp; water response</strong><small>3 methods</small></span>
-            </button>
-            <button type="button" class="scene-card" data-scene="det_013" aria-pressed="false">
-              <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_013/preview.webp" alt="" width="416" height="240"><span class="scene-number">06</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
-              <span class="scene-card-copy"><strong>Backflip landing</strong><small>2 methods · Paper example</small></span>
-            </button>
-            <button type="button" class="scene-card" data-scene="det_025" aria-pressed="false">
-              <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_025/preview.webp" alt="" width="416" height="240"><span class="scene-number">07</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
-              <span class="scene-card-copy"><strong>Baseball–wall impact</strong><small>2 methods · Paper example</small></span>
-            </button>
-            <button type="button" class="scene-card" data-scene="det_032" aria-pressed="false">
-              <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_032/preview.webp" alt="" width="416" height="240"><span class="scene-number">08</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
-              <span class="scene-card-copy"><strong>Tool–clay contact</strong><small>2 methods · Paper example</small></span>
-            </button>
-            <button type="button" class="scene-card" data-scene="det_090" aria-pressed="false">
-              <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_090/preview.webp" alt="" width="416" height="240"><span class="scene-number">09</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
-              <span class="scene-card-copy"><strong>Wheelbarrow &amp; concrete</strong><small>2 methods · Paper example</small></span>
-            </button>
-            <button type="button" class="scene-card" data-scene="det_048" aria-pressed="false">
-              <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_048/preview.webp" alt="" width="416" height="240"><span class="scene-number">10</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
-              <span class="scene-card-copy"><strong>Bearing collision</strong><small>2 methods</small></span>
-            </button>
-            <button type="button" class="scene-card" data-scene="det_065" aria-pressed="false">
-              <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_065/preview.webp" alt="" width="416" height="240"><span class="scene-number">11</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
-              <span class="scene-card-copy"><strong>Basketball dribbling</strong><small>2 methods</small></span>
-            </button>
-            <button type="button" class="scene-card" data-scene="det_014" aria-pressed="false">
-              <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_014/preview.webp" alt="" width="416" height="240"><span class="scene-number">12</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
-              <span class="scene-card-copy"><strong>Pinball motion</strong><small>2 methods</small></span>
-            </button>
-            <button type="button" class="scene-card" data-scene="det_049" aria-pressed="false">
-              <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_049/preview.webp" alt="" width="416" height="240"><span class="scene-number">13</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
-              <span class="scene-card-copy"><strong>Paper folding</strong><small>2 methods</small></span>
-            </button>
-            <button type="button" class="scene-card" data-scene="det_096" aria-pressed="false">
-              <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_096/preview.webp" alt="" width="416" height="240"><span class="scene-number">14</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
-              <span class="scene-card-copy"><strong>Water-balloon rupture</strong><small>2 methods</small></span>
-            </button>
-            <button type="button" class="scene-card" data-scene="orig_084" aria-pressed="false">
-              <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/orig_084/preview.webp" alt="" width="416" height="240"><span class="scene-number">15</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
-              <span class="scene-card-copy"><strong>Finger–clay contact</strong><small>2 methods</small></span>
-            </button>
-            <button type="button" class="scene-card" data-scene="orig_064" aria-pressed="false">
-              <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/orig_064/preview.webp" alt="" width="416" height="240"><span class="scene-number">16</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
-              <span class="scene-card-copy"><strong>Scraping a clay vase</strong><small>2 methods</small></span>
-            </button>
-            <button type="button" class="scene-card" data-scene="det_057" aria-pressed="false">
-              <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_057/preview.webp" alt="" width="416" height="240"><span class="scene-number">17</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
-              <span class="scene-card-copy"><strong>Leaf-blower response</strong><small>2 methods</small></span>
-            </button>
-            <button type="button" class="scene-card" data-scene="det_033" aria-pressed="false">
-              <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_033/preview.webp" alt="" width="416" height="240"><span class="scene-number">18</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
-              <span class="scene-card-copy"><strong>Unrolling pastry</strong><small>2 methods</small></span>
-            </button>
-            <button type="button" class="scene-card" data-scene="det_047" aria-pressed="false">
-              <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_047/preview.webp" alt="" width="416" height="240"><span class="scene-number">19</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
-              <span class="scene-card-copy"><strong>Bending wood</strong><small>2 methods</small></span>
-            </button>
-            <button type="button" class="scene-card" data-scene="det_038" aria-pressed="false">
-              <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_038/preview.webp" alt="" width="416" height="240"><span class="scene-number">20</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
-              <span class="scene-card-copy"><strong>Bulldozer &amp; sand</strong><small>2 methods</small></span>
-            </button>
-            <button type="button" class="scene-card" data-scene="det_040" aria-pressed="false">
-              <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_040/preview.webp" alt="" width="416" height="240"><span class="scene-number">21</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
-              <span class="scene-card-copy"><strong>Jet-ski wakes</strong><small>2 methods</small></span>
-            </button>
-            <button type="button" class="scene-card" data-scene="det_088" aria-pressed="false">
-              <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_088/preview.webp" alt="" width="416" height="240"><span class="scene-number">22</span><span class="scene-card-play" aria-hidden="true">▶</span></span>
-              <span class="scene-card-copy"><strong>Parasail support</strong><small>2 methods</small></span>
-            </button>
-          </div>
-        </div>
-        <p class="gallery-protocol">These examples are deliberately selected for qualitative inspection, including close comparisons and remaining artifacts. P&amp;P is shown for five selected prompts; its absence from other pairs does not imply a worse result. They are not an estimate of win rate. Videos retain their original frames and timing; aggregate evidence is reported in the <a href="#results">benchmark results</a>.</p>
-        <noscript><p class="gallery-protocol">Use the native video controls, or download the annotated GIF. JavaScript enables scene selection and synchronized playback.</p></noscript>
+        <p class="gallery-protocol">Selected qualitative comparisons, not a win-rate estimate. Inspect the remaining artifacts alongside the visible differences.</p>
+        <noscript><p class="gallery-protocol">Native controls play the first example. Enable JavaScript for synchronized playback and the Next button.</p></noscript>
       </div>
     </section>
 
@@ -522,6 +420,117 @@
   year      = {2026}
 }</code></pre>
       </div>
+    </section>
+
+    <section class="more-comparisons section" id="more-comparisons" aria-labelledby="more-comparisons-title" data-video-gallery="more">
+      <div class="section-heading"><p class="section-kicker">Explore further</p><h2 id="more-comparisons-title">More comparisons.</h2><p>Click a thumbnail to play the full Wan2.2 and OMR videos side by side.</p></div>
+      <div class="scene-grid" data-scene-grid>
+          <button type="button" class="scene-card" data-scene="orig_039" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Punching bag: contact and recovery: Wan2.2 and OMR">
+            <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/orig_039/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
+            <span class="scene-card-copy"><strong>Punching bag: contact and recovery</strong></span>
+          </button>
+          <button type="button" class="scene-card" data-scene="orig_036" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Folded napkin: shape after release: Wan2.2 and OMR">
+            <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/orig_036/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
+            <span class="scene-card-copy"><strong>Folded napkin: shape after release</strong></span>
+          </button>
+          <button type="button" class="scene-card" data-scene="orig_086" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Wet towel: water breakup: Wan2.2 and OMR">
+            <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/orig_086/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
+            <span class="scene-card-copy"><strong>Wet towel: water breakup</strong></span>
+          </button>
+          <button type="button" class="scene-card" data-scene="det_053" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Rowing &amp; water response: Wan2.2 and OMR">
+            <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_053/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
+            <span class="scene-card-copy"><strong>Rowing &amp; water response</strong></span>
+          </button>
+          <button type="button" class="scene-card" data-scene="det_013" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Backflip landing: Wan2.2 and OMR">
+            <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_013/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
+            <span class="scene-card-copy"><strong>Backflip landing</strong></span>
+          </button>
+          <button type="button" class="scene-card" data-scene="det_065" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Basketball dribbling: Wan2.2 and OMR">
+            <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_065/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
+            <span class="scene-card-copy"><strong>Basketball dribbling</strong></span>
+          </button>
+          <button type="button" class="scene-card" data-scene="det_014" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Pinball motion: Wan2.2 and OMR">
+            <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_014/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
+            <span class="scene-card-copy"><strong>Pinball motion</strong></span>
+          </button>
+          <button type="button" class="scene-card" data-scene="det_049" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Paper folding: Wan2.2 and OMR">
+            <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_049/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
+            <span class="scene-card-copy"><strong>Paper folding</strong></span>
+          </button>
+          <button type="button" class="scene-card" data-scene="orig_084" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Finger–clay contact: Wan2.2 and OMR">
+            <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/orig_084/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
+            <span class="scene-card-copy"><strong>Finger–clay contact</strong></span>
+          </button>
+          <button type="button" class="scene-card" data-scene="orig_064" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Scraping a clay vase: Wan2.2 and OMR">
+            <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/orig_064/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
+            <span class="scene-card-copy"><strong>Scraping a clay vase</strong></span>
+          </button>
+          <button type="button" class="scene-card" data-scene="det_057" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Leaf-blower response: Wan2.2 and OMR">
+            <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_057/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
+            <span class="scene-card-copy"><strong>Leaf-blower response</strong></span>
+          </button>
+          <button type="button" class="scene-card" data-scene="det_033" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Unrolling pastry: Wan2.2 and OMR">
+            <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_033/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
+            <span class="scene-card-copy"><strong>Unrolling pastry</strong></span>
+          </button>
+          <button type="button" class="scene-card" data-scene="det_047" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Bending wood: Wan2.2 and OMR">
+            <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_047/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
+            <span class="scene-card-copy"><strong>Bending wood</strong></span>
+          </button>
+          <button type="button" class="scene-card" data-scene="det_038" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Bulldozer &amp; sand: Wan2.2 and OMR">
+            <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_038/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
+            <span class="scene-card-copy"><strong>Bulldozer &amp; sand</strong></span>
+          </button>
+          <button type="button" class="scene-card" data-scene="det_040" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Jet-ski wakes: Wan2.2 and OMR">
+            <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_040/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
+            <span class="scene-card-copy"><strong>Jet-ski wakes</strong></span>
+          </button>
+          <button type="button" class="scene-card" data-scene="det_088" aria-pressed="false" aria-haspopup="dialog" aria-label="Play Parasail support: Wan2.2 and OMR">
+            <span class="scene-thumbnail"><img loading="lazy" src="assets/videos/det_088/preview.webp" alt="" width="416" height="240"><span class="scene-card-play" aria-hidden="true">▶</span></span>
+            <span class="scene-card-copy"><strong>Parasail support</strong></span>
+          </button>
+      </div>
+      <p class="gallery-protocol">These 16 pairs include close comparisons and remaining artifacts. P&amp;P is shown only in the five-example carousel above; its absence here does not imply a worse result.</p>
+      <dialog class="comparison-dialog" data-comparison-dialog aria-labelledby="more-scene-title">
+        <div class="dialog-toolbar"><button type="button" data-close-comparison autofocus aria-label="Close comparison">Close <span aria-hidden="true">×</span></button></div>
+        <div class="comparison-gallery">
+        <div class="comparison-stage" data-comparison-stage>
+          <div class="scene-heading">
+            <div><p class="scene-category" data-scene-category>Impact and contact</p><h3 id="more-scene-title" data-scene-title>Punching bag: contact and recovery</h3></div>
+            <div class="scene-navigation"><span data-scene-counter>01 / 16</span></div>
+          </div>
+          <div class="comparison-method-summary" data-method-summary>Baseline · OMR</div>
+          <div class="comparison-screens" data-compare-layout="wan">
+            <figure class="method-screen" data-method-panel="wan"><figcaption><strong>Wan2.2</strong><small>Base generator</small></figcaption><video controls muted playsinline preload="none" data-method="wan" aria-label="Wan2.2 baseline comparison" width="832" height="480"></video></figure>
+            <figure class="method-screen method-screen-ours" data-method-panel="omr"><figcaption><strong>OMR <b>Ours</b></strong><small>World-model guidance</small></figcaption><video controls muted playsinline preload="none" data-method="omr" aria-label="OMR comparison" width="832" height="480"></video></figure>
+          </div>
+          <div class="shared-transport" data-shared-controls hidden>
+            <button class="transport-play" type="button" data-play-all aria-label="Play comparison">▶ <span>Play</span></button>
+            <button class="transport-restart" type="button" data-restart aria-label="Replay comparison from the beginning">↻</button>
+            <label class="timeline-label"><span class="sr-only">Comparison timeline</span><input data-timeline type="range" min="0" max="5.0625" step="0.0625" value="0" aria-valuetext="0.00 of 5.06 seconds"></label>
+            <output data-playback-time>0.00 / 5.06 s</output>
+            <label class="speed-label"><span class="sr-only">Playback speed</span><select data-playback-speed aria-label="Playback speed"><option value="1">1× speed</option><option value="0.5">0.5× speed</option><option value="0.25">0.25× speed</option></select></label>
+            <button class="transport-fullscreen" type="button" data-fullscreen aria-label="Expand comparison to full screen">⛶ <span>Expand</span></button>
+          </div>
+          <p class="playback-status" data-playback-status role="status">Same prompt · same seed · one synchronized comparison</p>
+          <div class="scene-focus"><span>Watch for</span><p data-scene-focus>Compare 1.0–3.2 s, then 3.5–5.0 s. Watch the rod endpoint and the bag indentation.</p></div>
+        </div>
+
+        <div class="scene-details">
+          <div class="scene-reading"><span class="mini-label">What changes</span><p data-scene-observation>OMR shows separate approaches, contact, and withdrawal, with the bag recovering between strikes. Wan2.2 shows an unsupported rotating prop.</p></div>
+          <details class="scene-disclosure"><summary>Prompt, settings &amp; remaining artifacts</summary>
+            <div class="scene-detail-content">
+              <p class="scene-caveat" data-scene-limitation>Both clips misrepresent the requested nunchucks. This supports a narrow contact/recovery comparison, not correct execution of the prompt.</p>
+              <div class="scene-facts"><span data-scene-id>Prompt orig_039</span><span>Seed 0</span><span>40 base steps</span><span>CFG 4.0 / 3.0</span></div>
+              <blockquote data-scene-prompt>Nunchucks are swung, striking a punching bag, creating a visible ripple effect.</blockquote>
+              <p class="scene-downloads">Original clips: <a data-original="wan" href="assets/videos/orig_039/wan.mp4">Wan2.2 ↗</a><a data-original="omr" href="assets/videos/orig_039/omr.mp4">OMR ↗</a></p>
+            </div>
+          </details>
+        </div>
+
+        </div>
+      </dialog>
+      <noscript><p>Enable JavaScript to open synchronized comparisons from the thumbnails.</p></noscript>
     </section>
   </main>
 

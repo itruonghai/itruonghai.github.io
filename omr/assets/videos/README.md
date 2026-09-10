@@ -1,29 +1,36 @@
 # OMR comparison gallery
 
-The live gallery has 22 prompts: 19 retained from the author's `compare.zip`
+The live page has 21 prompts: 18 retained from the author's `compare.zip`
 and three added from `compare_new3.zip` (September 9, 2026). The author
 rejected `det_066` (ring-supported motion) as a convincing physical example;
-it is no longer in the live gallery or highlight selector. Its original
+it is no longer in the live gallery or highlight selector. The author also
+removed `det_096` (balloon rupture), replacing its highlight with the wet
+towel. Their original
 assets remain on disk for provenance, not as an endorsed result.
 
 Five prompts show Wan2.2, P&P, and OMR:
 
-- `orig_039`: punching-bag contact and recovery
-- `orig_036`: folded napkin shape after release
-- `orig_086`: wet-towel water breakup
+- `det_025`: baseball–wall impact
+- `det_032`: tool–clay contact
+- `det_090`: wheelbarrow and concrete
 - `det_081`: wood carving
-- `det_053`: rowing and water response
+- `det_048`: bearing collision
 
-The other 17 show Wan2.2 and OMR only. `comparisons.js` declares the exact
+The other 16 show Wan2.2 and OMR only. `comparisons.js` declares the exact
 method list for every prompt. Hidden P&P clips are neither loaded nor part
 of synchronization; their links are hidden and their captions are omitted.
 Omitting P&P from a pair is a presentation choice, not evidence of a loss.
 
-All 22 prompt cards are visible by default. Five three-method examples are
-listed first and available through the Three methods filter. Original
-full-frame videos share playback, scrubbing, slow motion, and fullscreen.
-Method labels have equal heights and left alignment. Four retained scenes
-are marked as paper examples; the new scenes are not paper illustrations.
+The five three-method examples follow the exact order above in a Next-only
+carousel without thumbnail previews. The remaining 16 pairs appear as
+thumbnail-and-title cards in More comparisons, the last main-page section.
+Clicking a card opens a native dialog and starts synchronized playback.
+Pair videos have no sources attached until a card is opened. Closing the
+dialog or pressing Escape cancels pending playback and pauses both clips.
+Only one comparison plays at a time. Original full-frame videos share
+scrubbing, slow motion, and fullscreen controls. Method labels have equal
+heights and left alignment. No method-count or paper-example badges appear
+on thumbnail cards. Paper provenance remains in the data, not in the UI.
 
 ## Provenance and limitations
 
@@ -52,16 +59,16 @@ The active `highlights/manifest.json` lists three standalone GIFs and
 equivalent lighter H.264 loops used on the page:
 
 - `bag-contact`: orig_039, Wan2.2 vs. OMR, source 0–5 seconds, full frames.
-- `balloon-rupture`: det_096, Wan2.2 vs. OMR, source 0–3 seconds.
+- `towel-water`: orig_086, Wan2.2 vs. OMR, source 0–5 seconds, full frames.
 - `clay-contact`: orig_084, Wan2.2 vs. OMR, source 0–5 seconds.
 
-The last two use the identical fixed crop `(160, 0, 672, 480)` from each
-832 × 480 original. The bag highlight preserves the full field of view
-to retain the hand and contact region. Every source frame in each stated
+The clay highlight uses the identical fixed crop `(160, 0, 672, 480)` from
+each 832 × 480 original. The bag and towel highlights preserve the full
+field of view to retain hands, contact regions, and water. Every source frame in each stated
 interval is kept at 0.5× speed (8 displayed frames per second), with source
 timestamps and labels. No interpolation, event realignment, or synthetic
 scene content is used. GIF durations alternate between 120 and 130 ms.
-Both replacement outputs were decoded and timing-checked.
+Both wet-towel replacement outputs were decoded and timing-checked.
 
 Only the selected loop loads. Autoplay respects reduced motion, pauses
 offscreen, and can be stopped. Each highlight links to its full comparison;

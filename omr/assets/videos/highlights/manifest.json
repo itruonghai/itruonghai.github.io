@@ -18,23 +18,22 @@
     "mp4_MB": 0.8
   },
   {
-    "id": "det_096",
-    "slug": "balloon-rupture",
-    "source_frames": 49,
+    "id": "orig_086",
+    "slug": "towel-water",
+    "source_frames": 81,
     "source_fps": 16,
     "display_fps": 8,
-    "crop": [
-      160,
-      0,
-      672,
-      480
-    ],
+    "crop": null,
     "source_interval": [
       0,
-      3.0
+      5.0
     ],
-    "gif_MB": 16.53,
-    "mp4_MB": 2.32
+    "output_size": [
+      1072,
+      438
+    ],
+    "gif_MB": 20.44,
+    "mp4_MB": 4.15
   },
   {
     "id": "orig_084",
