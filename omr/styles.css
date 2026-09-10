@@ -642,7 +642,7 @@ th { color: var(--muted); background: #f7f9fa; font-size: 0.68rem; font-weight: 
 .highlight-choices button { padding: 8px 12px; border: 1px solid #cdd9de; border-radius: 7px; color: #4d6070; background: #f8fafb; font-size: .875rem; cursor: pointer; }
 .highlight-choices button[aria-pressed="true"] { border-color: #086743; color: #fff; background: #086743; }
 .highlight-motion { padding: 0 26px; background: #f8fafb; }
-.highlight-motion video { display: block; width: 100%; max-width: 1072px; height: auto; aspect-ratio: 1072 / 614; margin: 0 auto; background: #f8fafb; }
+.highlight-motion video { display: block; width: 100%; max-width: 1072px; height: auto; margin: 0 auto; background: #f8fafb; }
 .highlight-caption { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: start; gap: 28px; padding: 20px 26px 14px; border-top: 1px solid var(--line); }
 .highlight-caption p { margin: 0; color: #41546a; font-size: 1rem; }
 .highlight-links { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
@@ -661,9 +661,7 @@ th { color: var(--muted); background: #f7f9fa; font-size: 0.68rem; font-weight: 
 .scene-navigation { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
 .scene-navigation button { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid #40516a; border-radius: 50%; color: #e7edf5; background: transparent; cursor: pointer; }
 .scene-navigation span { color: #c5cfdd; font-size: .8rem; font-variant-numeric: tabular-nums; }
-.comparison-view-options { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 24px 17px; }
-.comparison-view-options button { padding: 6px 11px; border: 1px solid #4b5d74; border-radius: 6px; color: #cbd7e6; background: #1b2a41; font-size: .875rem; cursor: pointer; }
-.comparison-view-options button[aria-pressed="true"] { color: #0d3526; border-color: #7dddba; background: #a3efce; }
+.comparison-method-summary { padding: 0 24px 17px; color: #b9c8d9; font-size: .875rem; }
 .comparison-screens { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; padding: 0 14px; }
 .comparison-screens:not([data-compare-layout="all"]) { grid-template-columns: repeat(2,minmax(0,1fr)); }
 .method-screen { margin: 0; min-width: 0; overflow: hidden; border: 1px solid #4a5b71; border-radius: 8px; background: #1b2940; }

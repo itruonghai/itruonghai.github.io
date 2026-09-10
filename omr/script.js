@@ -2,7 +2,7 @@
   const players = [];
 
   // One timeline per comparison. If a stream stalls, pause the whole group.
-  const synchronizedPlayer = (root, videos, update, report = () => {}) => {
+  const synchronizedPlayer = (root, videos, update, report = () => {}, enabledVideos = () => videos) => {
     let playing = false;
     let pending = false;
     let run = 0;
@@ -51,7 +51,7 @@
     const tick = () => {
       if (!playing) return;
       if (!master.seeking) {
-        videos.slice(1).forEach((video) => {
+        enabledVideos().slice(1).forEach((video) => {
           if (!video.seeking && Math.abs(video.currentTime - master.currentTime) > 0.09) {
             video.currentTime = master.currentTime;
           }
@@ -70,13 +70,14 @@
       notify();
       report("Loading comparison…");
       try {
-        await Promise.all(videos.map((video) => ready(video, loadController.signal)));
+        const activeVideos = enabledVideos();
+        await Promise.all(activeVideos.map((video) => ready(video, loadController.signal)));
         if (attempt !== run) return;
         const time = master.ended || master.currentTime >= duration() - 0.03 ? 0 : master.currentTime;
-        videos.forEach((video) => { if (Math.abs(video.currentTime - time) > 0.02) video.currentTime = time; });
-        await Promise.all(videos.map((video) => ready(video, loadController.signal)));
+        activeVideos.forEach((video) => { if (Math.abs(video.currentTime - time) > 0.02) video.currentTime = time; });
+        await Promise.all(activeVideos.map((video) => ready(video, loadController.signal)));
         if (attempt !== run) return;
-        await Promise.all(videos.map((video) => video.play()));
+        await Promise.all(activeVideos.map((video) => video.play()));
         if (attempt !== run) return;
         pending = false;
         playing = true;
@@ -94,7 +95,7 @@
       const version = ++seekVersion;
       pause();
       const target = Math.max(0, Math.min(time, duration() - 1 / 16));
-      videos.forEach((video) => {
+      enabledVideos().forEach((video) => {
         if (video.readyState >= 1) video.currentTime = target;
         else {
           video.addEventListener("loadedmetadata", () => {
@@ -114,16 +115,17 @@
       video.muted = true;
       video.addEventListener("timeupdate", () => { if (!playing && video === master) notify(); });
       video.addEventListener("ended", () => {
-        if (!playing) return;
+        if (!playing || !enabledVideos().includes(video)) return;
         seek(0);
         play();
       });
       video.addEventListener("waiting", () => {
-        if (!playing || video.seeking) return;
+        if (!playing || video.seeking || !enabledVideos().includes(video)) return;
         pause();
         report("Buffering paused the comparison. Press Play to resume.");
       });
       video.addEventListener("error", () => {
+        if (!enabledVideos().includes(video)) return;
         pause();
         report("A clip could not load. Try Replay, or use the original clip links below.", true);
       });
@@ -196,12 +198,18 @@
     }, (message, error = false) => {
       status.textContent = message;
       status.classList.toggle("has-error", error);
-    });
+    }, () => videos.filter((video) => current.methods.includes(video.dataset.method)));
     gallery.querySelector("[data-shared-controls]").hidden = false;
 
     const showScene = (scene, resume = player.active()) => {
       player.reset();
       current = scene;
+      const threeWay = scene.methods.length === 3;
+      gallery.querySelector("[data-compare-layout]").dataset.compareLayout = threeWay ? "all" : "wan";
+      gallery.querySelector("[data-method-summary]").textContent = threeWay ? "Baseline · P&P · OMR" : "Baseline · OMR";
+      gallery.querySelectorAll("[data-method-panel]").forEach((panel) => {
+        panel.hidden = !scene.methods.includes(panel.dataset.methodPanel);
+      });
       gallery.querySelector("[data-scene-title]").textContent = scene.title;
       gallery.querySelector("[data-scene-category]").textContent = `${scene.category}${scene.paper ? " · From the paper" : ""}`;
       gallery.querySelector("[data-scene-focus]").textContent = scene.focus;
@@ -215,6 +223,14 @@
         card.setAttribute("aria-pressed", String(selected));
       });
       videos.forEach((video) => {
+        // Remove unused sources so a two-way scene never loads a hidden P&P clip.
+        video.querySelectorAll("source").forEach((source) => source.remove());
+        if (!scene.methods.includes(video.dataset.method)) {
+          video.removeAttribute("src");
+          video.removeAttribute("poster");
+          video.load();
+          return;
+        }
         const base = `assets/videos/${scene.id}/${video.dataset.method}`;
         video.poster = `${base}.webp`;
         video.src = `${base}.mp4`;
@@ -222,7 +238,11 @@
         video.setAttribute("aria-label", `${video.dataset.method === "wan" ? "Wan2.2" : video.dataset.method === "pnp" ? "P and P" : "OMR"}: ${scene.title}`);
         video.load();
       });
-      gallery.querySelectorAll("[data-original]").forEach((link) => { link.href = `assets/videos/${scene.id}/${link.dataset.original}.mp4`; });
+      gallery.querySelectorAll("[data-original]").forEach((link) => {
+        link.hidden = !scene.methods.includes(link.dataset.original);
+        if (link.hidden) link.removeAttribute("href");
+        else link.href = `assets/videos/${scene.id}/${link.dataset.original}.mp4`;
+      });
       timeline.value = "0";
       timeOutput.textContent = "0.00 / 5.06 s";
       status.classList.remove("has-error");
@@ -232,7 +252,7 @@
 
     filters.forEach((button) => button.addEventListener("click", () => {
       const filter = button.dataset.sceneFilter;
-      visibleScenes = scenes.filter((scene) => filter === "all" || (filter === "paper" ? scene.paper : scene.category === filter));
+      visibleScenes = scenes.filter((scene) => filter === "all" || (filter === "paper" ? scene.paper : filter === "three" ? scene.methods.length === 3 : scene.category === filter));
       filters.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
       cards.forEach((card) => { card.hidden = !visibleScenes.some((scene) => scene.id === card.dataset.scene); });
       gallery.querySelector("[data-gallery-count]").textContent = `${visibleScenes.length} ${filter === "paper" ? "paper examples" : "examples"}`;
@@ -243,21 +263,11 @@
       showScene(scenes.find((scene) => scene.id === card.dataset.scene));
       if (stage.getBoundingClientRect().bottom < 100) stage.scrollIntoView({ behavior: "auto", block: "start" });
     }));
-    const views = Array.from(gallery.querySelectorAll("[data-compare-view]"));
-    views.forEach((button) => button.addEventListener("click", () => {
-      const view = button.dataset.compareView;
-      gallery.querySelector("[data-compare-layout]").dataset.compareLayout = view;
-      views.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
-      gallery.querySelectorAll("[data-method-panel]").forEach((panel) => {
-        panel.hidden = view !== "all" && panel.dataset.methodPanel !== view && panel.dataset.methodPanel !== "omr";
-      });
-    }));
     openComparison = (id) => {
       filters.find((button) => button.dataset.sceneFilter === "all").click();
       const scene = scenes.find((item) => item.id === id);
       if (!scene) return;
       showScene(scene, false);
-      views.find((button) => button.dataset.compareView === "all").click();
       stage.scrollIntoView({ behavior: "auto", block: "start" });
     };
     const nextScene = (direction) => showScene(visibleScenes[(visibleScenes.indexOf(current) + direction + visibleScenes.length) % visibleScenes.length]);
@@ -285,32 +295,34 @@
       fullscreenButton.textContent = document.fullscreenElement === stage ? "⛶ Exit full screen" : "⛶ Expand";
       fullscreenButton.setAttribute("aria-label", document.fullscreenElement === stage ? "Exit full screen" : "Expand comparison to full screen");
     });
+    showScene(current, false);
   }
 
   const showcase = document.querySelector("[data-highlight-showcase]");
   if (showcase) {
     const cases = {
-      "ring-support": {
-        id: "det_066", title: "Does the body stay supported?",
-        caption: "After about 3 seconds, Wan2.2’s hands separate from the rings while the body remains airborne. OMR keeps visible hand–ring support through the motion.",
-        context: "The difference here is support continuity. All three clips receive the same existing physics score (3/5), and the prompt asks for a trapeze while the clips depict rings."
+      "bag-contact": {
+        id: "orig_039", title: "Does contact lead to recovery?",
+        caption: "OMR shows the rod approaching, pressing into the bag, and withdrawing as the bag recovers. Wan2.2 shows a rotating prop with no visible hand support.",
+        context: "All methods misrepresent the requested nunchucks. Inspect contact and recovery, not correct execution of the prompt. The full three-method comparison includes P&P.",
+        geometry: "full frames"
       },
       "balloon-rupture": {
         id: "det_096", title: "Does the material change after impact?",
         caption: "In the first 3 seconds, Wan2.2 retains a balloon-like object during an extended splash. OMR transitions from an intact balloon to falling latex fragments and dispersed water.",
-        context: "This pair isolates the material-state change. P&P also shows rupture; all three existing physics scores are 3/5. The full clips remain available below."
+        context: "This pair isolates the material-state change. Both existing physics scores are 3/5; approach/contact timing is incomplete. The full clips remain available below."
       },
       "clay-contact": {
         id: "orig_084", title: "Does deformation follow contact?",
         caption: "Wan2.2 begins with a hole already visible in the clay. OMR begins with an intact surface, then shows the finger pressing in and withdrawing to leave an indentation.",
-        context: "P&P also follows a plausible contact sequence, and all three existing physics scores are 5/5. OMR’s final indentation is still large relative to the fingertip."
+        context: "Both existing physics scores are 5/5. OMR’s final indentation is still large relative to the fingertip."
       }
     };
     const video = showcase.querySelector("[data-highlight-video]");
     const toggle = showcase.querySelector("[data-highlight-toggle]");
     const choices = Array.from(showcase.querySelectorAll("[data-highlight]"));
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let selected = "ring-support";
+    let selected = "bag-contact";
     let userPaused = false;
     let visible = false;
     let autoStarted = false;
@@ -331,10 +343,11 @@
       selected = button.dataset.highlight;
       const item = cases[selected];
       video.poster = `assets/videos/highlights/${selected}.webp`;
+      video.height = selected === "bag-contact" ? 438 : 614;
       video.src = `assets/videos/highlights/${selected}.mp4`;
       video.preload = "none";
       video.load();
-      video.setAttribute("aria-label", `${item.title} Annotated Wan2.2 and OMR comparison at half speed, with the same center crop and source timestamps.`);
+      video.setAttribute("aria-label", `${item.title} Annotated Wan2.2 and OMR comparison at half speed, with ${item.geometry || "the same center crop"} and source timestamps.`);
       showcase.querySelector("[data-highlight-title]").textContent = item.title;
       showcase.querySelector("[data-highlight-caption]").textContent = item.caption;
       showcase.querySelector("[data-highlight-context]").textContent = item.context;

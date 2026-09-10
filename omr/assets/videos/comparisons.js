@@ -1,173 +1,69 @@
 window.OMR_COMPARISONS = [
   {
-    "id": "det_013",
-    "title": "Backflip landing",
-    "category": "Body dynamics",
-    "paper": true,
-    "focus": "Cushion shape and body motion through impact, especially from 1.5–5 seconds.",
-    "observation": "OMR keeps the cushion outline more stable through impact. Wan2.2 shows a larger collapse and an abrupt pose transition; P&P preserves the cushion but follows a different landing sequence.",
-    "limitation": "All three physics scores are 3. The paper figure compares OMR with Wan only; the included P&P clip is an additional matched baseline. OMR still shows unusual body/cushion overlap.",
-    "prompt": "“In a vibrant outdoor setting, a young man clad in a sleek black t-shirt and dark shorts stands poised on a lush green lawn, framed by a backdrop of towering trees and a serene blue sky. As he prepares for a daring stunt, the camera captures his focused expression, the tension palpable. With a deep breath, he launches into a powerful backflip, his body arching gracefully through the air. The scene transitions seamlessly as he lands with a soft thud onto a massive inflatable cushion, its bright yellow and blue stripes contrasting vividly against the verdant grass. The camera remains steady, showcasing the cushion's resilience as it absorbs his weight, while the surrounding greenery and clear sky enhance the tranquil atmosphere. This moment of exhilarating athleticism is beautifully captured, highlighting the joy of outdoor adventure and the thrill of pushing physical limits.”",
-    "duration": 5.0625,
-    "fps": 16,
-    "scores": {
-      "wan": 3.0,
-      "pnp": 3.0,
-      "omr": 3.0
-    }
-  },
-  {
-    "id": "det_025",
-    "title": "Baseball–wall impact",
-    "category": "Impact and contact",
-    "paper": true,
-    "focus": "The wall just before the ball arrives: does the damage follow contact? Inspect 0.5–3 seconds.",
-    "observation": "In OMR, the visible wall response more closely coincides with ball contact. Compare with premature or weakly coupled damage in the baselines.",
-    "limitation": "All three physics scores are 3. Ball hovering, repeated contact and implausible material behavior remain; the comparison concerns relative timing.",
-    "prompt": "“In a dynamic sports action sequence, a baseball soars through the air, propelled by a powerful throw from an unseen player. The camera captures the ball's trajectory in a stunning close-up, revealing its textured surface and the blurred background, which hints at a bustling stadium. As the ball approaches a weathered brick wall, its speed intensifies, creating a dramatic tension. The moment of impact is captured with striking clarity, as the ball smashes into the wall, leaving a visible dent and a cloud of dust. The camera remains static, allowing the viewer to fully absorb the force of the collision and the resulting mark, a testament to the power of the throw. This cinematic moment encapsulates the raw energy and excitement of baseball, showcasing the sport's visceral impact.”",
-    "duration": 5.0625,
-    "fps": 16,
-    "scores": {
-      "wan": 3.0,
-      "pnp": 3.0,
-      "omr": 3.0
-    }
-  },
-  {
-    "id": "det_032",
-    "title": "Tool–clay contact",
-    "category": "Material deformation",
-    "paper": true,
-    "focus": "The tool tip and the nearby clay surface. Does deformation stay coupled to contact? Inspect 1.5–5 seconds.",
-    "observation": "OMR shows deformation developing near the tool tip as it engages the rotating surface. Wan2.2 has weaker visible tool–material coupling; P&P begins with a recessed shape and a less stable local response.",
-    "limitation": "All physics scores are 4. Clay geometry is still stylized; this is a relative contact/deformation example.",
-    "prompt": "The video opens with a close-up of a potter's wheel, its surface glistening with wet clay, as it spins in a smooth, rhythmic motion. The camera remains static, capturing the intricate details of the clay's texture and the subtle sheen of moisture that enhances its earthy tones. A skilled hand, adorned with a dark glove, enters the frame, wielding a slender tool that delicately probes the clay's surface. The tool's tip, a gleaming silver, contrasts beautifully with the warm clay, creating a striking visual contrast. As the tool makes contact, the clay responds with a gentle wobble, revealing the dynamic nature of the material. The background is softly blurred, drawing the viewer's focus to the mesmerizing dance of the clay and the tool, embodying the artistry and precision of pottery craftsmanship.",
-    "duration": 5.0625,
-    "fps": 16,
-    "scores": {
-      "wan": 4.0,
-      "pnp": 4.0,
-      "omr": 4.0
-    }
-  },
-  {
-    "id": "det_066",
-    "title": "Ring-supported motion",
-    "category": "Body dynamics",
-    "paper": true,
-    "focus": "Hand–ring support as the body moves toward inversion. Inspect 2–5 seconds.",
-    "observation": "OMR keeps visible ring support as the body progresses toward inversion. Wan2.2 loses hand–ring support while the body remains airborne; P&P follows a different pose sequence.",
-    "limitation": "All physics scores are 3. The generation prompt says trapeze, while these clips depict rings. OMR remains imperfect, but support is easier to track.",
-    "prompt": "In a breathtaking display of aerial artistry, a trapeze artist, clad in a sleek black leotard, grips the trapeze bar with unwavering determination. The camera captures the moment from a static angle, framing the performer's powerful upper body as they swing gracefully through the air, their legs extended in a perfect line, embodying the essence of control and balance. The backdrop of a vibrant blue sky, punctuated by a few scattered clouds, enhances the sense of freedom and openness. As the swing reaches its zenith, the artist releases their grip, soaring upward in a breathtaking leap of faith, their body arching elegantly in mid-air. The scene is illuminated by soft, natural light, casting gentle shadows that accentuate the performer's muscular form, while the absence of a safety net amplifies the thrill of this daring feat, inviting viewers to marvel at the artistry and athleticism of this gravity-defying performance.",
-    "duration": 5.0625,
-    "fps": 16,
-    "scores": {
-      "wan": 3.0,
-      "pnp": 3.0,
-      "omr": 3.0
-    }
-  },
-  {
-    "id": "det_090",
-    "title": "Wheelbarrow & concrete",
-    "category": "Material deformation",
-    "paper": true,
-    "focus": "Where concrete is deposited, then where the tool makes contact. Inspect 0.5–4.5 seconds.",
-    "observation": "OMR moves from tipping concrete into the form to working the nearby deposited region. Compare the deposit location with the later tool motion in P&P and the weaker visible contact in Wan2.2.",
-    "limitation": "OMR ties P&P at 4 and exceeds Wan at 3. Concrete volume and surface changes are not fully physically resolved.",
-    "prompt": "In a sun-drenched construction site, a skilled worker clad in a dark blue shirt and a protective hard hat meticulously pours concrete from a wheelbarrow into a rectangular form, the golden-hour light casting a warm glow over the scene. The camera, held steady, captures the rhythmic dance of the worker as they expertly maneuver the wheelbarrow, ensuring a smooth flow of concrete into the form. As the concrete begins to fill, the worker transitions to a trowel, skillfully leveling the surface with precise, deliberate strokes, creating a flawless, even finish. The surrounding environment, bathed in a soft, diffused light, reveals a backdrop of lush greenery and distant structures, enhancing the tranquil yet industrious atmosphere. This cinematic portrayal of craftsmanship and precision invites viewers to appreciate the artistry behind construction, showcasing the dedication and expertise required for such meticulous work.",
-    "duration": 5.0625,
-    "fps": 16,
-    "scores": {
-      "wan": 3.0,
-      "pnp": 4.0,
-      "omr": 4.0
-    }
-  },
-  {
-    "id": "det_048",
-    "title": "Bearing collision",
+    "id": "orig_039",
+    "title": "Punching bag: contact and recovery",
     "category": "Impact and contact",
     "paper": false,
-    "focus": "Object shape and contact as the bearings meet and one tips, around 3–5 seconds.",
-    "observation": "At roughly 3–5 s, OMR shows two bearings meeting and the left bearing tipping onto its side. P&P keeps both upright and shows a more conspicuous change in the left bearing's apparent size and shape. Wan depicts a sphere and an open bearing with an unexplained line extending into the background.",
-    "limitation": "OMR and P&P both score 5 for physics. Toppling by itself does not prove a physically correct collision; the prompt asks for ball bearings, while OMR and P&P depict ring-shaped bearings.",
-    "prompt": "A mesmerizing close-up captures the dynamic interaction of two metallic ball bearings on a sleek, dark surface, illuminated by soft, diffused lighting that accentuates their polished surfaces. The first ball, a gleaming silver sphere, rolls steadily from right to left, its smooth trajectory hinting at a gentle push. As it approaches the second, stationary ball, the scene transforms into a captivating display of physics in motion. The silver ball collides with the second, a darker, matte-finished sphere, causing both to momentarily halt, their surfaces glinting under the light. The camera remains static, focusing intently on this precise moment of impact, where the silver ball's momentum is transferred, and the darker ball begins to roll in the opposite direction. The interplay of light and shadow enhances the visual appeal, while the absence of sound amplifies the subtle textures and movements, creating a serene yet engaging exploration of kinetic energy.",
+    "focus": "Compare 1.0–3.2 s, then 3.5–5.0 s. Watch the rod endpoint and the bag indentation.",
+    "observation": "OMR shows separate approaches, contact and withdrawal, with the bag recovering between strikes. In P&P a long rod remains embedded at the pinched bag surface while another rod appears alongside it. Wan shows an unsupported rotating prop.",
+    "limitation": "All methods misrepresent the requested nunchucks. This supports a narrow contact/recovery comparison, not correct execution of the prompt.",
+    "prompt": "Nunchucks are swung, striking a punching bag, creating a visible ripple effect.",
     "duration": 5.0625,
     "fps": 16,
     "scores": {
-      "wan": 4.0,
-      "pnp": 5.0,
-      "omr": 5.0
-    }
+      "omr": 3,
+      "wan": 2,
+      "pnp": 3
+    },
+    "methods": [
+      "wan",
+      "pnp",
+      "omr"
+    ]
   },
   {
-    "id": "det_065",
-    "title": "Basketball dribbling",
-    "category": "Impact and contact",
-    "paper": false,
-    "focus": "Hand–ball timing and the lower turn of each bounce, especially 1–4 seconds.",
-    "observation": "OMR keeps a stable standing pose and a recognizable ball through repeated up/down dribbling cycles. Inspect hand/ball timing and the lower turn of each bounce across the three methods, especially 1–4 s. Wan pauses longer near hand height; P&P shifts the child's stance near the end.",
-    "limitation": "All three show plausible portions of the action. Sampled frames do not establish that every reversal occurs at ground contact, so this is a promising comparison rather than a conclusive physical-correctness claim.",
-    "prompt": "In a sun-drenched outdoor court, a young boy, clad in a vibrant blue t-shirt and shorts, stands poised with a basketball in his hands. The camera captures him from a low angle, emphasizing his focused expression as he prepares to execute a perfect underhand throw. The scene is bathed in golden-hour light, casting soft shadows that dance across the court's polished surface, enhancing the dynamic interplay of light and shadow. As he releases the ball, the camera remains static, allowing the viewer to witness the graceful arc of the ball as it descends, tracing a gentle parabola against the backdrop of a distant, blurred fence. The ball's trajectory is accentuated by the subtle sway of the boy's body, his arms outstretched in a fluid motion that underscores the elegance of the throw. The moment culminates as the ball meets the court, the impact resonating with a satisfying thud, encapsulating the joy and precision of this simple yet captivating act.",
-    "duration": 5.0625,
-    "fps": 16,
-    "scores": {
-      "wan": 3.0,
-      "pnp": 3.0,
-      "omr": 4.0
-    }
-  },
-  {
-    "id": "det_014",
-    "title": "Pinball motion",
-    "category": "Impact and contact",
-    "paper": false,
-    "focus": "Ball identity, apparent scale, and trajectory around 1.5–3.5 seconds.",
-    "observation": "OMR shows a single red/white ball moving across the table and exiting the right side. The comparison exposes differences in ball appearance, trajectory and apparent scale. Inspect the middle of the clip, around 1.5–3.5 s.",
-    "limitation": "P&P has a broadly similar trajectory. All versions depict an oversized colored ball rather than a conventional metal pinball; camera and perspective differences complicate judging physical scale.",
-    "prompt": "The video captures a mesmerizing pinball game in a vibrant arcade setting, where a sleek, metallic pinball machine glimmers under the warm glow of overhead lights. The camera, positioned at a static angle, focuses on the left side of the machine, where a gleaming metal barrier reflects the dynamic play. A pinball, adorned with a striking red and white design, ricochets off the metal, creating a resonant clang that echoes through the arcade. The ball's trajectory is expertly tracked, showcasing its lively bounce and the intricate mechanics of the machine. As the ball careens off the metal, it arcs gracefully, illuminating the vibrant playfield with its colorful targets and obstacles. The scene is enhanced by the soft hum of the machine and the subtle flicker of nearby lights, immersing viewers in the thrill of classic arcade gaming.",
-    "duration": 5.0625,
-    "fps": 16,
-    "scores": {
-      "wan": 3.0,
-      "pnp": 3.0,
-      "omr": 4.0
-    }
-  },
-  {
-    "id": "det_049",
-    "title": "Paper folding",
+    "id": "orig_036",
+    "title": "Folded napkin: shape after release",
     "category": "Material deformation",
     "paper": false,
-    "focus": "Fingers lifting and pressing the triangular fold around 1–3 seconds.",
-    "observation": "Around 1–3 s, OMR shows fingers lifting and pressing a visible triangular fold in the green sheet. Wan changes the arrangement of flat sheets; P&P shows a narrower raised fold with less clearly resolved hand/paper contact.",
-    "limitation": "OMR still has paper-geometry ambiguity and a white panel becoming visible later. This illustrates a relative material-interaction improvement, not an error-free folding simulation.",
-    "prompt": "In a softly lit room, a person clad in a dark shirt and a striking red cap sits at a rustic wooden table, their hands deftly folding a vibrant green gift certificate. The camera captures a close-up of their hands, showcasing the intricate process of creasing and tucking the paper with precision. As the certificate is transformed into a neat square, the person's fingers glide gracefully, revealing a delicate attention to detail. The scene is bathed in a warm, golden-hour glow, enhancing the intimate atmosphere. With a gentle flourish, the folded certificate is placed into a decorative envelope, its intricate design hinting at a special occasion. The camera remains static, focusing on the hands and the envelope, creating a serene and contemplative moment that celebrates the art of gift-giving.",
+    "focus": "Watch 3.7–5.0 s, especially after the hands withdraw.",
+    "observation": "P&P’s wide folded fan contracts into a tiny upright bundle. OMR retains a broad folded shape with much less change after release. Wan does not produce a comparable expanding fan.",
+    "limitation": "OMR also creates folds too readily and its fan changes somewhat. P&P’s contraction could partly depict refolding; this is a visible stability advantage, not proof of material conservation. The comparison with Wan is mainly task completion.",
+    "prompt": "A person uses a specialized napkin folding tool to create a complex, origami-like design.",
     "duration": 5.0625,
     "fps": 16,
     "scores": {
-      "wan": 3.0,
-      "pnp": 3.0,
-      "omr": 4.0
-    }
+      "omr": 4,
+      "wan": 4,
+      "pnp": 3
+    },
+    "methods": [
+      "wan",
+      "pnp",
+      "omr"
+    ]
   },
   {
-    "id": "det_096",
-    "title": "Water-balloon rupture",
-    "category": "Impact and contact",
+    "id": "orig_086",
+    "title": "Wet towel: water breakup",
+    "category": "Fluid and supported motion",
     "paper": false,
-    "focus": "1–3 s: rupture, water dispersal and falling latex",
-    "observation": "OMR changes from an intact balloon to falling latex fragments and dispersed water. Wan retains a blue balloon-like object through an extended splash; P&P has similar rupture but different fragment motion. OMR is a useful material-state-transition candidate.",
-    "limitation": "All physics scores are 3. P&P is close, and the balloon is already adjacent to the wall at the start, so approach/contact timing is incomplete.",
-    "prompt": "“In a vivid tableau, a water balloon explodes against a textured brick wall, its vibrant blue hue contrasting sharply with the warm, earthy tones of the masonry. The scene opens with a close-up of the balloon, its surface glistening under soft, diffused lighting that accentuates the water's clarity. As the balloon makes contact, it bursts into a mesmerizing cascade of droplets, each one catching the light and shimmering like tiny jewels. The water flows down the wall, leaving a striking wet mark that glistens against the rough texture, while the camera remains static, capturing the dynamic interplay of light and water. This moment of serene destruction is a visual symphony, showcasing the beauty of nature's elements in a captivating, slow-motion dance.”",
+    "focus": "Watch the water below the towel at 1.0–3.2 s and beside the hands near 4.0 s.",
+    "observation": "P&P shows connected, rope-like water strands that persist in a lattice below the towel. OMR shows more separated droplets and fewer long connected strands. Wan repeatedly produces strong directional jets.",
+    "limitation": "OMR still has excessive suspended spray and incomplete twisting. This is a relative fluid-appearance candidate; all three VideoPhy2 physics scores are 3/5.",
+    "prompt": "A person vigorously twists a wet towel, water spraying outwards in a visible arc.",
     "duration": 5.0625,
     "fps": 16,
     "scores": {
-      "wan": 3.0,
-      "pnp": 3.0,
-      "omr": 3.0
-    }
+      "omr": 3,
+      "wan": 3,
+      "pnp": 3
+    },
+    "methods": [
+      "wan",
+      "pnp",
+      "omr"
+    ]
   },
   {
     "id": "det_081",
@@ -181,112 +77,15 @@ window.OMR_COMPARISONS = [
     "duration": 5.0625,
     "fps": 16,
     "scores": {
-      "wan": 4.0,
-      "pnp": 3.0,
-      "omr": 4.0
-    }
-  },
-  {
-    "id": "orig_084",
-    "title": "Finger–clay contact",
-    "category": "Material deformation",
-    "paper": false,
-    "focus": "0–4 s: surface before contact, insertion, withdrawal",
-    "observation": "OMR shows the finger approaching an initially unpierced surface, pressing in and withdrawing to leave an indentation. Wan begins with a visible hole. P&P also shows a sensible sequence; OMR has a more stable surrounding sculpture outline in the sampled frames.",
-    "limitation": "All physics scores are 5. The hole is large relative to the fingertip and P&P is competitive.",
-    "prompt": "A finger pokes a hole in a soft clay sculpture, leaving a distinct indentation.",
-    "duration": 5.0625,
-    "fps": 16,
-    "scores": {
-      "wan": 5.0,
-      "pnp": 5.0,
-      "omr": 5.0
-    }
-  },
-  {
-    "id": "orig_064",
-    "title": "Scraping a clay vase",
-    "category": "Material deformation",
-    "paper": false,
-    "focus": "0.5–5 s: scraper edge, vase contour and support hand",
-    "observation": "OMR keeps the inner support hand and external scraper beside the rotating vase as its contour changes. Wan shows detached fragments and a weaker connection between scraping and the resulting profile. P&P follows a similar sequence.",
-    "limitation": "OMR and P&P score 4, Wan 3. The OMR advantage over P&P is subtle; included as a close extension of the paper’s pottery scene.",
-    "prompt": "A potter uses a wooden tool to scrape excess clay from a vase, leaving clean lines and a smooth surface.",
-    "duration": 5.0625,
-    "fps": 16,
-    "scores": {
-      "wan": 3.0,
-      "pnp": 4.0,
-      "omr": 4.0
-    }
-  },
-  {
-    "id": "det_057",
-    "title": "Leaf-blower response",
-    "category": "Material deformation",
-    "paper": false,
-    "focus": "1–5 s: nozzle direction and displaced leaves",
-    "observation": "OMR shows leaves and dust lifting in front of the nozzle as the operator sweeps it. Wan leaves much of the pile nearly stationary. P&P also displaces leaves but the visible response is less sustained in the sampled interval.",
-    "limitation": "All physics scores are 4. Dust amount is not a measure of correctness; the useful comparison is the location and timing of motion relative to the nozzle.",
-    "prompt": "In a serene suburban lawn, a man clad in a dark blue shirt and a cap stands poised, wielding a powerful leaf blower. The camera captures a close-up of his hands, gloved in black, as he expertly maneuvers the machine, its nozzle pointed at a patch of vibrant green leaves scattered across the grass. The sunlight filters through the trees, casting dappled shadows that dance across the scene, enhancing the tranquil atmosphere. As he engages the blower, a gust of air sweeps through the leaves, creating a mesmerizing swirl of movement. The camera remains static, focusing on the dynamic interplay of the leaves as they are forcefully displaced, revealing the meticulous craftsmanship of the lawn's maintenance. The man's steady grip and deliberate movements underscore the precision of his task, while the lush greenery and the gentle rustle of leaves evoke a sense of nature's harmony.",
-    "duration": 5.0625,
-    "fps": 16,
-    "scores": {
-      "wan": 4.0,
-      "pnp": 4.0,
-      "omr": 4.0
-    }
-  },
-  {
-    "id": "det_033",
-    "title": "Unrolling pastry",
-    "category": "Material deformation",
-    "paper": false,
-    "focus": "0–4 s: finger contact, sheet edge and roller",
-    "observation": "OMR keeps hands near the sheet and roller through the unrolling sequence. P&P’s fingers lift away in the later frames while the sheet/roller continues changing; Wan produces a less coherent-looking sheet with uneven layers.",
-    "limitation": "All physics scores are 4. Pastry thickness and exact conservation of sheet area remain ambiguous.",
-    "prompt": "A skilled baker meticulously unrolls a pristine sheet of phyllo pastry, its delicate layers glistening under the warm glow of overhead lights. The camera captures the scene in a shallow depth of field, focusing on the intricate textures and subtle sheen of the pastry as it unfurls, revealing a mesmerizing interplay of light and shadow. Each layer, thin and translucent, separates with a gentle touch, showcasing the artistry of the craft. The background remains softly blurred, enhancing the focus on the pastry's delicate beauty. As the baker's hands expertly manipulate the dough, the camera remains static, allowing viewers to immerse themselves in the rhythmic dance of rolling and stretching, culminating in a breathtaking display of culinary finesse.",
-    "duration": 5.0625,
-    "fps": 16,
-    "scores": {
-      "wan": 4.0,
-      "pnp": 4.0,
-      "omr": 4.0
-    }
-  },
-  {
-    "id": "det_047",
-    "title": "Bending wood",
-    "category": "Material deformation",
-    "paper": false,
-    "focus": "2–5 s: grips, curvature and table contact",
-    "observation": "OMR shows a continuous strip bending as both ends are raised, with the middle staying near the table. P&P has a thinner, less regular edge near the fingers; Wan’s grip and hand geometry are less clearly resolved.",
-    "limitation": "All physics scores are 4. All versions show broadly similar bending; treat this as a close comparison, not a decisive win.",
-    "prompt": "In a serene, softly lit studio, a close-up shot reveals a thin, rectangular piece of wood, its surface smooth and polished, resting on a flat, dark surface. The camera remains static, capturing the wood's subtle texture and the gentle interplay of light that accentuates its natural grain. As the scene unfolds, a pair of hands, one gloved in black, the other bare, enters the frame, delicately grasping the wood's edges. With a slow, deliberate motion, the hands begin to bend the wood, revealing its remarkable flexibility as it arches gracefully into a bow-like shape. The camera captures the wood's transformation in exquisite detail, highlighting the tension and resilience of the material. The background remains softly blurred, drawing the viewer's focus to the intricate dance of the wood as it bends and curves, showcasing the artistry of craftsmanship and the beauty of natural materials.",
-    "duration": 5.0625,
-    "fps": 16,
-    "scores": {
-      "wan": 4.0,
-      "pnp": 4.0,
-      "omr": 4.0
-    }
-  },
-  {
-    "id": "det_038",
-    "title": "Bulldozer & sand",
-    "category": "Material deformation",
-    "paper": false,
-    "focus": "2–5 s: blade/pile boundary and vehicle support",
-    "observation": "OMR preserves a visible blade, tracks and sand ridge as the vehicle approaches and engages the pile. Wan’s machine becomes partly submerged in the mound; P&P has similar motion with less clear blade/pile separation.",
-    "limitation": "All physics scores are 4. Material displacement is limited in this short clip and the P&P difference is modest.",
-    "prompt": "In a breathtaking aerial view, a vast expanse of sandy terrain unfolds, where a formidable bulldozer, its yellow body gleaming under the sun, navigates the landscape with purpose. The machine, equipped with a robust blade, glides effortlessly across the sand, leaving a trail of disturbed earth in its wake. As it approaches a large pile of sand, the bulldozer begins to push and sculpt the material, creating a formidable barrier that rises majestically against the horizon. The camera, held steady from a high vantage point, captures the dynamic interplay of the machine and the shifting sands, revealing the intricate patterns of the bulldozer's tracks as it meticulously shapes the earth. The scene is bathed in a warm, golden-hour glow, enhancing the textures of the sand and the machine's powerful movements, while the surrounding landscape remains untouched, emphasizing the transformative power of this solitary operation.",
-    "duration": 5.0625,
-    "fps": 16,
-    "scores": {
-      "wan": 4.0,
-      "pnp": 4.0,
-      "omr": 4.0
-    }
+      "wan": 4,
+      "pnp": 3,
+      "omr": 4
+    },
+    "methods": [
+      "wan",
+      "pnp",
+      "omr"
+    ]
   },
   {
     "id": "det_053",
@@ -300,10 +99,315 @@ window.OMR_COMPARISONS = [
     "duration": 5.0625,
     "fps": 16,
     "scores": {
-      "wan": 5.0,
-      "pnp": 4.0,
-      "omr": 5.0
-    }
+      "wan": 5,
+      "pnp": 4,
+      "omr": 5
+    },
+    "methods": [
+      "wan",
+      "pnp",
+      "omr"
+    ]
+  },
+  {
+    "id": "det_013",
+    "title": "Backflip landing",
+    "category": "Body dynamics",
+    "paper": true,
+    "focus": "Cushion shape and body motion through impact, especially from 1.5–5 seconds.",
+    "observation": "OMR keeps the cushion outline more stable through impact. Wan2.2 shows a larger collapse and an abrupt pose transition.",
+    "limitation": "Both physics scores are 3/5. OMR still shows unusual body–cushion overlap.",
+    "prompt": "“In a vibrant outdoor setting, a young man clad in a sleek black t-shirt and dark shorts stands poised on a lush green lawn, framed by a backdrop of towering trees and a serene blue sky. As he prepares for a daring stunt, the camera captures his focused expression, the tension palpable. With a deep breath, he launches into a powerful backflip, his body arching gracefully through the air. The scene transitions seamlessly as he lands with a soft thud onto a massive inflatable cushion, its bright yellow and blue stripes contrasting vividly against the verdant grass. The camera remains steady, showcasing the cushion's resilience as it absorbs his weight, while the surrounding greenery and clear sky enhance the tranquil atmosphere. This moment of exhilarating athleticism is beautifully captured, highlighting the joy of outdoor adventure and the thrill of pushing physical limits.”",
+    "duration": 5.0625,
+    "fps": 16,
+    "scores": {
+      "wan": 3,
+      "omr": 3
+    },
+    "methods": [
+      "wan",
+      "omr"
+    ]
+  },
+  {
+    "id": "det_025",
+    "title": "Baseball–wall impact",
+    "category": "Impact and contact",
+    "paper": true,
+    "focus": "The wall just before the ball arrives: does the damage follow contact? Inspect 0.5–3 seconds.",
+    "observation": "In OMR, the visible wall response more closely coincides with ball contact. Compare with premature or weakly coupled damage in Wan2.2.",
+    "limitation": "Both physics scores are 3/5. Ball hovering, repeated contact, and implausible material behavior remain; the comparison concerns relative timing.",
+    "prompt": "“In a dynamic sports action sequence, a baseball soars through the air, propelled by a powerful throw from an unseen player. The camera captures the ball's trajectory in a stunning close-up, revealing its textured surface and the blurred background, which hints at a bustling stadium. As the ball approaches a weathered brick wall, its speed intensifies, creating a dramatic tension. The moment of impact is captured with striking clarity, as the ball smashes into the wall, leaving a visible dent and a cloud of dust. The camera remains static, allowing the viewer to fully absorb the force of the collision and the resulting mark, a testament to the power of the throw. This cinematic moment encapsulates the raw energy and excitement of baseball, showcasing the sport's visceral impact.”",
+    "duration": 5.0625,
+    "fps": 16,
+    "scores": {
+      "wan": 3,
+      "omr": 3
+    },
+    "methods": [
+      "wan",
+      "omr"
+    ]
+  },
+  {
+    "id": "det_032",
+    "title": "Tool–clay contact",
+    "category": "Material deformation",
+    "paper": true,
+    "focus": "The tool tip and the nearby clay surface. Does deformation stay coupled to contact? Inspect 1.5–5 seconds.",
+    "observation": "OMR shows deformation developing near the tool tip as it engages the rotating surface. Wan2.2 has weaker visible tool–material coupling.",
+    "limitation": "Both physics scores are 4/5. Clay geometry is still stylized; this is a relative contact/deformation example.",
+    "prompt": "The video opens with a close-up of a potter's wheel, its surface glistening with wet clay, as it spins in a smooth, rhythmic motion. The camera remains static, capturing the intricate details of the clay's texture and the subtle sheen of moisture that enhances its earthy tones. A skilled hand, adorned with a dark glove, enters the frame, wielding a slender tool that delicately probes the clay's surface. The tool's tip, a gleaming silver, contrasts beautifully with the warm clay, creating a striking visual contrast. As the tool makes contact, the clay responds with a gentle wobble, revealing the dynamic nature of the material. The background is softly blurred, drawing the viewer's focus to the mesmerizing dance of the clay and the tool, embodying the artistry and precision of pottery craftsmanship.",
+    "duration": 5.0625,
+    "fps": 16,
+    "scores": {
+      "wan": 4,
+      "omr": 4
+    },
+    "methods": [
+      "wan",
+      "omr"
+    ]
+  },
+  {
+    "id": "det_090",
+    "title": "Wheelbarrow & concrete",
+    "category": "Material deformation",
+    "paper": true,
+    "focus": "Where concrete is deposited, then where the tool makes contact. Inspect 0.5–4.5 seconds.",
+    "observation": "OMR moves from tipping concrete into the form to working the nearby deposited region. Compare the deposit location and later tool contact with Wan2.2.",
+    "limitation": "OMR scores 4/5 and Wan2.2 scores 3/5. Concrete volume and surface changes are not fully physically resolved.",
+    "prompt": "In a sun-drenched construction site, a skilled worker clad in a dark blue shirt and a protective hard hat meticulously pours concrete from a wheelbarrow into a rectangular form, the golden-hour light casting a warm glow over the scene. The camera, held steady, captures the rhythmic dance of the worker as they expertly maneuver the wheelbarrow, ensuring a smooth flow of concrete into the form. As the concrete begins to fill, the worker transitions to a trowel, skillfully leveling the surface with precise, deliberate strokes, creating a flawless, even finish. The surrounding environment, bathed in a soft, diffused light, reveals a backdrop of lush greenery and distant structures, enhancing the tranquil yet industrious atmosphere. This cinematic portrayal of craftsmanship and precision invites viewers to appreciate the artistry behind construction, showcasing the dedication and expertise required for such meticulous work.",
+    "duration": 5.0625,
+    "fps": 16,
+    "scores": {
+      "wan": 3,
+      "omr": 4
+    },
+    "methods": [
+      "wan",
+      "omr"
+    ]
+  },
+  {
+    "id": "det_048",
+    "title": "Bearing collision",
+    "category": "Impact and contact",
+    "paper": false,
+    "focus": "Object shape and contact as the bearings meet and one tips, around 3–5 seconds.",
+    "observation": "At roughly 3–5 s, OMR shows two bearings meeting and the left bearing tipping onto its side. Wan2.2 depicts a sphere and an open bearing with an unexplained line extending into the background.",
+    "limitation": "OMR scores 5/5 and Wan2.2 scores 4/5. Toppling alone does not prove a physically correct collision; the prompt asks for ball bearings, while OMR depicts ring-shaped bearings.",
+    "prompt": "A mesmerizing close-up captures the dynamic interaction of two metallic ball bearings on a sleek, dark surface, illuminated by soft, diffused lighting that accentuates their polished surfaces. The first ball, a gleaming silver sphere, rolls steadily from right to left, its smooth trajectory hinting at a gentle push. As it approaches the second, stationary ball, the scene transforms into a captivating display of physics in motion. The silver ball collides with the second, a darker, matte-finished sphere, causing both to momentarily halt, their surfaces glinting under the light. The camera remains static, focusing intently on this precise moment of impact, where the silver ball's momentum is transferred, and the darker ball begins to roll in the opposite direction. The interplay of light and shadow enhances the visual appeal, while the absence of sound amplifies the subtle textures and movements, creating a serene yet engaging exploration of kinetic energy.",
+    "duration": 5.0625,
+    "fps": 16,
+    "scores": {
+      "wan": 4,
+      "omr": 5
+    },
+    "methods": [
+      "wan",
+      "omr"
+    ]
+  },
+  {
+    "id": "det_065",
+    "title": "Basketball dribbling",
+    "category": "Impact and contact",
+    "paper": false,
+    "focus": "Hand–ball timing and the lower turn of each bounce, especially 1–4 seconds.",
+    "observation": "OMR keeps a stable standing pose and a recognizable ball through repeated dribbling cycles. Wan2.2 pauses longer near hand height. Inspect hand–ball timing and the lower turn of each bounce, especially 1–4 s.",
+    "limitation": "Both show plausible portions of the action. Sampled frames do not establish that every reversal occurs at ground contact; this is not a conclusive physical-correctness claim.",
+    "prompt": "In a sun-drenched outdoor court, a young boy, clad in a vibrant blue t-shirt and shorts, stands poised with a basketball in his hands. The camera captures him from a low angle, emphasizing his focused expression as he prepares to execute a perfect underhand throw. The scene is bathed in golden-hour light, casting soft shadows that dance across the court's polished surface, enhancing the dynamic interplay of light and shadow. As he releases the ball, the camera remains static, allowing the viewer to witness the graceful arc of the ball as it descends, tracing a gentle parabola against the backdrop of a distant, blurred fence. The ball's trajectory is accentuated by the subtle sway of the boy's body, his arms outstretched in a fluid motion that underscores the elegance of the throw. The moment culminates as the ball meets the court, the impact resonating with a satisfying thud, encapsulating the joy and precision of this simple yet captivating act.",
+    "duration": 5.0625,
+    "fps": 16,
+    "scores": {
+      "wan": 3,
+      "omr": 4
+    },
+    "methods": [
+      "wan",
+      "omr"
+    ]
+  },
+  {
+    "id": "det_014",
+    "title": "Pinball motion",
+    "category": "Impact and contact",
+    "paper": false,
+    "focus": "Ball identity, apparent scale, and trajectory around 1.5–3.5 seconds.",
+    "observation": "OMR shows a single red/white ball moving across the table and exiting the right side. Compare ball appearance, trajectory, and apparent scale with Wan2.2 around 1.5–3.5 s.",
+    "limitation": "Both depict an oversized colored ball rather than a conventional metal pinball. Camera and perspective differences complicate judging physical scale.",
+    "prompt": "The video captures a mesmerizing pinball game in a vibrant arcade setting, where a sleek, metallic pinball machine glimmers under the warm glow of overhead lights. The camera, positioned at a static angle, focuses on the left side of the machine, where a gleaming metal barrier reflects the dynamic play. A pinball, adorned with a striking red and white design, ricochets off the metal, creating a resonant clang that echoes through the arcade. The ball's trajectory is expertly tracked, showcasing its lively bounce and the intricate mechanics of the machine. As the ball careens off the metal, it arcs gracefully, illuminating the vibrant playfield with its colorful targets and obstacles. The scene is enhanced by the soft hum of the machine and the subtle flicker of nearby lights, immersing viewers in the thrill of classic arcade gaming.",
+    "duration": 5.0625,
+    "fps": 16,
+    "scores": {
+      "wan": 3,
+      "omr": 4
+    },
+    "methods": [
+      "wan",
+      "omr"
+    ]
+  },
+  {
+    "id": "det_049",
+    "title": "Paper folding",
+    "category": "Material deformation",
+    "paper": false,
+    "focus": "Fingers lifting and pressing the triangular fold around 1–3 seconds.",
+    "observation": "Around 1–3 s, OMR shows fingers lifting and pressing a visible triangular fold in the green sheet. Wan2.2 changes the arrangement of flat sheets.",
+    "limitation": "OMR still has paper-geometry ambiguity and a white panel becoming visible later. This illustrates a relative material-interaction difference, not an error-free folding simulation.",
+    "prompt": "In a softly lit room, a person clad in a dark shirt and a striking red cap sits at a rustic wooden table, their hands deftly folding a vibrant green gift certificate. The camera captures a close-up of their hands, showcasing the intricate process of creasing and tucking the paper with precision. As the certificate is transformed into a neat square, the person's fingers glide gracefully, revealing a delicate attention to detail. The scene is bathed in a warm, golden-hour glow, enhancing the intimate atmosphere. With a gentle flourish, the folded certificate is placed into a decorative envelope, its intricate design hinting at a special occasion. The camera remains static, focusing on the hands and the envelope, creating a serene and contemplative moment that celebrates the art of gift-giving.",
+    "duration": 5.0625,
+    "fps": 16,
+    "scores": {
+      "wan": 3,
+      "omr": 4
+    },
+    "methods": [
+      "wan",
+      "omr"
+    ]
+  },
+  {
+    "id": "det_096",
+    "title": "Water-balloon rupture",
+    "category": "Impact and contact",
+    "paper": false,
+    "focus": "1–3 s: rupture, water dispersal and falling latex",
+    "observation": "OMR changes from an intact balloon to falling latex fragments and dispersed water. Wan2.2 retains a blue balloon-like object through an extended splash. Compare the material-state transition.",
+    "limitation": "Both physics scores are 3/5. The balloon is already adjacent to the wall at the start, so approach/contact timing is incomplete.",
+    "prompt": "“In a vivid tableau, a water balloon explodes against a textured brick wall, its vibrant blue hue contrasting sharply with the warm, earthy tones of the masonry. The scene opens with a close-up of the balloon, its surface glistening under soft, diffused lighting that accentuates the water's clarity. As the balloon makes contact, it bursts into a mesmerizing cascade of droplets, each one catching the light and shimmering like tiny jewels. The water flows down the wall, leaving a striking wet mark that glistens against the rough texture, while the camera remains static, capturing the dynamic interplay of light and water. This moment of serene destruction is a visual symphony, showcasing the beauty of nature's elements in a captivating, slow-motion dance.”",
+    "duration": 5.0625,
+    "fps": 16,
+    "scores": {
+      "wan": 3,
+      "omr": 3
+    },
+    "methods": [
+      "wan",
+      "omr"
+    ]
+  },
+  {
+    "id": "orig_084",
+    "title": "Finger–clay contact",
+    "category": "Material deformation",
+    "paper": false,
+    "focus": "0–4 s: surface before contact, insertion, withdrawal",
+    "observation": "OMR shows the finger approaching an initially unpierced surface, pressing in, and withdrawing to leave an indentation. Wan2.2 begins with a visible hole.",
+    "limitation": "Both physics scores are 5/5. The hole remains large relative to the fingertip.",
+    "prompt": "A finger pokes a hole in a soft clay sculpture, leaving a distinct indentation.",
+    "duration": 5.0625,
+    "fps": 16,
+    "scores": {
+      "wan": 5,
+      "omr": 5
+    },
+    "methods": [
+      "wan",
+      "omr"
+    ]
+  },
+  {
+    "id": "orig_064",
+    "title": "Scraping a clay vase",
+    "category": "Material deformation",
+    "paper": false,
+    "focus": "0.5–5 s: scraper edge, vase contour and support hand",
+    "observation": "OMR keeps the inner support hand and external scraper beside the rotating vase as its contour changes. Wan2.2 shows detached fragments and a weaker connection between scraping and the resulting profile.",
+    "limitation": "OMR scores 4/5 and Wan2.2 scores 3/5. Scraping and material removal remain stylized.",
+    "prompt": "A potter uses a wooden tool to scrape excess clay from a vase, leaving clean lines and a smooth surface.",
+    "duration": 5.0625,
+    "fps": 16,
+    "scores": {
+      "wan": 3,
+      "omr": 4
+    },
+    "methods": [
+      "wan",
+      "omr"
+    ]
+  },
+  {
+    "id": "det_057",
+    "title": "Leaf-blower response",
+    "category": "Material deformation",
+    "paper": false,
+    "focus": "1–5 s: nozzle direction and displaced leaves",
+    "observation": "OMR shows leaves and dust lifting in front of the nozzle as the operator sweeps it. Wan2.2 leaves much of the pile nearly stationary.",
+    "limitation": "Both physics scores are 4/5. Dust amount is not a measure of correctness; compare the location and timing of motion relative to the nozzle.",
+    "prompt": "In a serene suburban lawn, a man clad in a dark blue shirt and a cap stands poised, wielding a powerful leaf blower. The camera captures a close-up of his hands, gloved in black, as he expertly maneuvers the machine, its nozzle pointed at a patch of vibrant green leaves scattered across the grass. The sunlight filters through the trees, casting dappled shadows that dance across the scene, enhancing the tranquil atmosphere. As he engages the blower, a gust of air sweeps through the leaves, creating a mesmerizing swirl of movement. The camera remains static, focusing on the dynamic interplay of the leaves as they are forcefully displaced, revealing the meticulous craftsmanship of the lawn's maintenance. The man's steady grip and deliberate movements underscore the precision of his task, while the lush greenery and the gentle rustle of leaves evoke a sense of nature's harmony.",
+    "duration": 5.0625,
+    "fps": 16,
+    "scores": {
+      "wan": 4,
+      "omr": 4
+    },
+    "methods": [
+      "wan",
+      "omr"
+    ]
+  },
+  {
+    "id": "det_033",
+    "title": "Unrolling pastry",
+    "category": "Material deformation",
+    "paper": false,
+    "focus": "0–4 s: finger contact, sheet edge and roller",
+    "observation": "OMR keeps hands near the sheet and roller through the unrolling sequence. Wan2.2 produces a less coherent-looking sheet with uneven layers.",
+    "limitation": "Both physics scores are 4/5. Pastry thickness and exact conservation of sheet area remain ambiguous.",
+    "prompt": "A skilled baker meticulously unrolls a pristine sheet of phyllo pastry, its delicate layers glistening under the warm glow of overhead lights. The camera captures the scene in a shallow depth of field, focusing on the intricate textures and subtle sheen of the pastry as it unfurls, revealing a mesmerizing interplay of light and shadow. Each layer, thin and translucent, separates with a gentle touch, showcasing the artistry of the craft. The background remains softly blurred, enhancing the focus on the pastry's delicate beauty. As the baker's hands expertly manipulate the dough, the camera remains static, allowing viewers to immerse themselves in the rhythmic dance of rolling and stretching, culminating in a breathtaking display of culinary finesse.",
+    "duration": 5.0625,
+    "fps": 16,
+    "scores": {
+      "wan": 4,
+      "omr": 4
+    },
+    "methods": [
+      "wan",
+      "omr"
+    ]
+  },
+  {
+    "id": "det_047",
+    "title": "Bending wood",
+    "category": "Material deformation",
+    "paper": false,
+    "focus": "2–5 s: grips, curvature and table contact",
+    "observation": "OMR shows a continuous strip bending as both ends are raised, with the middle staying near the table. Wan2.2’s grip and hand geometry are less clearly resolved.",
+    "limitation": "Both physics scores are 4/5 and both show broadly similar bending. This is a close comparison, not a decisive win.",
+    "prompt": "In a serene, softly lit studio, a close-up shot reveals a thin, rectangular piece of wood, its surface smooth and polished, resting on a flat, dark surface. The camera remains static, capturing the wood's subtle texture and the gentle interplay of light that accentuates its natural grain. As the scene unfolds, a pair of hands, one gloved in black, the other bare, enters the frame, delicately grasping the wood's edges. With a slow, deliberate motion, the hands begin to bend the wood, revealing its remarkable flexibility as it arches gracefully into a bow-like shape. The camera captures the wood's transformation in exquisite detail, highlighting the tension and resilience of the material. The background remains softly blurred, drawing the viewer's focus to the intricate dance of the wood as it bends and curves, showcasing the artistry of craftsmanship and the beauty of natural materials.",
+    "duration": 5.0625,
+    "fps": 16,
+    "scores": {
+      "wan": 4,
+      "omr": 4
+    },
+    "methods": [
+      "wan",
+      "omr"
+    ]
+  },
+  {
+    "id": "det_038",
+    "title": "Bulldozer & sand",
+    "category": "Material deformation",
+    "paper": false,
+    "focus": "2–5 s: blade/pile boundary and vehicle support",
+    "observation": "OMR preserves a visible blade, tracks, and sand ridge as the vehicle approaches and engages the pile. Wan2.2’s machine becomes partly submerged in the mound.",
+    "limitation": "Both physics scores are 4/5. Material displacement is limited in this short clip.",
+    "prompt": "In a breathtaking aerial view, a vast expanse of sandy terrain unfolds, where a formidable bulldozer, its yellow body gleaming under the sun, navigates the landscape with purpose. The machine, equipped with a robust blade, glides effortlessly across the sand, leaving a trail of disturbed earth in its wake. As it approaches a large pile of sand, the bulldozer begins to push and sculpt the material, creating a formidable barrier that rises majestically against the horizon. The camera, held steady from a high vantage point, captures the dynamic interplay of the machine and the shifting sands, revealing the intricate patterns of the bulldozer's tracks as it meticulously shapes the earth. The scene is bathed in a warm, golden-hour glow, enhancing the textures of the sand and the machine's powerful movements, while the surrounding landscape remains untouched, emphasizing the transformative power of this solitary operation.",
+    "duration": 5.0625,
+    "fps": 16,
+    "scores": {
+      "wan": 4,
+      "omr": 4
+    },
+    "methods": [
+      "wan",
+      "omr"
+    ]
   },
   {
     "id": "det_040",
@@ -311,16 +415,19 @@ window.OMR_COMPARISONS = [
     "category": "Fluid and supported motion",
     "paper": false,
     "focus": "0–5 s: vehicle identity and wake continuity",
-    "observation": "OMR maintains two distinct vehicles with wakes trailing their paths. Wan changes framing markedly and introduces foreground people, making motion harder to follow. P&P is visually close to OMR.",
-    "limitation": "OMR and P&P score 5, Wan 4. Framing consistency alone is not a physics win; retained as a fluid-motion option.",
+    "observation": "OMR maintains two distinct vehicles with wakes trailing their paths. Wan2.2 changes framing markedly and introduces foreground people, making motion harder to follow.",
+    "limitation": "OMR scores 5/5 and Wan2.2 scores 4/5. Framing consistency alone is not a physics win.",
     "prompt": "In a breathtaking display of aquatic speed and agility, two sleek jet skis race side by side, their powerful engines roaring as they slice through the crystal-clear waters of a tranquil lake. The scene is captured from a dynamic aerial perspective, showcasing the vibrant blue and white craft, each adorned with a distinctive number—'1' and '2'—emblazoned on their sides. The riders, clad in vibrant life vests and helmets, lean forward, their bodies perfectly poised for the thrill of competition. As they accelerate, their wakes collide, creating a mesmerizing spray of water that dances in the sunlight, casting shimmering reflections across the surface. The camera glides smoothly, maintaining a steady focus on the exhilarating chase, while the surrounding landscape of lush greenery and distant mountains adds depth to this adrenaline-fueled spectacle.",
     "duration": 5.0625,
     "fps": 16,
     "scores": {
-      "wan": 4.0,
-      "pnp": 5.0,
-      "omr": 5.0
-    }
+      "wan": 4,
+      "omr": 5
+    },
+    "methods": [
+      "wan",
+      "omr"
+    ]
   },
   {
     "id": "det_088",
@@ -328,15 +435,18 @@ window.OMR_COMPARISONS = [
     "category": "Body dynamics",
     "paper": false,
     "focus": "0–5 s: canopy shape and rider position",
-    "observation": "OMR maintains an inflated canopy with riders beneath it. Wan shows a distorted canopy and a rider positioned above the apparent canopy edge. P&P also preserves a plausible canopy/rider arrangement.",
-    "limitation": "OMR and P&P score 5, Wan 4. The clearest improvement is over Wan; small straps and exact tension cannot be established from the frame sheets.",
+    "observation": "OMR maintains an inflated canopy with riders beneath it. Wan2.2 shows a distorted canopy and a rider positioned above the apparent canopy edge.",
+    "limitation": "OMR scores 5/5 and Wan2.2 scores 4/5. Small straps and exact tension cannot be established from the sampled frames.",
     "prompt": "The video opens with a breathtaking aerial view of a pristine beach, where a vibrant red parasail glides gracefully against a backdrop of azure skies and shimmering turquoise waters. The camera, positioned at a slight angle, captures the dynamic interplay of the parasail as it inflates, revealing its intricate design and the meticulous preparation by a dedicated crew. The scene is bathed in the golden-hour glow, enhancing the rich textures of the fabric and the serene beauty of the surroundings. As the parasail billows and expands, the camera remains steady, allowing viewers to appreciate the careful choreography of the crew, who skillfully manage the lines and ensure a smooth inflation process. The gentle breeze rustles the fabric, creating a sense of anticipation as the parasail prepares for its ascent, embodying the thrill of adventure and the artistry of human endeavor in harmony with nature.",
     "duration": 5.0625,
     "fps": 16,
     "scores": {
-      "wan": 4.0,
-      "pnp": 5.0,
-      "omr": 5.0
-    }
+      "wan": 4,
+      "omr": 5
+    },
+    "methods": [
+      "wan",
+      "omr"
+    ]
   }
 ];
