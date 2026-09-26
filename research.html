@@ -9,8 +9,7 @@
     <script>
         (() => {
             const savedTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            document.documentElement.dataset.theme = savedTheme || (prefersDark ? 'dark' : 'light');
+            document.documentElement.dataset.theme = savedTheme || 'light';
         })();
     </script>
 
@@ -645,9 +644,8 @@
                     <p class="eyebrow">Project Index</p>
                     <h1 class="text-gradient">Research Projects</h1>
                     <p>
-                        A focused view of my work in computer vision, multimodal understanding, and segmentation,
-                        with an emphasis on models that connect visual structure, language, and physically grounded
-                        perception.
+                        My work spans world models for planning and anticipation, action understanding in egocentric
+                        and exocentric video, and earlier research in visual and multimodal segmentation.
                     </p>
                     <div class="hero-actions">
                         <a href="https://scholar.google.com/citations?user=D1ngwXoAAAAJ" target="_blank"
@@ -659,16 +657,16 @@
 
                 <div class="project-stats" aria-label="Research project summary">
                     <div class="stat-card">
-                        <span class="stat-number">3</span>
-                        <span class="stat-label">Featured works</span>
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Research works</span>
                     </div>
                     <div class="stat-card">
                         <span class="stat-number">2</span>
                         <span class="stat-label">WACV papers</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-number">3</span>
-                        <span class="stat-label">Segmentation systems</span>
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">World-model video project</span>
                     </div>
                 </div>
             </div>
@@ -689,6 +687,55 @@
 
             <div class="research-grid" id="researchGrid">
 
+                <div class="research-item" data-year="2026"
+                    data-text="trajpilot how you move tells what you'll do trajectory-conditioned egocentric prediction neurips 2026 sejoon jun hai nguyen-truong luigi seminara lorenzo torresani planning action anticipation camera trajectory">
+                    <div class="res-image-container">
+                        <div class="res-badge">NeurIPS 2026</div>
+                        <img src="https://farsightlab.github.io/TrajPilot/assets/teaser.jpg" alt="TrajPilot uses predicted future camera trajectories to distinguish possible outcomes from an egocentric view" loading="lazy">
+                    </div>
+                    <div class="res-content">
+                        <div class="res-meta">
+                            <span>Egocentric Prediction</span>
+                            <span>Action Planning</span>
+                        </div>
+                        <h3 class="res-title">How You Move Tells What You'll Do: Trajectory-Conditioned Egocentric Prediction</h3>
+                        <p class="res-authors">Sejoon Jun, <strong>Hai Nguyen-Truong</strong>, Luigi Seminara, Lorenzo Torresani</p>
+                        <p class="res-desc">TrajPilot predicts possible future camera trajectories from first-person video and uses them to guide action prediction. Motion supplies a fine-grained signal of intent, helping the model plan action sequences and anticipate what someone will do next without observing their future path.</p>
+                        <div class="res-tags">
+                            <span class="res-tag">Egocentric Video</span>
+                            <span class="res-tag">Camera Trajectories</span>
+                            <span class="res-tag">Action Prediction</span>
+                        </div>
+                        <div class="res-links">
+                            <a href="https://farsightlab.github.io/TrajPilot/" target="_blank" rel="noopener noreferrer" class="res-link res-link-primary"><i class="fas fa-globe" aria-hidden="true"></i> Project</a>
+                            <a href="https://arxiv.org/abs/2605.20388" target="_blank" rel="noopener noreferrer" class="res-link res-link-secondary"><i class="fas fa-file-alt" aria-hidden="true"></i> Paper</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="research-item" data-year="2026"
+                    data-text="omr off-manifold refinement guiding video generators with a frozen world model physics plausible video generation bmvc 2026">
+                    <div class="res-image-container">
+                        <div class="res-badge">BMVC 2026</div>
+                        <img src="images/omr-method.png" alt="OMR method comparison: guidance during generation versus scoring decoded videos" loading="lazy">
+                    </div>
+                    <div class="res-content">
+                        <div class="res-meta">
+                            <span>World Models</span>
+                            <span>Video Generation</span>
+                        </div>
+                        <h3 class="res-title">Off-Manifold Refinement: Guiding Video Generators with a Frozen World Model</h3>
+                        <p class="res-authors"><strong>Hai Nguyen-Truong</strong>, Tuan-Anh Vu, Dang Huynh</p>
+                        <p class="res-desc">Video generators can make convincing frames but get the physics wrong. OMR uses a frozen world model to steer a frozen video generator during a single sampling run. A small adapter connects the generator’s intermediate latents to the world model, so it can guide the video before it is finished.</p>
+                        <div class="res-tags">
+                            <span class="res-tag">World Models</span>
+                            <span class="res-tag">Video Generation</span>
+                            <span class="res-tag">Physical Plausibility</span>
+                        </div>
+                        <div class="res-links">
+                            <a href="omr/" class="res-link res-link-primary"><i class="fas fa-globe"></i> Project</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="research-item" data-year="2026"
                     data-text="transcues power of boundary and reflection semantic transparent object segmentation using pyramid vision transformer transparent cues segmentation transformer wacv 2026">
                     <div class="res-image-container">

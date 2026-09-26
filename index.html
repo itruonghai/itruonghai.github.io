@@ -5,12 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hai Nguyen-Truong | Homepage</title>
-    <meta name="description" content="Homepage of Nguyen Truong Hai - Computer Vision and AI Researcher">
+    <meta name="description" content="Hai Nguyen-Truong is a PhD student at Northeastern University researching world models, planning, anticipation, and action understanding.">
     <script>
         (() => {
             const savedTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            document.documentElement.dataset.theme = savedTheme || (prefersDark ? 'dark' : 'light');
+            document.documentElement.dataset.theme = savedTheme || 'light';
         })();
     </script>
 
@@ -28,196 +27,82 @@
     <link rel="stylesheet" href="css/styles.css">
 
     <style>
-        .hero-layout {
-            display: grid;
-            grid-template-columns: 1fr 350px;
-            gap: 5rem;
-            align-items: center;
-            perspective: 1400px;
-            transform-style: preserve-3d;
+        body.home { background: var(--bg-primary); }
+        .home .site-atmosphere { display: none; }
+        .home section[id] { scroll-margin-top: calc(var(--nav-height) + 1rem); }
+        .home-hero { padding: 3.5rem 0 4rem; }
+        .hero-layout { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(260px, .75fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+        .hero-eyebrow, .section-index { font: 600 .72rem/1.4 var(--font-mono); letter-spacing: .12em; color: var(--accent-teal); }
+        .hero-eyebrow { margin-bottom: 1rem; }
+        .hero-title { font-size: clamp(2.8rem, 4.4vw, 4.2rem); letter-spacing: -.06em; line-height: 1.08; margin-bottom: .7rem; }
+        .hero-period { color: var(--accent-teal); }
+        .hero-subtitle { min-height: 1.5em; font-size: clamp(1.1rem, 1.7vw, 1.5rem); font-weight: 600; line-height: 1.4; color: var(--accent-teal); margin-bottom: 1.7rem; }
+        .typewriter-cursor { display: inline-block; margin-left: 2px; animation: cursor-blink 1s steps(1) infinite; }
+        @keyframes cursor-blink { 50% { opacity: 0; } }
+        .hero-intro { font-size: .98rem; line-height: 1.75; color: var(--text-secondary); margin-bottom: .95rem; }
+        .hero-intro strong { color: var(--text-primary); }
+        .hero-actions { display: flex; gap: 1.5rem; margin-top: 1.5rem; }
+        .hero-actions a { font-size: .92rem; font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--accent-teal); padding-bottom: .15rem; }
+        .hero-actions a:hover { color: var(--accent-teal); }
+        .hero-portrait-column { display: flex; flex-direction: column; align-items: center; gap: 1.2rem; }
+        .profile-image-wrapper { position: relative; width: min(100%, 300px); aspect-ratio: 4 / 5; perspective: 900px; }
+        .portrait-accent { position: absolute; inset: 12px -10px -10px 12px; border: 1px solid var(--accent-teal); border-radius: 8px; opacity: .55; }
+        .profile-image-container { position: absolute; inset: 0; transform: rotateY(-3deg); transition: transform .35s ease; border-radius: 8px; overflow: hidden; box-shadow: 0 18px 40px -28px var(--shadow-color); }
+        .profile-image-wrapper:hover .profile-image-container { transform: rotateY(0) translateY(-3px); }
+        .profile-image { width: 100%; height: 100%; object-fit: cover; }
+        .hero-portrait-column > div:last-child a { font-size: 1.3rem !important; }
+        .section-heading { display: flex; align-items: baseline; gap: 1rem; border-bottom: 1px solid var(--border-medium); padding-bottom: 1rem; margin-bottom: 1.6rem; flex-wrap: wrap; }
+        .section-heading h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); letter-spacing: -.055em; line-height: 1.1; }
+        .section-heading a { margin-left: auto; font-size: .9rem; font-weight: 600; text-decoration: none; }
+        .news-list { list-style: none; padding: .4rem 1.5rem; background: var(--surface-card-solid); border: 1px solid var(--border-soft); border-radius: 8px; box-shadow: var(--glass-shadow); }
+        .news-list li { display: grid; grid-template-columns: 84px 26px minmax(0, 1fr); align-items: baseline; gap: .75rem; padding: .85rem 0; }
+        .news-list li + li { border-top: 1px solid var(--border-soft); }
+        .news-list time { font: 600 .82rem var(--font-mono); color: var(--accent-teal); white-space: nowrap; }
+        .news-icon { font-size: 1.02rem; line-height: 1; }
+        .news-list p { font-size: .92rem; line-height: 1.55; color: var(--text-secondary); }
+        .news-award { color: var(--text-primary); white-space: nowrap; background: color-mix(in srgb, var(--accent-teal) 12%, transparent); border-radius: 3px; padding: .08rem .22rem; }
+        .news-detail { display: block; margin-top: .2rem; color: var(--text-muted); font-size: .86rem; }
+        #featured-publications .projects-grid { margin-top: 1rem; }
+        #featured-publications .paper-card { min-width: min(350px, 82vw); }
+        #featured-publications .omr-card { width: min(480px, 85vw); min-width: min(480px, 85vw); max-width: 480px; height: auto; align-self: flex-start; }
+        #featured-publications .paper-card-image { height: 200px; aspect-ratio: auto; background: #fff; }
+        #featured-publications .paper-card-image img { object-fit: contain; object-position: center; }
+        #featured-publications .vatex-card .paper-card-image img { object-fit: cover; }
+        .home .carousel-btn.left { left: -30px; }
+        .home .carousel-btn.right { right: -30px; }
+        @media (max-width: 820px) {
+            .home-hero { padding: 2.5rem 0 4rem; }
+            .hero-layout { grid-template-columns: 1fr; }
+            .hero-portrait-column { flex-direction: row; justify-content: center; }
+            .profile-image-wrapper { width: min(38vw, 185px); }
+            .hero-title { font-size: clamp(2.8rem, 7vw, 4rem); }
         }
-
-        .hero-text {
-            transform: translateZ(36px);
-            transform-style: preserve-3d;
+        @media (max-width: 520px) {
+            .home .reveal, .home .reveal.active { transform: none; }
+            .hero-title { font-size: clamp(2.6rem, 10vw, 3.5rem); }
+            .hero-eyebrow { font-size: .63rem; }
+            .hero-subtitle { font-size: 1.08rem; min-height: 2.8em; }
+            .hero-portrait-column { flex-direction: column; }
+            .profile-image-wrapper { width: min(55vw, 210px); }
+            .section-index { width: 100%; }
+            .news-list { padding: .4rem 1rem; }
+            .news-list li { grid-template-columns: 74px 22px minmax(0, 1fr); gap: .45rem; align-items: start; }
+            .news-list p { font-size: .88rem; }
+            .news-award { white-space: normal; }
+            #featured-publications .paper-card { flex: 0 0 100%; width: 100%; min-width: 0; max-width: 100%; }
+            #featured-publications .paper-card-image { height: auto; aspect-ratio: 2.4 / 1; }
+            #featured-publications .badge { top: 8px; left: 8px; padding: 4px 7px; border-radius: 5px; font-size: .65rem; }
+            #awards .glass-card { grid-template-columns: minmax(0, 1fr) !important; padding: 1.5rem; }
+            #experience .glass-card { padding: 1.5rem; }
         }
-
-        .profile-image-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 350px;
-            aspect-ratio: 1/1;
-            margin: 0 auto;
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-            filter: drop-shadow(0 34px 36px color-mix(in srgb, var(--shadow-color) 18%, transparent));
-            transform-style: preserve-3d;
-        }
-
-        .profile-image-container {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            padding: 8px;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal), var(--accent-cyan));
-            position: relative;
-            z-index: 2;
-            box-shadow:
-                0 34px 70px -46px rgba(14, 165, 233, 0.78),
-                inset 0 2px 0 var(--glare);
-            transform-style: preserve-3d;
-        }
-
-        /* Rotating Glow Effect */
-        .profile-image-wrapper::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal), var(--accent-cyan), var(--accent-blue));
-            background-size: 200% 200%;
-            z-index: 1;
-            filter: blur(20px);
-            opacity: 0.8;
-            animation: rotateGlow 5s linear infinite;
-        }
-
-        .profile-image {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 6px solid var(--bg-primary);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.5s ease;
-            transform: translateZ(26px);
-        }
-
-        .profile-image-container:hover .profile-image {
-            transform: translateZ(36px) scale(1.05);
-        }
-
-        @keyframes rotateGlow {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
-
-            100% {
-                transform: translateY(0px);
-            }
-        }
-
-        .hero-title {
-            font-size: 4rem;
-            font-weight: 800;
-            letter-spacing: 0;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-            line-height: 1.1;
-            white-space: nowrap;
-            text-shadow: 0 10px 30px rgba(14, 165, 233, 0.1);
-            animation: fadeDown 1s cubic-bezier(0.5, 0, 0, 1) forwards;
-        }
-
-        .hero-subtitle {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 2.5rem;
-            animation: fadeUp 1s cubic-bezier(0.5, 0, 0, 1) forwards;
-            animation-delay: 0.2s;
-            opacity: 0;
-        }
-
-        .scroll-down-indicator {
-            position: absolute;
-            bottom: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 2rem;
-            color: var(--accent-teal);
-            animation: bounce 2s infinite;
-            opacity: 0;
-            animation: fadeUp 1s forwards 1.5s, bounce 2s infinite 1.5s;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        @keyframes bounce {
-
-            0%,
-            20%,
-            50%,
-            80%,
-            100% {
-                transform: translateY(0) translateX(-50%);
-            }
-
-            40% {
-                transform: translateY(-20px) translateX(-50%);
-            }
-
-            60% {
-                transform: translateY(-10px) translateX(-50%);
-            }
-        }
-
-        @media (max-width: 900px) {
-            .hero-layout {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-                text-align: center;
-            }
-
-            .profile-image-wrapper {
-                grid-row: 1;
-                /* Move image to top on mobile */
-                width: 280px;
-            }
-
-            .hero-title {
-                font-size: 3.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.5rem;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .hero-title {
-                font-size: 2.6rem;
-                white-space: normal;
-            }
-
-            .hero-text {
-                transform: none;
-            }
+        @media (prefers-reduced-motion: reduce) {
+            .typewriter-cursor { animation: none; }
+            .profile-image-container { transition: none; }
         }
     </style>
 </head>
 
-<body>
+<body class="home">
 
     <!-- Navigation -->
     <nav class="navbar">
@@ -242,73 +127,58 @@
     <!-- Main Content -->
     <main>
         <!-- Hero / About Section -->
-        <section class="section reveal active" id="about" style="position: relative; overflow: visible;">
-
-            <!-- Interactive Particle Background -->
-            <canvas id="hero-particles"
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: auto;"></canvas>
-
-            <div class="hero-layout" style="position: relative; z-index: 1;">
+        <section class="section reveal active home-hero" id="about">
+            <div class="hero-layout">
                 <div class="hero-text">
-                    <h1 class="hero-title">Hai Nguyen-Truong</h1>
-                    <h2 class="text-gradient hero-subtitle"
-                        style="display: flex; align-items: center; min-height: 1.2em;">
-                        <span class="typewriter-text"></span><span class="typewriter-cursor">|</span>
-                    </h2>
-
-                    <p style="font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
-                        I am an incoming PhD student at Northeastern University, where I am fortunate to be advised by
-                        Prof. <a href="https://ltorresa.github.io/home.html" target="_blank">Lorenzo Torresani</a>.
-                        Previously, I obtained my MPhil in Computer Science and Engineering
-                        from HKUST under the supervision of Prof. <a href="https://saikit.org/" target="_blank">Sai-Kit
-                            Yeung</a>,
-                        following a B.S. in Computer Science (Advanced Program) with highest distinction (GPA: 3.93/4.0)
-                        from the University of Science, VNU - HCM, guided by Assoc. Prof. <a
-                            href="https://www.fit.hcmus.edu.vn/~tmtriet/" target="_blank">Minh-Triet Tran</a>.
+                    <p class="hero-eyebrow">COMPUTER VISION · WORLD MODELS</p>
+                    <h1 class="hero-title">Hai Nguyen-Truong<span class="hero-period">.</span></h1>
+                    <p class="hero-subtitle"><span class="typewriter-text">PhD student · Northeastern</span><span class="typewriter-cursor" aria-hidden="true">|</span></p>
+                    <p class="hero-intro">
+                        I am a PhD student in Computer Science at <a href="https://www.northeastern.edu/" target="_blank" rel="noopener noreferrer">Northeastern University</a>,
+                        advised by Prof. <a href="https://ltorresa.github.io/home.html" target="_blank" rel="noopener noreferrer">Lorenzo Torresani</a>
+                        at <a href="https://farsightlab.github.io/" target="_blank" rel="noopener noreferrer">FarSight Lab</a>.
+                        I study <strong>world models for planning and anticipation</strong>, and <strong>action understanding in egocentric and exocentric video</strong>.
                     </p>
-                    <p style="font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
-                        Currently, my work targets the development of <strong class="highlight-animate">World Foundation
-                            Multimodal Models</strong> capable of discovering the underlying physical laws and causal
-                        relationships within multimodal data.
-                        <!-- To achieve this, my research is structured around two
-                        interconnected pillars:
+                    <p class="hero-intro">
+                        Previously, I earned an MPhil in Computer Science and Engineering at <a href="https://hkust.edu.hk/" target="_blank" rel="noopener noreferrer">HKUST</a>
+                        with Prof. <a href="https://saikit.org/" target="_blank" rel="noopener noreferrer">Sai-Kit Yeung</a>, and a BSc in Computer Science with highest distinction
+                        at the <a href="https://hcmus.edu.vn/" target="_blank" rel="noopener noreferrer">University of Science, VNU-HCM</a>.
                     </p>
-                    <ul
-                        style="font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1.5rem; padding-left: 1.2rem; line-height: 1.6;">
-                        <li style="margin-bottom: 0.5rem;"><strong class="highlight-animate">Egocentric Video
-                                Understanding (The Past & Present):</strong> Enabling AI to interpret human behavior and
-                            intent from continuous, first-person sensory data (such as video, sound, touch, and eye
-                            gaze). The goal is to build a grounded, queryable memory of events as they happen.</li>
-                        <li><strong class="highlight-animate">Physics-Plausible Video Generation (The Future):</strong>
-                            Moving beyond standard generation to build predictive, causally-consistent world models.
-                            This is the essential foundation for robust simulation and long-range planning.</li>
-                    </ul> -->
+                    <p class="hero-intro">
+                        My research experience spans <strong>physics-plausible video generation</strong> at the Google-funded
+                        <a href="https://fulbright.edu.vn/" target="_blank" rel="noopener noreferrer">Fulbright AI Institute</a>,
+                        <strong>image generation</strong> at <a href="https://www.huawei.com/" target="_blank" rel="noopener noreferrer">Huawei Hong Kong Research Center</a>,
+                        and <strong>spatiotemporal segmentation</strong> at <a href="https://vinai.io/" target="_blank" rel="noopener noreferrer">VinAI Research</a> (now part of Qualcomm).
+                    </p>
+                    <div class="hero-actions">
+                        <a href="research.html">Research ↗</a>
+                        <a href="education.html">Education ↗</a>
+                    </div>
                 </div>
 
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 2.5rem;">
+                <div class="hero-portrait-column">
                     <div class="profile-image-wrapper">
+                        <div class="portrait-accent" aria-hidden="true"></div>
                         <div class="profile-image-container">
-                            <img src="images/hai.jpg" alt="Hai Nguyen-Truong" class="profile-image"
-                                onerror="this.style.display='none'">
+                            <img src="images/hai.jpg" alt="Portrait of Hai Nguyen-Truong" class="profile-image">
                         </div>
                     </div>
-
                     <div style="display: flex; gap: 1.5rem;">
-                        <a href="https://scholar.google.com/citations?user=D1ngwXoAAAAJ" target="_blank"
+                        <a href="https://scholar.google.com/citations?user=D1ngwXoAAAAJ" target="_blank" aria-label="Google Scholar"
                             style="font-size: 1.8rem; color: var(--text-secondary); transition: transform 0.3s; display: inline-block;"
                             onmouseover="this.style.transform='scale(1.2) translateY(-3px)'"
                             onmouseout="this.style.transform='scale(1) translateY(0)'"><i
                                 class="fas fa-graduation-cap"></i></a>
-                        <a href="https://github.com/itruonghai" target="_blank"
+                        <a href="https://github.com/itruonghai" target="_blank" aria-label="GitHub"
                             style="font-size: 1.8rem; color: var(--text-secondary); transition: transform 0.3s; display: inline-block;"
                             onmouseover="this.style.transform='scale(1.2) translateY(-3px)'"
                             onmouseout="this.style.transform='scale(1) translateY(0)'"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/itruonghai/" target="_blank"
+                        <a href="https://www.linkedin.com/in/itruonghai/" target="_blank" aria-label="LinkedIn"
                             style="font-size: 1.8rem; color: var(--text-secondary); transition: transform 0.3s; display: inline-block;"
                             onmouseover="this.style.transform='scale(1.2) translateY(-3px)'"
                             onmouseout="this.style.transform='scale(1) translateY(0)'"><i
                                 class="fab fa-linkedin"></i></a>
-                        <a href="mailto:nguyentruonghai141@gmail.com"
+                        <a href="mailto:nguyentruonghai141@gmail.com" aria-label="Email"
                             style="font-size: 1.8rem; color: var(--text-secondary); transition: transform 0.3s; display: inline-block;"
                             onmouseover="this.style.transform='scale(1.2) translateY(-3px)'"
                             onmouseout="this.style.transform='scale(1) translateY(0)'"><i
@@ -317,18 +187,15 @@
                 </div>
             </div>
 
-            <!-- Scroll Down Indicator -->
-            <div class="scroll-down-indicator"
-                onclick="document.getElementById('news').scrollIntoView({ behavior: 'smooth' });">
-                <i class="fas fa-chevron-down"></i>
-            </div>
         </section>
 
         <!-- Featured Publications Section -->
         <section class="section reveal" id="featured-publications">
-            <h2
-                style="font-size: 2.2rem; border-bottom: 2px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 2rem;">
-                📚 Featured Publications</h2>
+            <div class="section-heading">
+                <span class="section-index">01 / SELECTED WORK</span>
+                <h2>Featured publications<span class="hero-period">.</span></h2>
+                <a href="research.html">All research ↗</a>
+            </div>
 
             <div class="projects-carousel-container" style="position: relative; padding: 0 10px;">
                 <button class="carousel-btn left" onclick="scrollCarousel(-1)" aria-label="Scroll left">
@@ -337,40 +204,37 @@
 
                 <div class="projects-grid" id="projectsCarousel">
 
-                    <!-- Project 1 -->
                     <div class="paper-card">
                         <div class="paper-card-image">
-                            <div class="badge">WACV 2026</div>
-                            <img src="https://i.postimg.cc/ZqG6Vnmt/Screenshot-2025-11-09-at-2-27-56-PM.png"
-                                alt="TransCues" loading="lazy">
+                            <div class="badge">NeurIPS 2026</div>
+                            <img src="https://farsightlab.github.io/TrajPilot/assets/teaser.jpg" alt="TrajPilot uses predicted future camera trajectories to distinguish possible outcomes from an egocentric view" loading="lazy">
                         </div>
                         <div class="paper-card-text">
                             <div class="paper-card-top">
-                                <a href="https://transcues.hkustvgd.com/" target="_blank" class="paper-card-title">Power
-                                    of
-                                    Boundary and Reflection: Semantic Transparent Object Segmentation using Pyramid
-                                    Vision
-                                    Transformer with Transparent Cues</a>
-                                <p class="paper-card-authors">Tuan-Anh Vu, <strong>Nguyen Truong Hai</strong>, Zheng
-                                    Ziqiang,
-                                    Binh-Son Hua, Qing Guo, Ivor Tsang, Sai-Kit Yeung</p>
+                                <a href="https://farsightlab.github.io/TrajPilot/" target="_blank" rel="noopener noreferrer" class="paper-card-title">How You Move Tells What You'll Do: Trajectory-Conditioned Egocentric Prediction</a>
+                                <p class="paper-card-authors">Sejoon Jun, <strong>Hai Nguyen-Truong</strong>, Luigi Seminara, Lorenzo Torresani</p>
                             </div>
-
-                            <a href="https://transcues.hkustvgd.com/" target="_blank" class="paper-card-btn"><i
-                                    class="fas fa-globe"></i> Project Page</a>
-
-                            <p class="paper-card-desc">TransCues introduces an efficient transformer-based segmentation
-                                architecture capable of handling transparent, reflective, and general objects. By
-                                proposing
-                                Boundary Feature Enhancement (BFE) and Reflection Feature Enhancement (RFE), we enable
-                                the
-                                model to better capture subtle details in both glass and non-glass regions, resulting in
-                                more accurate and robust segmentation.</p>
+                            <a href="https://farsightlab.github.io/TrajPilot/" target="_blank" rel="noopener noreferrer" class="paper-card-btn"><i class="fas fa-globe" aria-hidden="true"></i> Project Page</a>
+                            <p class="paper-card-desc">TrajPilot predicts possible future camera trajectories from first-person video and uses them to guide action prediction. Motion supplies a fine-grained signal of intent, helping the model plan action sequences and anticipate what someone will do next without observing their future path.</p>
                         </div>
                     </div>
 
-                    <!-- Project 2 -->
-                    <div class="paper-card">
+                    <div class="paper-card omr-card">
+                        <div class="paper-card-image">
+                            <div class="badge">BMVC 2026</div>
+                            <img src="images/omr-method.png" alt="OMR guides video generation within the sampling trajectory instead of selecting among decoded candidates" loading="lazy">
+                        </div>
+                        <div class="paper-card-text">
+                            <div class="paper-card-top">
+                                <a href="omr/" class="paper-card-title">Off-Manifold Refinement: Guiding Video Generators with a Frozen World Model</a>
+                                <p class="paper-card-authors"><strong>Hai Nguyen-Truong</strong>, Tuan-Anh Vu, Dang Huynh</p>
+                            </div>
+                            <a href="omr/" class="paper-card-btn"><i class="fas fa-globe" aria-hidden="true"></i> Project Page</a>
+                            <p class="paper-card-desc">Video generators can make convincing frames but get the physics wrong. OMR uses a frozen world model to steer a frozen video generator during a single sampling run. A small adapter connects the generator’s intermediate latents to the world model, so it can guide the video before it is finished.</p>
+                        </div>
+                    </div>
+
+                    <div class="paper-card vatex-card">
                         <div class="paper-card-image">
                             <div class="badge">WACV 2025</div>
                             <img src="https://vatex.hkustvgd.com/static/images/teaser.png" alt="VATEX" loading="lazy">
@@ -397,7 +261,6 @@
                         </div>
                     </div>
 
-                    <!-- Project 3 -->
                     <div class="paper-card">
                         <div class="paper-card-image">
                             <div class="badge">ISBI 2022</div>
@@ -435,45 +298,26 @@
 
         <!-- News Section -->
         <section class="section reveal" id="news">
-            <h2
-                style="font-size: 2.2rem; border-bottom: 2px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 2rem;">
-                🔥 News</h2>
-            <div class="glass-card" style="box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
-                <ul style="list-style: none; padding: 0;">
-                    <li style="margin-bottom: 1.2rem; display: flex; gap: 1rem;">
-                        <strong style="color: var(--accent-blue); min-width: 80px;">2025.11</strong>
-                        <span>🎯 <strong>Paper Accepted!</strong> Our paper "TransCues" was accepted to WACV
-                            2026.</span>
-                    </li>
-                    <li style="margin-bottom: 1.2rem; display: flex; gap: 1rem;">
-                        <strong style="color: var(--accent-blue); min-width: 80px;">2025.08</strong>
-                        <span>🚀 <strong>New Role!</strong> Joined Fulbright University Vietnam as a Research
-                            Assistant.</span>
-                    </li>
-                    <li style="margin-bottom: 1.2rem; display: flex; gap: 1rem;">
-                        <strong style="color: var(--accent-blue); min-width: 80px;">2025.06</strong>
-                        <span>🏆 <strong>Best Poster Presentation Award</strong> at <a href="https://avstc.ptit.edu.vn/"
-                                target="_blank">AVSTC</a> - Joint recognition from the Australian Govt, UTS, and
-                            PTIT.</span>
-                    </li>
-                    <li style="margin-bottom: 1.2rem; display: flex; gap: 1rem;">
-                        <strong style="color: var(--accent-blue); min-width: 80px;">2024.11</strong>
-                        <span>🚀 <strong>New Role!</strong> Joined Huawei Hong Kong Research Center.</span>
-                    </li>
-                    <li style="margin-bottom: 0; display: flex; gap: 1rem;">
-                        <strong style="color: var(--accent-blue); min-width: 80px;">2024.10</strong>
-                        <span>🎯 <strong>Paper Accepted!</strong> My first paper "VATEX" was accepted to WACV
-                            2025.</span>
-                    </li>
-                </ul>
+            <div class="section-heading">
+                <span class="section-index">02 / MILESTONES</span>
+                <h2>Latest news<span class="hero-period">.</span></h2>
             </div>
+            <ul class="news-list">
+                <li><time datetime="2026-09">09.2026</time><span class="news-icon" aria-hidden="true">📄</span><p><a href="https://farsightlab.github.io/TrajPilot/" target="_blank" rel="noopener noreferrer">TrajPilot</a> accepted at NeurIPS 2026. Our work uses predicted camera trajectories to anticipate actions from first-person video.</p></li>
+                <li><time datetime="2026-09">09.2026</time><span class="news-icon" aria-hidden="true">🎓</span><p>Started my PhD at Northeastern University.</p></li>
+                <li><time datetime="2026-08">08.2026</time><span class="news-icon" aria-hidden="true">📄</span><p><a href="omr/">OMR</a> accepted at BMVC 2026; concluded my research assistantship at the Google-funded Fulbright AI Institute.</p></li>
+                <li><time datetime="2026-07">07.2026</time><span class="news-icon" aria-hidden="true">🥈</span><p>Second prize at <a href="https://en.nhandan.vn/viet-nam-ai-innovation-challenge-2026-crowns-champions-in-ha-noi-post164546.html" target="_blank" rel="noopener noreferrer">VAIC</a> (nearly 1,500 contestants, 340 teams) for <a href="https://tangent.genation.ai/en" target="_blank" rel="noopener noreferrer">Tangent</a> · <strong class="news-award">$5,000 cash</strong><span class="news-detail">One week after the Mobility win, our AI-for-education project turned lectures into vivid, interactive video lessons.</span></p></li>
+                <li><time datetime="2026-07">07.2026</time><span class="news-icon" aria-hidden="true">🏆</span><p>First prize in Mobility at <a href="https://aabw.genaifund.ai/" target="_blank" rel="noopener noreferrer">GenAI Fund’s Agentic AI Build Week</a> (2,000 builders) · <strong class="news-award">$15,000 OpenAI credits</strong> + <strong class="news-award">$250,000 Microsoft startup fund</strong><span class="news-detail">The enterprise track focused on context-aware AI for digital mobility and location intelligence.</span></p></li>
+                <li><time datetime="2025-11">11.2025</time><span class="news-icon" aria-hidden="true">📄</span><p>TransCues accepted at WACV 2026.</p></li>
+            </ul>
         </section>
 
         <!-- Experience Section -->
         <section class="section reveal" id="experience">
-            <h2
-                style="font-size: 2.2rem; border-bottom: 2px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 2rem;">
-                💻 Experience</h2>
+            <div class="section-heading">
+                <span class="section-index">03 / EXPERIENCE</span>
+                <h2>Where I’ve worked<span class="hero-period">.</span></h2>
+            </div>
             <div class="glass-card"
                 style="display: flex; flex-direction: column; gap: 2.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
 
@@ -484,8 +328,7 @@
                     <h3 style="color: var(--text-primary); margin-bottom: 0.2rem; font-size: 1.3rem;">Research Assistant in Computer
                         Vision</h3>
                     <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.8rem; font-weight: 500;">
-                        2025.08 - Current | <a href="https://fulbright.edu.vn/" target="_blank">Fulbright University
-                            Vietnam</a></p>
+                        2025.08 – 2026.08 | <a href="https://fulbright.edu.vn/" target="_blank">Fulbright AI Institute, Fulbright University Vietnam</a> · Google-funded</p>
                     <ul style="padding-left: 1.2rem; color: var(--text-secondary);">
                         <li>Conducted research on Video Diffusion Models, focusing on Physical Plausibility of Video
                             Generation.</li>
@@ -527,9 +370,10 @@
 
         <!-- Honors and Awards -->
         <section class="section reveal" id="awards">
-            <h2
-                style="font-size: 2.2rem; border-bottom: 2px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 2rem;">
-                🎖 Honors, Awards & Competitions</h2>
+            <div class="section-heading">
+                <span class="section-index">04 / RECOGNITION</span>
+                <h2>Honors & awards<span class="hero-period">.</span></h2>
+            </div>
             <div class="glass-card"
                 style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
 
@@ -551,6 +395,8 @@
                             class="fas fa-trophy"></i> Competitions & Math</h3>
                     <ul
                         style="padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem; color: var(--text-secondary);">
+                        <li><strong>2026</strong> First Prize, Mobility · <a href="https://aabw.genaifund.ai/" target="_blank" rel="noopener noreferrer">GenAI Fund Agentic AI Build Week</a></li>
+                        <li><strong>2026</strong> Second Prize · Vietnam AI Innovation Challenge (<a href="https://tangent.genation.ai/en" target="_blank" rel="noopener noreferrer">Tangent</a>)</li>
                         <li><strong>2023 & 2024</strong> 🥈 Runner-up - Maritime CV Workshop (WACV)</li>
                         <li><strong>2020</strong> 🥇 First Prize - MediaEval Sports Video Classification</li>
                         <li><strong>2021</strong> 🥇 First Prize - Ho Chi Minh AI Challenge</li>

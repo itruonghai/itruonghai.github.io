@@ -42,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const navActions = document.createElement('div');
         const themeToggle = document.createElement('button');
         const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
         navActions.className = 'nav-actions';
         themeToggle.className = 'theme-toggle';
@@ -57,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             themeToggle.setAttribute('title', theme === 'dark' ? 'Light mode' : 'Dark mode');
         }
 
-        applyTheme(savedTheme || root.dataset.theme || (prefersDark ? 'dark' : 'light'));
+        applyTheme(savedTheme || root.dataset.theme || 'light');
 
         themeToggle.addEventListener('click', () => {
             const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
@@ -156,153 +155,10 @@ document.addEventListener('DOMContentLoaded', () => {
         railSections.forEach(section => railObserver.observe(section));
     }
 
-    // 5. Hero Particle System
-    const canvas = document.getElementById('hero-particles');
-    if (canvas) {
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        let numParticles = window.innerWidth < 768 ? 80 : 150;
 
-        const mouse = {
-            x: null,
-            y: null,
-            radius: 150
-        };
-
-        // Capture mouse over the parent section
-        const heroSection = document.getElementById('about');
-        heroSection.addEventListener('mousemove', function (event) {
-            const rect = canvas.getBoundingClientRect();
-            mouse.x = event.clientX - rect.left;
-            mouse.y = event.clientY - rect.top;
-        });
-
-        heroSection.addEventListener('mouseleave', function () {
-            mouse.x = null;
-            mouse.y = null;
-        });
-
-        // Resize Canvas
-        function resize() {
-            const parent = canvas.parentElement;
-            canvas.width = parent.offsetWidth;
-            canvas.height = parent.offsetHeight;
-        }
-        window.addEventListener('resize', () => {
-            resize();
-            numParticles = window.innerWidth < 768 ? 40 : 80;
-            init();
-        });
-        resize();
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
-                this.baseX = this.x;
-                this.baseY = this.y;
-                this.density = (Math.random() * 20) + 1;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-            }
-
-            draw() {
-                ctx.fillStyle = root.dataset.theme === 'dark'
-                    ? 'rgba(45, 212, 191, 0.45)'
-                    : 'rgba(14, 165, 233, 0.4)';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.closePath();
-                ctx.fill();
-            }
-
-            update() {
-                // Natural movement
-                this.x += this.vx;
-                this.y += this.vy;
-
-                // Bounce off edges
-                if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
-                if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
-
-                // Mouse interaction
-                if (mouse.x != null) {
-                    let dx = mouse.x - this.x;
-                    let dy = mouse.y - this.y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-                    let forceDirectionX = dx / distance;
-                    let forceDirectionY = dy / distance;
-                    let maxDistance = mouse.radius;
-                    let force = (maxDistance - distance) / maxDistance;
-                    let directionX = forceDirectionX * force * this.density;
-                    let directionY = forceDirectionY * force * this.density;
-
-                    if (distance < mouse.radius) {
-                        this.x -= directionX;
-                        this.y -= directionY;
-                    } else {
-                        // Return to natural position slowly
-                        if (this.x !== this.baseX) {
-                            let dx = this.x - this.baseX;
-                            this.x -= dx / 20;
-                        }
-                        if (this.y !== this.baseY) {
-                            let dy = this.y - this.baseY;
-                            this.y -= dy / 20;
-                        }
-                    }
-                }
-
-                // Keep base coords updated so they drift
-                this.baseX += this.vx;
-                this.baseY += this.vy;
-            }
-        }
-
-        function init() {
-            particles = [];
-            for (let i = 0; i < numParticles; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function animateCanvas() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-
-                // Draw lines between particles
-                for (let j = i; j < particles.length; j++) {
-                    let dx = particles[i].x - particles[j].x;
-                    let dy = particles[i].y - particles[j].y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < 80) {
-                        ctx.beginPath();
-                        const lineAlpha = 0.12 - distance / 760;
-                        ctx.strokeStyle = root.dataset.theme === 'dark'
-                            ? `rgba(251, 191, 36, ${lineAlpha})`
-                            : `rgba(14, 165, 233, ${lineAlpha})`;
-                        ctx.lineWidth = 1;
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                        ctx.closePath();
-                    }
-                }
-            }
-            requestAnimationFrame(animateCanvas);
-        }
-
-        init();
-        animateCanvas();
-    }
-
-    // 6. 3D Tilt Effect on Profile Image
+    // Subtle portrait tilt on pointer devices; leave reduced-motion layouts static.
     const profileContainer = document.querySelector('.profile-image-container');
-    if (profileContainer) {
+    if (profileContainer && window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) {
         profileContainer.addEventListener('mousemove', (e) => {
             const rect = profileContainer.getBoundingClientRect();
             const x = e.clientX - rect.left; // x position within the element.
@@ -356,52 +212,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 8. Looping Typewriter Effect
-    const typeWriterElement = document.querySelector('.typewriter-text');
-    if (typeWriterElement) {
+
+    const typewriter = document.querySelector('.typewriter-text');
+    if (typewriter && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         const phrases = [
-            "Incoming PhD student @ Northeastern",
-            "Computer Vision Researcher",
+            'PhD student · Northeastern',
+            'World models · Planning & Anticipation',
+            'Action understanding · Ego & Exo video'
         ];
+        let phrase = 0;
+        let length = phrases[0].length;
+        let deleting = true;
 
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-
-        function typeWriter() {
-            const currentPhrase = phrases[phraseIndex];
-
-            if (isDeleting) {
-                // Delete characters
-                typeWriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                // Type characters
-                typeWriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
+        function typeNext() {
+            const text = phrases[phrase];
+            length += deleting ? -1 : 1;
+            typewriter.textContent = text.slice(0, length);
+            let delay = deleting ? 45 : 80;
+            if (length === 0) {
+                phrase = (phrase + 1) % phrases.length;
+                deleting = false;
+                delay = 250;
+            } else if (length === text.length) {
+                deleting = true;
+                delay = 2200;
             }
-
-            // Determine typing speed
-            let typeSpeed = isDeleting ? 40 : 80;
-
-            // If word is completely typed
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                // Pause at the end
-                typeSpeed = 2000;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                // Move to next word
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                // Pause before typing next word
-                typeSpeed = 500;
-            }
-
-            setTimeout(typeWriter, typeSpeed);
+            window.setTimeout(typeNext, delay);
         }
 
-        // Start the effect
-        setTimeout(typeWriter, 1000);
+        window.setTimeout(typeNext, 2200);
     }
-
 });

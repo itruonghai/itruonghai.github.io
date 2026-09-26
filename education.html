@@ -9,8 +9,7 @@
     <script>
         (() => {
             const savedTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            document.documentElement.dataset.theme = savedTheme || (prefersDark ? 'dark' : 'light');
+            document.documentElement.dataset.theme = savedTheme || 'light';
         })();
     </script>
 
@@ -208,14 +207,14 @@
                 <p class="education-kicker">Academic Path</p>
                 <h1 class="text-gradient">Education</h1>
                 <p>
-                    A research-focused path through computer vision, multimodal learning, and medical image analysis,
-                    spanning undergraduate, MPhil, and incoming PhD training.
+                    A research-focused path through computer vision, multimodal learning, and world models,
+                    from undergraduate and MPhil study to my PhD at Northeastern.
                 </p>
             </div>
             <div class="education-summary" aria-label="Education summary">
                 <div class="education-summary-card">
                     <strong>Northeastern</strong>
-                    <span>Incoming PhD student</span>
+                    <span>PhD student · FarSight Lab</span>
                 </div>
                 <div class="education-summary-card">
                     <strong>HKUST</strong>
@@ -248,6 +247,7 @@
                         <div class="education-card-body">
                             <ul>
                                 <li><i class="fas fa-bolt text-teal"></i> Advised by Prof. Lorenzo Torresani</li>
+                                <li><i class="fas fa-bolt text-teal" aria-hidden="true"></i><span>Researching world models for planning and anticipation, and action understanding in egocentric and exocentric video at <a href="https://farsightlab.github.io/" target="_blank" rel="noopener noreferrer">FarSight Lab</a>.</span></li>
                             </ul>
                             <a href="https://www.northeastern.edu/" target="_blank" class="visit-btn">Visit Website</a>
                         </div>
