@@ -2,10 +2,31 @@
 <html lang="en">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G65ERHNM5W"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-G65ERHNM5W');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hai Nguyen-Truong | Homepage</title>
     <meta name="description" content="Hai Nguyen-Truong is a PhD student at Northeastern University researching world models, planning, anticipation, and action understanding.">
+    <link rel="canonical" href="https://itruonghai.github.io/">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Hai Nguyen-Truong">
+    <meta property="og:title" content="Hai Nguyen-Truong | PhD Student, Northeastern University">
+    <meta property="og:description" content="PhD student at Northeastern University researching world models, planning, anticipation, and action understanding in egocentric and exocentric video.">
+    <meta property="og:url" content="https://itruonghai.github.io/">
+    <meta property="og:image" content="https://itruonghai.github.io/images/og-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
     <script>
         (() => {
             const savedTheme = localStorage.getItem('theme');
@@ -28,7 +49,7 @@
 
     <style>
         body.home { background: var(--bg-primary); }
-        .home .site-atmosphere { display: none; }
+        .home .site-atmosphere { position: absolute; inset: 0 0 auto; height: 100vh; opacity: .5; -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent); mask-image: linear-gradient(180deg, #000 55%, transparent); }
         .home section[id] { scroll-margin-top: calc(var(--nav-height) + 1rem); }
         .home-hero { padding: 3.5rem 0 4rem; }
         .hero-layout { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(260px, .75fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
@@ -50,7 +71,22 @@
         .profile-image-container { position: absolute; inset: 0; transform: rotateY(-3deg); transition: transform .35s ease; border-radius: 8px; overflow: hidden; box-shadow: 0 18px 40px -28px var(--shadow-color); }
         .profile-image-wrapper:hover .profile-image-container { transform: rotateY(0) translateY(-3px); }
         .profile-image { width: 100%; height: 100%; object-fit: cover; }
-        .hero-portrait-column > div:last-child a { font-size: 1.3rem !important; }
+        .social-links { display: flex; gap: 1.5rem; }
+        .social-links a { display: inline-block; font-size: 1.3rem; color: var(--text-secondary); transition: transform .3s, color .3s; }
+        .social-links a:hover { color: var(--accent-teal); transform: scale(1.2) translateY(-3px); text-decoration: none; }
+        .experience-list { display: flex; flex-direction: column; gap: 2.5rem; }
+        .experience-item { --exp-color: var(--accent-blue); position: relative; padding-left: 2rem; border-left: 2px solid var(--exp-color); }
+        .experience-item:nth-child(2) { --exp-color: var(--accent-cyan); }
+        .experience-item:nth-child(3) { --exp-color: var(--accent-teal); }
+        .experience-item::before { content: ''; position: absolute; left: -7px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: var(--exp-color); }
+        .experience-item h3 { margin-bottom: .2rem; font-size: 1.3rem; }
+        .experience-meta { color: var(--text-muted); font-size: .95rem; margin-bottom: .8rem; font-weight: 500; }
+        .experience-item ul, .awards-list { padding-left: 1.2rem; color: var(--text-secondary); }
+        .awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; }
+        .awards-grid h3 { font-size: 1.3rem; margin-bottom: 1.2rem; color: var(--accent-blue); }
+        .awards-grid > div + div h3 { color: var(--accent-teal); }
+        .awards-list { display: flex; flex-direction: column; gap: .8rem; }
+        .experience-list.glass-card, .awards-grid.glass-card { box-shadow: 0 4px 20px rgba(0, 0, 0, .03); }
         .section-heading { display: flex; align-items: baseline; gap: 1rem; border-bottom: 1px solid var(--border-medium); padding-bottom: 1rem; margin-bottom: 1.6rem; flex-wrap: wrap; }
         .section-heading h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); letter-spacing: -.055em; line-height: 1.1; }
         .section-heading a { margin-left: auto; font-size: .9rem; font-weight: 600; text-decoration: none; }
@@ -92,8 +128,8 @@
             #featured-publications .paper-card { flex: 0 0 100%; width: 100%; min-width: 0; max-width: 100%; }
             #featured-publications .paper-card-image { height: auto; aspect-ratio: 2.4 / 1; }
             #featured-publications .badge { top: 8px; left: 8px; padding: 4px 7px; border-radius: 5px; font-size: .65rem; }
-            #awards .glass-card { grid-template-columns: minmax(0, 1fr) !important; padding: 1.5rem; }
-            #experience .glass-card { padding: 1.5rem; }
+            #awards .awards-grid { grid-template-columns: minmax(0, 1fr); padding: 1.5rem; }
+            #experience .experience-list { padding: 1.5rem; }
         }
         @media (prefers-reduced-motion: reduce) {
             .typewriter-cursor { animation: none; }
@@ -108,7 +144,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo text-gradient" style="display: flex; align-items: center; gap: 0.8rem;">
-                <img src="images/hai.jpg" alt="Hai"
+                <img src="images/hai-avatar.webp" alt="Hai"
                     style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover;"
                     onerror="this.style.display='none'">
                 <span style="font-size: 1.1rem; text-transform: none; letter-spacing: 0;">Hai Nguyen-Truong</span>
@@ -127,7 +163,7 @@
     <!-- Main Content -->
     <main>
         <!-- Hero / About Section -->
-        <section class="section reveal active home-hero" id="about">
+        <section class="section reveal active home-hero" id="about" data-rail-label="About">
             <div class="hero-layout">
                 <div class="hero-text">
                     <p class="hero-eyebrow">COMPUTER VISION · WORLD MODELS</p>
@@ -153,6 +189,7 @@
                     <div class="hero-actions">
                         <a href="research.html">Research ↗</a>
                         <a href="education.html">Education ↗</a>
+                        <a href="https://drive.google.com/file/d/1hed12DwmtKPg1Fyv6CUKrcsqnAWEDre_/view?usp=sharing" target="_blank" rel="noopener noreferrer">CV ↗</a>
                     </div>
                 </div>
 
@@ -160,29 +197,15 @@
                     <div class="profile-image-wrapper">
                         <div class="portrait-accent" aria-hidden="true"></div>
                         <div class="profile-image-container">
-                            <img src="images/hai.jpg" alt="Portrait of Hai Nguyen-Truong" class="profile-image">
+                            <img src="images/hai.webp" alt="Portrait of Hai Nguyen-Truong" class="profile-image" fetchpriority="high">
                         </div>
                     </div>
-                    <div style="display: flex; gap: 1.5rem;">
-                        <a href="https://scholar.google.com/citations?user=D1ngwXoAAAAJ" target="_blank" aria-label="Google Scholar"
-                            style="font-size: 1.8rem; color: var(--text-secondary); transition: transform 0.3s; display: inline-block;"
-                            onmouseover="this.style.transform='scale(1.2) translateY(-3px)'"
-                            onmouseout="this.style.transform='scale(1) translateY(0)'"><i
-                                class="fas fa-graduation-cap"></i></a>
-                        <a href="https://github.com/itruonghai" target="_blank" aria-label="GitHub"
-                            style="font-size: 1.8rem; color: var(--text-secondary); transition: transform 0.3s; display: inline-block;"
-                            onmouseover="this.style.transform='scale(1.2) translateY(-3px)'"
-                            onmouseout="this.style.transform='scale(1) translateY(0)'"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/itruonghai/" target="_blank" aria-label="LinkedIn"
-                            style="font-size: 1.8rem; color: var(--text-secondary); transition: transform 0.3s; display: inline-block;"
-                            onmouseover="this.style.transform='scale(1.2) translateY(-3px)'"
-                            onmouseout="this.style.transform='scale(1) translateY(0)'"><i
-                                class="fab fa-linkedin"></i></a>
-                        <a href="mailto:nguyentruonghai141@gmail.com" aria-label="Email"
-                            style="font-size: 1.8rem; color: var(--text-secondary); transition: transform 0.3s; display: inline-block;"
-                            onmouseover="this.style.transform='scale(1.2) translateY(-3px)'"
-                            onmouseout="this.style.transform='scale(1) translateY(0)'"><i
-                                class="fas fa-envelope"></i></a>
+                    <div class="social-links">
+                        <a href="https://scholar.google.com/citations?user=D1ngwXoAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar" title="Google Scholar"><i class="fas fa-graduation-cap" aria-hidden="true"></i></a>
+                        <a href="https://github.com/itruonghai" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+                        <a href="https://www.linkedin.com/in/itruonghai/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                        <a href="https://drive.google.com/file/d/1hed12DwmtKPg1Fyv6CUKrcsqnAWEDre_/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="CV" title="CV"><i class="fas fa-file-lines" aria-hidden="true"></i></a>
+                        <a href="mailto:nguyentruonghai141@gmail.com" aria-label="Email" title="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
@@ -222,7 +245,7 @@
                     <div class="paper-card omr-card">
                         <div class="paper-card-image">
                             <div class="badge">BMVC 2026</div>
-                            <img src="images/omr-method.png" alt="OMR guides video generation within the sampling trajectory instead of selecting among decoded candidates" loading="lazy">
+                            <img src="images/omr-method.webp" alt="OMR guides video generation within the sampling trajectory instead of selecting among decoded candidates" loading="lazy">
                         </div>
                         <div class="paper-card-text">
                             <div class="paper-card-top">
@@ -308,7 +331,7 @@
                 <li><time datetime="2026-08">08.2026</time><span class="news-icon" aria-hidden="true">📄</span><p><a href="omr/">OMR</a> accepted at BMVC 2026; concluded my research assistantship at the Google-funded Fulbright AI Institute.</p></li>
                 <li><time datetime="2026-07">07.2026</time><span class="news-icon" aria-hidden="true">🥈</span><p>Second prize at <a href="https://en.nhandan.vn/viet-nam-ai-innovation-challenge-2026-crowns-champions-in-ha-noi-post164546.html" target="_blank" rel="noopener noreferrer">VAIC</a> (nearly 1,500 contestants, 340 teams) for <a href="https://tangent.genation.ai/en" target="_blank" rel="noopener noreferrer">Tangent</a> · <strong class="news-award">$5,000 cash</strong><span class="news-detail">One week after the Mobility win, our AI-for-education project turned lectures into vivid, interactive video lessons.</span></p></li>
                 <li><time datetime="2026-07">07.2026</time><span class="news-icon" aria-hidden="true">🏆</span><p>First prize in Mobility at <a href="https://aabw.genaifund.ai/" target="_blank" rel="noopener noreferrer">GenAI Fund’s Agentic AI Build Week</a> (2,000 builders) · <strong class="news-award">$15,000 OpenAI credits</strong> + <strong class="news-award">$250,000 Microsoft startup fund</strong><span class="news-detail">The enterprise track focused on context-aware AI for digital mobility and location intelligence.</span></p></li>
-                <li><time datetime="2025-11">11.2025</time><span class="news-icon" aria-hidden="true">📄</span><p>TransCues accepted at WACV 2026.</p></li>
+                <li><time datetime="2025-11">11.2025</time><span class="news-icon" aria-hidden="true">📄</span><p><a href="https://transcues.hkustvgd.com/" target="_blank" rel="noopener noreferrer">TransCues</a> accepted at WACV 2026.</p></li>
             </ul>
         </section>
 
@@ -318,53 +341,32 @@
                 <span class="section-index">03 / EXPERIENCE</span>
                 <h2>Where I’ve worked<span class="hero-period">.</span></h2>
             </div>
-            <div class="glass-card"
-                style="display: flex; flex-direction: column; gap: 2.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
-
-                <div style="position: relative; padding-left: 2rem; border-left: 2px solid var(--accent-blue);">
-                    <div
-                        style="position: absolute; left: -7px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent-blue);">
-                    </div>
-                    <h3 style="color: var(--text-primary); margin-bottom: 0.2rem; font-size: 1.3rem;">Research Assistant in Computer
-                        Vision</h3>
-                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.8rem; font-weight: 500;">
-                        2025.08 – 2026.08 | <a href="https://fulbright.edu.vn/" target="_blank">Fulbright AI Institute, Fulbright University Vietnam</a> · Google-funded</p>
-                    <ul style="padding-left: 1.2rem; color: var(--text-secondary);">
-                        <li>Conducted research on Video Diffusion Models, focusing on Physical Plausibility of Video
-                            Generation.</li>
-                        <li>Host weekly meeting and research seminar in our CV group.</li>
-                        <li>Assist junior student in Capstone and Thesis project on Computer Vision.</li>
+            <div class="glass-card experience-list">
+                <div class="experience-item">
+                    <h3>Research Assistant in Computer Vision</h3>
+                    <p class="experience-meta">2025.08 – 2026.08 | <a href="https://fulbright.edu.vn/" target="_blank" rel="noopener noreferrer">Fulbright AI Institute, Fulbright University Vietnam</a> · Google-funded</p>
+                    <ul>
+                        <li>Researched video diffusion models, focusing on the physical plausibility of generated video.</li>
+                        <li>Hosted weekly group meetings and research seminars for our computer vision group.</li>
+                        <li>Mentored junior students on computer vision capstone and thesis projects.</li>
                     </ul>
                 </div>
 
-                <div style="position: relative; padding-left: 2rem; border-left: 2px solid var(--accent-cyan);">
-                    <div
-                        style="position: absolute; left: -7px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent-cyan);">
-                    </div>
-                    <h3 style="color: var(--text-primary); margin-bottom: 0.2rem; font-size: 1.3rem;">AI Research Engineer</h3>
-                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.8rem; font-weight: 500;">
-                        2024.11 - 2025.04 | <a href="https://www.huawei.com/" target="_blank">Huawei Hong Kong Research
-                            Center</a></p>
-                    <ul style="padding-left: 1.2rem; color: var(--text-secondary);">
-                        <li>Contributing to <a href="https://github.com/mindspore-lab/mindone"
-                                target="_blank">MindONE</a> project, focusing on multimodal/multitask generation models
-                            and optimizing it on Ascend NPU.</li>
+                <div class="experience-item">
+                    <h3>AI Research Engineer</h3>
+                    <p class="experience-meta">2024.11 – 2025.04 | <a href="https://www.huawei.com/" target="_blank" rel="noopener noreferrer">Huawei Hong Kong Research Center</a></p>
+                    <ul>
+                        <li>Contributed to the <a href="https://github.com/mindspore-lab/mindone" target="_blank" rel="noopener noreferrer">MindONE</a> project, focusing on multimodal/multitask generation models and optimizing them for Ascend NPUs.</li>
                     </ul>
                 </div>
 
-                <div style="position: relative; padding-left: 2rem; border-left: 2px solid var(--accent-teal);">
-                    <div
-                        style="position: absolute; left: -7px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent-teal);">
-                    </div>
-                    <h3 style="color: var(--text-primary); margin-bottom: 0.2rem; font-size: 1.3rem;">Research Resident</h3>
-                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.8rem; font-weight: 500;">
-                        2022.03 - 2022.07 | <a href="https://vinai.io/" target="_blank">VinAI Research</a></p>
-                    <ul style="padding-left: 1.2rem; color: var(--text-secondary);">
-                        <li>Conducted research in spatio-temporal tasks: video instance/panoptic segmentation, 4D point
-                            cloud panoptic segmentation.</li>
+                <div class="experience-item">
+                    <h3>Research Resident</h3>
+                    <p class="experience-meta">2022.03 – 2022.07 | <a href="https://vinai.io/" target="_blank" rel="noopener noreferrer">VinAI Research</a></p>
+                    <ul>
+                        <li>Researched spatiotemporal tasks: video instance/panoptic segmentation and 4D point cloud panoptic segmentation.</li>
                     </ul>
                 </div>
-
             </div>
         </section>
 
@@ -374,37 +376,30 @@
                 <span class="section-index">04 / RECOGNITION</span>
                 <h2>Honors & awards<span class="hero-period">.</span></h2>
             </div>
-            <div class="glass-card"
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
-
+            <div class="glass-card awards-grid">
                 <div>
-                    <h3 style="font-size: 1.3rem; margin-bottom: 1.2rem; color: var(--accent-blue);"><i
-                            class="fas fa-university"></i> Academic</h3>
-                    <ul
-                        style="padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem; color: var(--text-secondary);">
-                        <li><strong>2025</strong> Best Poster Presentation Award at AVSTC</li>
-                        <li><strong>2024</strong> UGC Research Travel Grant - HKUST</li>
-                        <li><strong>2022-2024</strong> Postgraduate Scholarship (PGS) - HKUST</li>
+                    <h3><i class="fas fa-university" aria-hidden="true"></i> Academic</h3>
+                    <ul class="awards-list">
+                        <li><strong>2025</strong> Best Poster Presentation Award · AVSTC</li>
+                        <li><strong>2024</strong> UGC Research Travel Grant · HKUST</li>
+                        <li><strong>2022–2024</strong> Postgraduate Scholarship (PGS) · HKUST</li>
                         <li><strong>2022</strong> Merit Award for Highest Distinction</li>
-                        <li><strong>2022</strong> Third Prize, EURÉKA</li>
+                        <li><strong>2022</strong> Third Prize · EURÉKA</li>
                     </ul>
                 </div>
 
                 <div>
-                    <h3 style="font-size: 1.3rem; margin-bottom: 1.2rem; color: var(--accent-teal);"><i
-                            class="fas fa-trophy"></i> Competitions & Math</h3>
-                    <ul
-                        style="padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem; color: var(--text-secondary);">
-                        <li><strong>2026</strong> First Prize, Mobility · <a href="https://aabw.genaifund.ai/" target="_blank" rel="noopener noreferrer">GenAI Fund Agentic AI Build Week</a></li>
-                        <li><strong>2026</strong> Second Prize · Vietnam AI Innovation Challenge (<a href="https://tangent.genation.ai/en" target="_blank" rel="noopener noreferrer">Tangent</a>)</li>
-                        <li><strong>2023 & 2024</strong> 🥈 Runner-up - Maritime CV Workshop (WACV)</li>
-                        <li><strong>2020</strong> 🥇 First Prize - MediaEval Sports Video Classification</li>
-                        <li><strong>2021</strong> 🥇 First Prize - Ho Chi Minh AI Challenge</li>
-                        <li><strong>2017 & 2018</strong> 🥉 Third Prize - Vietnamese Math Olympiads</li>
-                        <li><strong>2015 & 2016</strong> 🥇 Gold Medal - April 30th Math Olympiad</li>
+                    <h3><i class="fas fa-trophy" aria-hidden="true"></i> Competitions &amp; Math</h3>
+                    <ul class="awards-list">
+                        <li><strong>2026</strong> 🥇 First Prize, Mobility · <a href="https://aabw.genaifund.ai/" target="_blank" rel="noopener noreferrer">GenAI Fund Agentic AI Build Week</a></li>
+                        <li><strong>2026</strong> 🥈 Second Prize · Vietnam AI Innovation Challenge (<a href="https://tangent.genation.ai/en" target="_blank" rel="noopener noreferrer">Tangent</a>)</li>
+                        <li><strong>2023 &amp; 2024</strong> 🥈 Runner-up · Maritime CV Workshop (WACV)</li>
+                        <li><strong>2021</strong> 🥇 First Prize · Ho Chi Minh AI Challenge</li>
+                        <li><strong>2020</strong> 🥇 First Prize · MediaEval Sports Video Classification</li>
+                        <li><strong>2017 &amp; 2018</strong> 🥉 Third Prize · Vietnamese Math Olympiad</li>
+                        <li><strong>2015 &amp; 2016</strong> 🥇 Gold Medal · April 30th Math Olympiad</li>
                     </ul>
                 </div>
-
             </div>
         </section>
 

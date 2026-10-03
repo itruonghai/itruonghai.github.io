@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         railSections.forEach(section => {
             const link = document.createElement('a');
-            const title = section.querySelector('h1, h2, h3')?.textContent?.trim() || section.id;
+            const title = section.dataset.railLabel || section.querySelector('h1, h2, h3')?.textContent?.trim() || section.id;
             link.href = `#${section.id}`;
             link.setAttribute('aria-label', title.replace(/[^\w\s&-]/g, '').trim());
             sectionRail.appendChild(link);
